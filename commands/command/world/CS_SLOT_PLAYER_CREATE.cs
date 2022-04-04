@@ -103,7 +103,7 @@ namespace ProjectZ {
 
             Console.WriteLine("+-------------------------------------------------------------------");
 
-            // TODO GiveBaseItem(int slotIndex) in user class
+            session.user.GiveBaseItem(slot_number);
 
             return rsp;
         }

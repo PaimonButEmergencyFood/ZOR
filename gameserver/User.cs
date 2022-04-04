@@ -326,6 +326,7 @@ namespace ProjectZ {
 
         public void SaveUser() {
             File.WriteAllBytes(mUser.SocialId + ".mbn", mUser.ToByteArray());
+            Console.WriteLine("Saved user " + mUser.ToString());
         }
 
         public bool GiveBaseItem(int slot_index) {
