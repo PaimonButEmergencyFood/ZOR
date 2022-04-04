@@ -108,4 +108,11 @@ namespace ProjectZ {
     //	CLASS_TYPE_WIZARD,
         CLASS_TYPE_MAX
     };
+
+    public enum ESTATNAME{
+        STAT_STR = 0,
+        STAT_DEX,
+        STAT_CON,
+        STAT_SPI,
+    };
 }

@@ -40,17 +40,15 @@ namespace ProjectZ {
             int spi = 0;
 
             if (defaultstat == 1) {
-                // TODO get default stat from somewhere
-                str = 10;
-                con = 10;
-                dex = 10;
-                spi = 10;
+                str = ProjectZ.Logic.Function.GetDefaultStat(class_type, ESTATNAME.STAT_STR);
+                con = ProjectZ.Logic.Function.GetDefaultStat(class_type, ESTATNAME.STAT_CON);
+                dex = ProjectZ.Logic.Function.GetDefaultStat(class_type, ESTATNAME.STAT_DEX);
+                spi = ProjectZ.Logic.Function.GetDefaultStat(class_type, ESTATNAME.STAT_SPI);
             } else {
-                // get random int from 1 to 11
-                str = new Random().Next(1, 11);
-                dex = new Random().Next(1, 11);
-                spi = new Random().Next(1, 11);
-                con = new Random().Next(1, 11);
+                str = new Random().Next() % (ProjectZ.Constants.STAT_MAX - ProjectZ.Constants.STAT_MIN + 1) + ProjectZ.Constants.STAT_MIN;
+                dex = new Random().Next() % (ProjectZ.Constants.STAT_MAX - ProjectZ.Constants.STAT_MIN + 1) + ProjectZ.Constants.STAT_MIN;
+                spi = new Random().Next() % (ProjectZ.Constants.STAT_MAX - ProjectZ.Constants.STAT_MIN + 1) + ProjectZ.Constants.STAT_MIN;
+                con = ProjectZ.Constants.STAT_SUM_MAX - (str + dex + spi);
             }
 
             int character_seq = 1;

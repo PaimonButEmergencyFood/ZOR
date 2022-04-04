@@ -1,7 +1,7 @@
 namespace ProjectZ {
     public class API_ZNO_CS_REQ_SLOT_LIST
     {
-        public NetworkPacket ZNO_CS_REQ_SLOT_LIST(NetworkPacket req, Session session) {
+        public async NetworkPacket ZNO_CS_REQ_SLOT_LIST(NetworkPacket req, Session session) {
             Console.WriteLine("+-------------------------------------------------------------------");
             Console.WriteLine("| API_ZNO_CS_REQ_SLOT_LIST");
             Console.WriteLine("+-------------------------------------------------------------------");
@@ -69,10 +69,10 @@ namespace ProjectZ {
             rsp.U1(MAX_CLASS_TYPE);
             for (int i = 0; i < MAX_CLASS_TYPE; i++) {
                 // TODO get real stat data from xls
-                rsp.U1(5); //STAT_STR
-                rsp.U1(5); //STAT_DEX
-                rsp.U1(5); //STAT_CON
-                rsp.U1(5); //STAT_SPI
+                rsp.U1((sbyte)ProjectZ.Logic.Function.GetDefaultStat(i, ESTATNAME.STAT_STR)); //STAT_STR
+                rsp.U1((sbyte)ProjectZ.Logic.Function.GetDefaultStat(i, ESTATNAME.STAT_DEX)); //STAT_DEX
+                rsp.U1((sbyte)ProjectZ.Logic.Function.GetDefaultStat(i, ESTATNAME.STAT_CON)); //STAT_CON
+                rsp.U1((sbyte)ProjectZ.Logic.Function.GetDefaultStat(i, ESTATNAME.STAT_SPI)); //STAT_SPI
             }
             return rsp;
         }
