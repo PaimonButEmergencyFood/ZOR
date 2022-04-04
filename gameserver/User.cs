@@ -365,7 +365,8 @@ namespace ProjectZ {
             item.SaveItem(this);
             mUser.Character[slot_index].Vehicle = item.GetItemSeq;
             mUser.Character[slot_index].VehicleIconidx = 0;
-            
+
+            SaveUser();
             return true;
         }
     }
