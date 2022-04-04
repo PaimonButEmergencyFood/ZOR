@@ -194,6 +194,16 @@ namespace ProjectZ {
             }
         }
 
+        public List<ProjectZ.Common.Protocol.Protobuf.Item> Items {
+            get {
+                List<ProjectZ.Common.Protocol.Protobuf.Item> items = new List<ProjectZ.Common.Protocol.Protobuf.Item>();
+                for (int i = 0; i < mUser.ItemCount; i++) {
+                    items.Add(new ProjectZ.Common.Protocol.Protobuf.Item(mUser.Item[i]));
+                }
+                return items;
+            }
+        }
+
         public uint Zen {
             get {
                 return mUser.Zen;
@@ -209,6 +219,17 @@ namespace ProjectZ {
 
         public void SetCharacter(int index, CharacterInfo character) {
             mUser.Character[index] = character;
+        }
+
+        public void AddItem(ProjectZ.Common.Protocol.Protobuf.Item item) {
+            mUser.Item.Add(item);
+            mUser.ItemCount = mUser.ItemCount + 1;
+        }
+
+        public uint ItemCount {
+            get {
+                return mUser.ItemCount;
+            }
         }
 
         public User CreateUser(string social_id) {
@@ -276,6 +297,8 @@ namespace ProjectZ {
             mUser.Info.ArraySlot[0].MakeCharacter = false;
             mUser.Info.ArraySlot[0].RemainStatResetCount = 3;
 
+            mUser.ItemCount = 0;
+
             SaveUser();
             return this;
         }
@@ -306,11 +329,43 @@ namespace ProjectZ {
         }
 
         public bool GiveBaseItem(int slot_index) {
+            // weapon
             ProjectZ.Logic.Item item = new ProjectZ.Logic.Item();
             item.Tid = 0;
             item.SubType = (int)EnumClassItemTableType.CLASS_ITEM_TABLE_WEAPON;
             item.Quantity = 1;
             item.ClassType = (int)this.Characters[slot_index].Classtype;
+            item.BagType = ItemResource.GetItemBagType(item);
+            item.BagSlotNumber = 0;
+
+            ItemResource.SetItemEffect(item);
+
+            item.SaveItem(this);
+            mUser.Character[slot_index].Weapon = item.GetItemSeq;
+            mUser.Character[slot_index].WeaponIconidx = 0;
+            
+            
+            // fairy
+            item = new ProjectZ.Logic.Item();
+            FairyResource.SetBaseFairyInfo(item, (int)mUser.Character[slot_index].Classtype);
+            item.SaveItem(this);
+            mUser.Character[slot_index].Fairy = item.GetItemSeq;
+
+            // vehicle
+            item = new ProjectZ.Logic.Item();
+            item.Tid = 0;
+            item.SubType = (int)EnumClassItemTableType.CLASS_ITEM_TABLE_VEHICLE;
+            item.Quantity = 1;
+            item.ClassType = -1;
+            item.BagType = ItemResource.GetItemBagType(item);
+            item.BagSlotNumber = 0;
+
+            ItemResource.SetItemEffect(item);
+
+            item.SaveItem(this);
+            mUser.Character[slot_index].Vehicle = item.GetItemSeq;
+            mUser.Character[slot_index].VehicleIconidx = 0;
+            
             return true;
         }
     }

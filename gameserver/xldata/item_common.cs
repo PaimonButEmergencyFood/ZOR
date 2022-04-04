@@ -25,7 +25,7 @@ namespace NXLData {
             public int	EFF_VALUE;
             public int	EFF_POS;
         }
-        public static ITEM_COMMON_COMMON_NECKLACE[] stItem_Common_Common_Necklace = new ITEM_COMMON_COMMON_NECKLACE[ITEM_COMMON_COMMON_NECKLACE_MAX] {
+        public static ITEM_COMMON_COMMON_NECKLACE[] stItem_Common_Common_NECKLACE = new ITEM_COMMON_COMMON_NECKLACE[ITEM_COMMON_COMMON_NECKLACE_MAX] {
             new ITEM_COMMON_COMMON_NECKLACE {
                 ICON = 0,
                 NAME_KOR = "≥ÏΩº∏Ò∞…¿Ã",
@@ -700,7 +700,7 @@ namespace NXLData {
             public int	EFF_POS;
         }
         public const int ITEM_COMMON_COMMONITEM_CLOAK_MAX = 31;
-        public static ITEM_COMMON_COMMONITEM_CLOAK[] stItem_Common_Commonitem_Cloak = new ITEM_COMMON_COMMONITEM_CLOAK[ITEM_COMMON_COMMONITEM_CLOAK_MAX] {
+        public static ITEM_COMMON_COMMONITEM_CLOAK[] stItem_Common_Commonitem_CLOAK = new ITEM_COMMON_COMMONITEM_CLOAK[ITEM_COMMON_COMMONITEM_CLOAK_MAX] {
             new ITEM_COMMON_COMMONITEM_CLOAK {
                 ICON = 0,
                 NAME_KOR = "«„∏ß«—∏¡≈‰",

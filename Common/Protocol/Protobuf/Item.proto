@@ -3,6 +3,7 @@ syntax = "proto3";
 option csharp_namespace = "ProjectZ.Common.Protocol.Protobuf";
 
 message Item {
+    uint32 seq = 30;
     int32 bag_type = 1;
     int32 bag_slot_number = 2;	//u16
     int32 stack_num = 3;
@@ -31,7 +32,7 @@ message Item {
     int32 buy_use = 23;    	//1	char
     int32 evolve_step = 24;    //1	char
     int32 evolve_max = 25;    	//1	char
-    int32 evolve_point32 = 26;    //2	short
+    int32 evolve_point = 26;    //2	short
     int32 evolve_percent = 27;    //1	char
     int32 evolve_value = 28;    //2	short
 

@@ -42,6 +42,24 @@ namespace ProjectZ.Logic {
             }
         }
 
+        public int Quality {
+            get {
+                return _item.Quality;
+            }
+            set {
+                _item.Quality = value;
+            }
+        }
+
+        public int Level {
+            get {
+                return _item.Level;
+            }
+            set {
+                _item.Level = value;
+            }
+        }
+
         public int Quantity {
             get {
                 return _item.Quantity;
@@ -78,8 +96,82 @@ namespace ProjectZ.Logic {
             }
         }
 
+        public int EvolvePoint {
+            get {
+                return _item.EvolvePoint;
+            }
+            set {
+                _item.EvolvePoint = value;
+            }
+        }
+
+        public int EvolvePercent {
+            get {
+                return _item.EvolvePercent;
+            }
+            set {
+                _item.EvolvePercent = value;
+            }
+        }
+
+        public List<int> EffType {
+            get {
+                List<int> effType = new List<int>();
+                foreach (var eff in _item.EffType) {
+                    effType.Add(eff);
+                }
+                return effType;
+            }
+        }
+
+        public List<int> EffValue {
+            get {
+                List<int> effValue = new List<int>();
+                foreach (var eff in _item.EffValue) {
+                    effValue.Add(eff);
+                }
+                return effValue;
+            }
+        }
+
+        public List<int> EffPos {
+            get {
+                List<int> effPos = new List<int>();
+                foreach (var eff in _item.EffPos) {
+                    effPos.Add(eff);
+                }
+                return effPos;
+            }
+        }
+
+        public uint GetItemSeq {
+            get {
+                return _item.Seq;
+            }
+        }
+
+        public void SetEffType(int index, int value) {
+            EffType[index] = value;
+        }
+
+        public void SaveItem(User user) {
+            if (_item.Seq == 0) {
+                if (user.ItemCount == 0) {
+                    _item.Seq = 1;
+                } else {
+                    _item.Seq = user.ItemCount + 1;
+                }
+            }
+            user.AddItem(_item);
+        }
+
         public Item() {
             _item = new ProjectZ.Common.Protocol.Protobuf.Item();
+            for (int i = 0; i < 7; i++) {
+                _item.EffType.Add(-1);
+                _item.EffPos.Add(0);
+                _item.EffValue.Add(-1);
+            }
         }
     }
 }

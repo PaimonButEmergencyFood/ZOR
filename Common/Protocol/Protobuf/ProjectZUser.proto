@@ -5,6 +5,7 @@ option csharp_namespace = "ProjectZ.Common.Protocol.Protobuf";
 import "UserInfo.proto";
 import "CharacterInfo.proto";
 import "SocialInfo.proto";
+import "Item.proto";
 
 message ProjectZUser {
 	string social_id = 1;
@@ -12,4 +13,6 @@ message ProjectZUser {
 	SocialInfo social = 3;
 	repeated CharacterInfo character = 4; // 8 CharacterInfo
 	uint32 zen = 5;
+	repeated Item item = 6;
+	uint32 item_count = 7;
 }
