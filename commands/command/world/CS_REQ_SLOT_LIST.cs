@@ -1,7 +1,7 @@
 namespace ProjectZ {
     public class API_ZNO_CS_REQ_SLOT_LIST
     {
-        public async NetworkPacket ZNO_CS_REQ_SLOT_LIST(NetworkPacket req, Session session) {
+        public NetworkPacket ZNO_CS_REQ_SLOT_LIST(NetworkPacket req, Session session) {
             Console.WriteLine("+-------------------------------------------------------------------");
             Console.WriteLine("| API_ZNO_CS_REQ_SLOT_LIST");
             Console.WriteLine("+-------------------------------------------------------------------");
