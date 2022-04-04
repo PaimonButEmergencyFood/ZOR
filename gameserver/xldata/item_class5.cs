@@ -24,7 +24,6 @@ namespace NXLData {
             public int	EFFECT;
             public int	EFF_VALUE;
             public int	EFF_POS;
-        
         }
         public static ITEM_CLASS5_WEAPON05[] stItem_CLASS5_Weapon05 = new ITEM_CLASS5_WEAPON05[ITEM_CLASS5_WEAPON05_MAX] {
             new ITEM_CLASS5_WEAPON05 {
@@ -112,7 +111,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 4,
+                ICON = 5,
                 NAME_KOR = "강철사슬낫",
                 NAME_ENG = "Cathedral articles dagger",
                 NAME_JPN = "大聖堂の記事ダガー",
@@ -133,7 +132,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 5,
+                ICON = 6,
                 NAME_KOR = "강철사슬검",
                 NAME_ENG = "Sword of greed",
                 NAME_JPN = "貪欲のグレートソード",
@@ -154,7 +153,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 6,
+                ICON = 7,
                 NAME_KOR = "강철사슬창",
                 NAME_ENG = "Inyeonuigeom",
                 NAME_JPN = "インヨンウイゴム",
@@ -175,7 +174,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 7,
+                ICON = 9,
                 NAME_KOR = "합금사슬낫",
                 NAME_ENG = "Wonjeongdaeuigeom",
                 NAME_JPN = "ウォンジョンデウイゴム",
@@ -196,7 +195,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 8,
+                ICON = 10,
                 NAME_KOR = "합금사슬검",
                 NAME_ENG = "Scenes of the Sword",
                 NAME_JPN = "名将の剣",
@@ -217,7 +216,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 9,
+                ICON = 11,
                 NAME_KOR = "합금사슬창",
                 NAME_ENG = "Oricon bayonet",
                 NAME_JPN = "オリコン最高検察庁",
@@ -238,7 +237,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 10,
+                ICON = 13,
                 NAME_KOR = "오리콘사슬낫",
                 NAME_ENG = "Palladium Gulf Bayonet",
                 NAME_JPN = "アマンスタジアムグレートソード",
@@ -259,7 +258,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 11,
+                ICON = 14,
                 NAME_KOR = "오리콘사슬검",
                 NAME_ENG = "Sword of Despair",
                 NAME_JPN = "絶望の大剣",
@@ -280,7 +279,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 12,
+                ICON = 15,
                 NAME_KOR = "오리콘사슬창",
                 NAME_ENG = "Infinity's Greatsword",
                 NAME_JPN = "無限の両手剣",
@@ -301,7 +300,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 13,
+                ICON = 4,
                 NAME_KOR = "청동쇄겸",
                 NAME_ENG = "Asda seonggeom Karon",
                 NAME_JPN = "聖剣アスカロン",
@@ -322,7 +321,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 14,
+                ICON = 8,
                 NAME_KOR = "강철쇄겸",
                 NAME_ENG = "Cheonsanguigeom",
                 NAME_JPN = "チョンサンウイゴム",
@@ -343,7 +342,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_WEAPON05 {
-                ICON = 15,
+                ICON = 12,
                 NAME_KOR = "합금쇄겸",
                 NAME_ENG = "Greatsword of patience",
                 NAME_JPN = "忍耐の両手剣",
@@ -409,7 +408,7 @@ namespace NXLData {
         }
         public static ITEM_CLASS5_HELMET05[] stItem_CLASS5_Helmet05 = new ITEM_CLASS5_HELMET05[ITEM_CLASS5_HELMET05_MAX] {
             new ITEM_CLASS5_HELMET05 {
-                ICON = 0,
+                ICON = 9,
                 NAME_KOR = "수련용두건",
                 NAME_ENG = "The bayonet seal",
                 NAME_JPN = "封印された大剣",
@@ -493,7 +492,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 4,
+                ICON = 5,
                 NAME_KOR = "일반두건",
                 NAME_ENG = "Cathedral articles dagger",
                 NAME_JPN = "大聖堂の記事ダガー",
@@ -514,7 +513,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 5,
+                ICON = 6,
                 NAME_KOR = "일반헤어밴드",
                 NAME_ENG = "Sword of greed",
                 NAME_JPN = "貪欲のグレートソード",
@@ -535,7 +534,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 6,
+                ICON = 7,
                 NAME_KOR = "일반복면",
                 NAME_ENG = "Inyeonuigeom",
                 NAME_JPN = "インヨンウイゴム",
@@ -556,7 +555,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 7,
+                ICON = 9,
                 NAME_KOR = "고급두건",
                 NAME_ENG = "Wonjeongdaeuigeom",
                 NAME_JPN = "ウォンジョンデウイゴム",
@@ -577,7 +576,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 8,
+                ICON = 10,
                 NAME_KOR = "고급헤어밴드",
                 NAME_ENG = "Scenes of the Sword",
                 NAME_JPN = "名将の剣",
@@ -598,7 +597,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 9,
+                ICON = 11,
                 NAME_KOR = "고급복면",
                 NAME_ENG = "Oricon bayonet",
                 NAME_JPN = "オリコン最高検察庁",
@@ -619,7 +618,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 10,
+                ICON = 13,
                 NAME_KOR = "희귀두건",
                 NAME_ENG = "Palladium Gulf Bayonet",
                 NAME_JPN = "アマンスタジアムグレートソード",
@@ -640,7 +639,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 11,
+                ICON = 14,
                 NAME_KOR = "희귀헤어밴드",
                 NAME_ENG = "Sword of Despair",
                 NAME_JPN = "絶望の大剣",
@@ -661,7 +660,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 12,
+                ICON = 15,
                 NAME_KOR = "희귀복면",
                 NAME_ENG = "Infinity's Greatsword",
                 NAME_JPN = "無限の両手剣",
@@ -682,7 +681,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 13,
+                ICON = 4,
                 NAME_KOR = "낡은서클릿",
                 NAME_ENG = "Asda seonggeom Karon",
                 NAME_JPN = "聖剣アスカロン",
@@ -703,7 +702,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 14,
+                ICON = 8,
                 NAME_KOR = "일반서클릿",
                 NAME_ENG = "Cheonsanguigeom",
                 NAME_JPN = "チョンサンウイゴム",
@@ -724,7 +723,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_HELMET05 {
-                ICON = 15,
+                ICON = 12,
                 NAME_KOR = "고급서클릿",
                 NAME_ENG = "Greatsword of patience",
                 NAME_JPN = "忍耐の両手剣",
@@ -790,7 +789,7 @@ namespace NXLData {
         }
         public static ITEM_CLASS5_ARMOR05[] stItem_CLASS5_Armor05 = new ITEM_CLASS5_ARMOR05[ITEM_CLASS5_ARMOR05_MAX] {
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 0,
+                ICON = 9,
                 NAME_KOR = "수련용호신의",
                 NAME_ENG = "The bayonet seal",
                 NAME_JPN = "封印された大剣",
@@ -874,7 +873,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 4,
+                ICON = 5,
                 NAME_KOR = "일반호신의",
                 NAME_ENG = "Cathedral articles dagger",
                 NAME_JPN = "大聖堂の記事ダガー",
@@ -895,7 +894,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 5,
+                ICON = 6,
                 NAME_KOR = "일반닌자의",
                 NAME_ENG = "Sword of greed",
                 NAME_JPN = "貪欲のグレートソード",
@@ -916,7 +915,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 6,
+                ICON = 7,
                 NAME_KOR = "일반제복",
                 NAME_ENG = "Inyeonuigeom",
                 NAME_JPN = "インヨンウイゴム",
@@ -937,7 +936,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 7,
+                ICON = 9,
                 NAME_KOR = "고급호신의",
                 NAME_ENG = "Wonjeongdaeuigeom",
                 NAME_JPN = "ウォンジョンデウイゴム",
@@ -958,7 +957,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 8,
+                ICON = 10,
                 NAME_KOR = "고급닌자의",
                 NAME_ENG = "Scenes of the Sword",
                 NAME_JPN = "名将の剣",
@@ -979,7 +978,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 9,
+                ICON = 11,
                 NAME_KOR = "고급제복",
                 NAME_ENG = "Oricon bayonet",
                 NAME_JPN = "オリコン最高検察庁",
@@ -1000,7 +999,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 10,
+                ICON = 13,
                 NAME_KOR = "희귀호신의",
                 NAME_ENG = "Palladium Gulf Bayonet",
                 NAME_JPN = "アマンスタジアムグレートソード",
@@ -1021,7 +1020,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 11,
+                ICON = 14,
                 NAME_KOR = "희귀닌자의",
                 NAME_ENG = "Sword of Despair",
                 NAME_JPN = "絶望の大剣",
@@ -1042,7 +1041,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 12,
+                ICON = 15,
                 NAME_KOR = "희귀제복",
                 NAME_ENG = "Infinity's Greatsword",
                 NAME_JPN = "無限の両手剣",
@@ -1063,7 +1062,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 13,
+                ICON = 4,
                 NAME_KOR = "낡은서클릿",
                 NAME_ENG = "Asda seonggeom Karon",
                 NAME_JPN = "聖剣アスカロン",
@@ -1084,7 +1083,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 14,
+                ICON = 8,
                 NAME_KOR = "일반서클릿",
                 NAME_ENG = "Cheonsanguigeom",
                 NAME_JPN = "チョンサンウイゴム",
@@ -1105,7 +1104,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_ARMOR05 {
-                ICON = 15,
+                ICON = 12,
                 NAME_KOR = "고급서클릿",
                 NAME_ENG = "Greatsword of patience",
                 NAME_JPN = "忍耐の両手剣",
@@ -1255,7 +1254,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 4,
+                ICON = 5,
                 NAME_KOR = "일반반장갑",
                 NAME_ENG = "Cathedral articles dagger",
                 NAME_JPN = "大聖堂の記事ダガー",
@@ -1276,7 +1275,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 5,
+                ICON = 6,
                 NAME_KOR = "일반아대",
                 NAME_ENG = "Sword of greed",
                 NAME_JPN = "貪欲のグレートソード",
@@ -1297,7 +1296,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 6,
+                ICON = 7,
                 NAME_KOR = "일반토시",
                 NAME_ENG = "Inyeonuigeom",
                 NAME_JPN = "インヨンウイゴム",
@@ -1318,7 +1317,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 7,
+                ICON = 9,
                 NAME_KOR = "고급반장갑",
                 NAME_ENG = "Wonjeongdaeuigeom",
                 NAME_JPN = "ウォンジョンデウイゴム",
@@ -1339,7 +1338,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 8,
+                ICON = 10,
                 NAME_KOR = "고급아대",
                 NAME_ENG = "Scenes of the Sword",
                 NAME_JPN = "名将の剣",
@@ -1360,7 +1359,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 9,
+                ICON = 11,
                 NAME_KOR = "고급토시",
                 NAME_ENG = "Oricon bayonet",
                 NAME_JPN = "オリコン最高検察庁",
@@ -1381,7 +1380,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 10,
+                ICON = 13,
                 NAME_KOR = "희귀반장갑",
                 NAME_ENG = "Palladium Gulf Bayonet",
                 NAME_JPN = "アマンスタジアムグレートソード",
@@ -1402,7 +1401,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 11,
+                ICON = 14,
                 NAME_KOR = "희귀아대",
                 NAME_ENG = "Sword of Despair",
                 NAME_JPN = "絶望の大剣",
@@ -1423,7 +1422,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 12,
+                ICON = 15,
                 NAME_KOR = "희귀토시",
                 NAME_ENG = "Infinity's Greatsword",
                 NAME_JPN = "無限の両手剣",
@@ -1444,7 +1443,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 13,
+                ICON = 4,
                 NAME_KOR = "낡은서클릿",
                 NAME_ENG = "Asda seonggeom Karon",
                 NAME_JPN = "聖剣アスカロン",
@@ -1465,7 +1464,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 14,
+                ICON = 8,
                 NAME_KOR = "일반서클릿",
                 NAME_ENG = "Cheonsanguigeom",
                 NAME_JPN = "チョンサンウイゴム",
@@ -1486,7 +1485,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_GLOVES05 {
-                ICON = 15,
+                ICON = 12,
                 NAME_KOR = "고급서클릿",
                 NAME_ENG = "Greatsword of patience",
                 NAME_JPN = "忍耐の両手剣",
@@ -1636,7 +1635,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 4,
+                ICON = 5,
                 NAME_KOR = "일반롱부츠",
                 NAME_ENG = "Cathedral articles dagger",
                 NAME_JPN = "大聖堂の記事ダガー",
@@ -1657,7 +1656,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 5,
+                ICON = 6,
                 NAME_KOR = "일반레인부츠",
                 NAME_ENG = "Sword of greed",
                 NAME_JPN = "貪欲のグレートソード",
@@ -1678,7 +1677,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 6,
+                ICON = 7,
                 NAME_KOR = "일반닌자부츠",
                 NAME_ENG = "Inyeonuigeom",
                 NAME_JPN = "インヨンウイゴム",
@@ -1699,7 +1698,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 7,
+                ICON = 9,
                 NAME_KOR = "고급롱부츠",
                 NAME_ENG = "Wonjeongdaeuigeom",
                 NAME_JPN = "ウォンジョンデウイゴム",
@@ -1720,7 +1719,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 8,
+                ICON = 10,
                 NAME_KOR = "고급레인부츠",
                 NAME_ENG = "Scenes of the Sword",
                 NAME_JPN = "名将の剣",
@@ -1741,7 +1740,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 9,
+                ICON = 11,
                 NAME_KOR = "고급닌자부츠",
                 NAME_ENG = "Oricon bayonet",
                 NAME_JPN = "オリコン最高検察庁",
@@ -1762,7 +1761,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 10,
+                ICON = 13,
                 NAME_KOR = "희귀롱부츠",
                 NAME_ENG = "Palladium Gulf Bayonet",
                 NAME_JPN = "アマンスタジアムグレートソード",
@@ -1783,7 +1782,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 11,
+                ICON = 14,
                 NAME_KOR = "희귀레인부츠",
                 NAME_ENG = "Sword of Despair",
                 NAME_JPN = "絶望の大剣",
@@ -1804,7 +1803,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 12,
+                ICON = 15,
                 NAME_KOR = "희귀닌자부츠",
                 NAME_ENG = "Infinity's Greatsword",
                 NAME_JPN = "無限の両手剣",
@@ -1825,7 +1824,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 13,
+                ICON = 4,
                 NAME_KOR = "낡은서클릿",
                 NAME_ENG = "Asda seonggeom Karon",
                 NAME_JPN = "聖剣アスカロン",
@@ -1846,7 +1845,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 14,
+                ICON = 8,
                 NAME_KOR = "일반서클릿",
                 NAME_ENG = "Cheonsanguigeom",
                 NAME_JPN = "チョンサンウイゴム",
@@ -1867,7 +1866,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS5_SHOES05 {
-                ICON = 15,
+                ICON = 12,
                 NAME_KOR = "고급서클릿",
                 NAME_ENG = "Greatsword of patience",
                 NAME_JPN = "忍耐の両手剣",

@@ -408,7 +408,7 @@ namespace NXLData {
         }
         public static ITEM_CLASS4_HELMET04[] stItem_CLASS4_Helmet04 = new ITEM_CLASS4_HELMET04[ITEM_CLASS4_HELMET04_MAX] {
             new ITEM_CLASS4_HELMET04 {
-                ICON = 0,
+                ICON = 9,
                 NAME_KOR = "¼ö·Ã¿ëÆäµµ¶ó",
                 NAME_ENG = "The bayonet seal",
                 NAME_JPN = "ÜæìÔªµªìª¿ÓÞ?",
@@ -789,7 +789,7 @@ namespace NXLData {
         }
         public static ITEM_CLASS4_ARMOR04[] stItem_CLASS4_Armor04 = new ITEM_CLASS4_ARMOR04[ITEM_CLASS4_ARMOR04_MAX] {
             new ITEM_CLASS4_ARMOR04 {
-                ICON = 0,
+                ICON = 9,
                 NAME_KOR = "¼ö·Ã¿ëÀÇº¹",
                 NAME_ENG = "The bayonet seal",
                 NAME_JPN = "ÜæìÔªµªìª¿ÓÞ?",

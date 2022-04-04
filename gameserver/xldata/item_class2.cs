@@ -111,7 +111,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 4,
+                ICON = 5,
                 NAME_KOR = "°­Ã¶¸®º¼¹ö",
                 NAME_ENG = "Cathedral articles dagger",
                 NAME_JPN = "ÓÞá¡ÓÑªÎÑÀÞÀ«À«¬?",
@@ -132,7 +132,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 5,
+                ICON = 6,
                 NAME_KOR = "°­Ã¶¼¦°Ç",
                 NAME_ENG = "Sword of greed",
                 NAME_JPN = "÷±é°ªÎ«°«ì?«È«½?«É",
@@ -153,7 +153,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 6,
+                ICON = 7,
                 NAME_KOR = "°­Ã¶ÇÚµå°Ç",
                 NAME_ENG = "Inyeonuigeom",
                 NAME_JPN = "«¤«ó«è«ó«¦«¤«´«à",
@@ -174,7 +174,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 7,
+                ICON = 9,
                 NAME_KOR = "ÇÕ±Ý¸®º¼¹ö",
                 NAME_ENG = "Wonjeongdaeuigeom",
                 NAME_JPN = "«¦«©«ó«¸«ç«ó«Ç«¦«¤«´«à",
@@ -195,7 +195,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 8,
+                ICON = 10,
                 NAME_KOR = "ÇÕ±Ý¼¦°Ç",
                 NAME_ENG = "Scenes of the Sword",
                 NAME_JPN = "Ù£?ªÎ?",
@@ -216,7 +216,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 9,
+                ICON = 11,
                 NAME_KOR = "ÇÕ±ÝÇÚµå°Ç",
                 NAME_ENG = "Oricon bayonet",
                 NAME_JPN = "«ª«ê«³«óõÌÍÔ?óÌ?",
@@ -237,7 +237,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 10,
+                ICON = 13,
                 NAME_KOR = "ÇÕ±Ý¸®º¼¹ö",
                 NAME_ENG = "Palladium Gulf Bayonet",
                 NAME_JPN = "«¢«Þ«ó«¹«¿«¸«¢«à«°«ì?«È«½?«É",
@@ -258,7 +258,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 11,
+                ICON = 14,
                 NAME_KOR = "¿À¸®ÄÜ¼¦°Ç",
                 NAME_ENG = "Sword of Despair",
                 NAME_JPN = "ï¾ØÐªÎÓÞ?",
@@ -279,7 +279,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 12,
+                ICON = 15,
                 NAME_KOR = "¿À¸®ÄÜÇÚµå°Ç",
                 NAME_ENG = "Infinity's Greatsword",
                 NAME_JPN = "ÙíùÚªÎ?â¢?",
@@ -300,7 +300,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 13,
+                ICON = 4,
                 NAME_KOR = "Ã»µ¿Ä³³í",
                 NAME_ENG = "Asda seonggeom Karon",
                 NAME_JPN = "á¡?«¢«¹«««í«ó",
@@ -321,7 +321,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 14,
+                ICON = 8,
                 NAME_KOR = "°­Ã¶Ä³³í",
                 NAME_ENG = "Cheonsanguigeom",
                 NAME_JPN = "«Á«ç«ó«µ«ó«¦«¤«´«à",
@@ -342,7 +342,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_WEAPON02 {
-                ICON = 15,
+                ICON = 12,
                 NAME_KOR = "ÇÕ±ÝÄ³³í",
                 NAME_ENG = "Greatsword of patience",
                 NAME_JPN = "ìÛÒ±ªÎ?â¢?",
@@ -408,7 +408,7 @@ namespace NXLData {
         }
         public static ITEM_CLASS2_HELMET02[] stItem_CLASS2_Helmet02 = new ITEM_CLASS2_HELMET02[ITEM_CLASS2_HELMET02_MAX] {
             new ITEM_CLASS2_HELMET02 {
-                ICON = 0,
+                ICON = 9,
                 NAME_KOR = "¼ö·Ã¿ë»ö¾È°æ",
                 NAME_ENG = "The bayonet seal",
                 NAME_JPN = "ÜæìÔªµªìª¿ÓÞ?",
@@ -492,7 +492,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 4,
+                ICON = 5,
                 NAME_KOR = "ÀÏ¹Ý¼±±×¶ó½º",
                 NAME_ENG = "Cathedral articles dagger",
                 NAME_JPN = "ÓÞá¡ÓÑªÎÑÀÞÀ«À«¬?",
@@ -513,7 +513,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 5,
+                ICON = 6,
                 NAME_KOR = "ÀÏ¹ÝÇï¸ä",
                 NAME_ENG = "Sword of greed",
                 NAME_JPN = "÷±é°ªÎ«°«ì?«È«½?«É",
@@ -534,7 +534,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 6,
+                ICON = 7,
                 NAME_KOR = "ÀÏ¹Ý°í±Û",
                 NAME_ENG = "Inyeonuigeom",
                 NAME_JPN = "«¤«ó«è«ó«¦«¤«´«à",
@@ -555,7 +555,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 7,
+                ICON = 9,
                 NAME_KOR = "°í±Þ¼±±×¶ó½º",
                 NAME_ENG = "Wonjeongdaeuigeom",
                 NAME_JPN = "«¦«©«ó«¸«ç«ó«Ç«¦«¤«´«à",
@@ -576,7 +576,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 8,
+                ICON = 10,
                 NAME_KOR = "°í±ÞÇï¸ä",
                 NAME_ENG = "Scenes of the Sword",
                 NAME_JPN = "Ù£?ªÎ?",
@@ -597,7 +597,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 9,
+                ICON = 11,
                 NAME_KOR = "°í±Þ°í±Û",
                 NAME_ENG = "Oricon bayonet",
                 NAME_JPN = "«ª«ê«³«óõÌÍÔ?óÌ?",
@@ -618,7 +618,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 10,
+                ICON = 13,
                 NAME_KOR = "°í±Þ¼±±×¶ó½º",
                 NAME_ENG = "Palladium Gulf Bayonet",
                 NAME_JPN = "«¢«Þ«ó«¹«¿«¸«¢«à«°«ì?«È«½?«É",
@@ -639,7 +639,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 11,
+                ICON = 14,
                 NAME_KOR = "Èñ±ÍÇï¸ä",
                 NAME_ENG = "Sword of Despair",
                 NAME_JPN = "ï¾ØÐªÎÓÞ?",
@@ -660,7 +660,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 12,
+                ICON = 15,
                 NAME_KOR = "Èñ±Í°í±Û",
                 NAME_ENG = "Infinity's Greatsword",
                 NAME_JPN = "ÙíùÚªÎ?â¢?",
@@ -681,7 +681,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 13,
+                ICON = 4,
                 NAME_KOR = "³°Àº»ÔÅõ±¸",
                 NAME_ENG = "Asda seonggeom Karon",
                 NAME_JPN = "á¡?«¢«¹«««í«ó",
@@ -702,7 +702,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 14,
+                ICON = 8,
                 NAME_KOR = "ÀÏ¹Ý»ÔÅõ±¸",
                 NAME_ENG = "Cheonsanguigeom",
                 NAME_JPN = "«Á«ç«ó«µ«ó«¦«¤«´«à",
@@ -723,7 +723,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_HELMET02 {
-                ICON = 15,
+                ICON = 12,
                 NAME_KOR = "°í±Þ»ÔÅõ±¸",
                 NAME_ENG = "Greatsword of patience",
                 NAME_JPN = "ìÛÒ±ªÎ?â¢?",
@@ -789,7 +789,7 @@ namespace NXLData {
         }
         public static ITEM_CLASS2_ARMOR02[] stItem_CLASS2_Armor02 = new ITEM_CLASS2_ARMOR02[ITEM_CLASS2_ARMOR02_MAX] {
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 0,
+                ICON = 9,
                 NAME_KOR = "¼ö·Ã¿ëÅÎ½Ãµµ",
                 NAME_ENG = "The bayonet seal",
                 NAME_JPN = "ÜæìÔªµªìª¿ÓÞ?",
@@ -873,7 +873,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 4,
+                ICON = 5,
                 NAME_KOR = "ÀÏ¹ÝÅÎ½Ãµµ",
                 NAME_ENG = "Cathedral articles dagger",
                 NAME_JPN = "ÓÞá¡ÓÑªÎÑÀÞÀ«À«¬?",
@@ -894,7 +894,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 5,
+                ICON = 6,
                 NAME_KOR = "ÀÏ¹ÝÀçÅ¶",
                 NAME_ENG = "Sword of greed",
                 NAME_JPN = "÷±é°ªÎ«°«ì?«È«½?«É",
@@ -915,7 +915,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 6,
+                ICON = 7,
                 NAME_KOR = "ÀÏ¹Ý·ÕÄÚÆ®",
                 NAME_ENG = "Inyeonuigeom",
                 NAME_JPN = "«¤«ó«è«ó«¦«¤«´«à",
@@ -936,7 +936,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 7,
+                ICON = 9,
                 NAME_KOR = "°í±ÞÅÎ½Ãµµ",
                 NAME_ENG = "Wonjeongdaeuigeom",
                 NAME_JPN = "«¦«©«ó«¸«ç«ó«Ç«¦«¤«´«à",
@@ -957,7 +957,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 8,
+                ICON = 10,
                 NAME_KOR = "°í±ÞÀçÅ¶",
                 NAME_ENG = "Scenes of the Sword",
                 NAME_JPN = "Ù£?ªÎ?",
@@ -978,7 +978,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 9,
+                ICON = 11,
                 NAME_KOR = "°í±Þ·ÕÄÚÆ®",
                 NAME_ENG = "Oricon bayonet",
                 NAME_JPN = "«ª«ê«³«óõÌÍÔ?óÌ?",
@@ -999,7 +999,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 10,
+                ICON = 13,
                 NAME_KOR = "Èñ±ÍÅÎ½Ãµµ",
                 NAME_ENG = "Palladium Gulf Bayonet",
                 NAME_JPN = "«¢«Þ«ó«¹«¿«¸«¢«à«°«ì?«È«½?«É",
@@ -1020,7 +1020,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 11,
+                ICON = 14,
                 NAME_KOR = "Èñ±ÍÀçÅ¶",
                 NAME_ENG = "Sword of Despair",
                 NAME_JPN = "ï¾ØÐªÎÓÞ?",
@@ -1041,7 +1041,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 12,
+                ICON = 15,
                 NAME_KOR = "Èñ±Í·ÕÄÚÆ®",
                 NAME_ENG = "Infinity's Greatsword",
                 NAME_JPN = "ÙíùÚªÎ?â¢?",
@@ -1062,7 +1062,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 13,
+                ICON = 4,
                 NAME_KOR = "³°Àº½´Æ®",
                 NAME_ENG = "Asda seonggeom Karon",
                 NAME_JPN = "á¡?«¢«¹«««í«ó",
@@ -1083,7 +1083,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 14,
+                ICON = 8,
                 NAME_KOR = "ÀÏ¹Ý½´Æ®",
                 NAME_ENG = "Cheonsanguigeom",
                 NAME_JPN = "«Á«ç«ó«µ«ó«¦«¤«´«à",
@@ -1104,7 +1104,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_ARMOR02 {
-                ICON = 15,
+                ICON = 12,
                 NAME_KOR = "°í±Þ½´Æ®",
                 NAME_ENG = "Greatsword of patience",
                 NAME_JPN = "ìÛÒ±ªÎ?â¢?",
@@ -1254,7 +1254,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 4,
+                ICON = 5,
                 NAME_KOR = "ÀÏ¹ÝÇÚµå",
                 NAME_ENG = "Cathedral articles dagger",
                 NAME_JPN = "ÓÞá¡ÓÑªÎÑÀÞÀ«À«¬?",
@@ -1275,7 +1275,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 5,
+                ICON = 6,
                 NAME_KOR = "ÀÏ¹Ý°¡Á×ÇÚµå",
                 NAME_ENG = "Sword of greed",
                 NAME_JPN = "÷±é°ªÎ«°«ì?«È«½?«É",
@@ -1296,7 +1296,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 6,
+                ICON = 7,
                 NAME_KOR = "ÀÏ¹Ý½ÇÅ©ÇÚµå",
                 NAME_ENG = "Inyeonuigeom",
                 NAME_JPN = "«¤«ó«è«ó«¦«¤«´«à",
@@ -1317,7 +1317,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 7,
+                ICON = 9,
                 NAME_KOR = "°í±ÞÇÚµå",
                 NAME_ENG = "Wonjeongdaeuigeom",
                 NAME_JPN = "«¦«©«ó«¸«ç«ó«Ç«¦«¤«´«à",
@@ -1338,7 +1338,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 8,
+                ICON = 10,
                 NAME_KOR = "°í±Þ°¡Á×ÇÚµå",
                 NAME_ENG = "Scenes of the Sword",
                 NAME_JPN = "Ù£?ªÎ?",
@@ -1359,7 +1359,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 9,
+                ICON = 11,
                 NAME_KOR = "°í±Þ½ÇÅ©ÇÚµå",
                 NAME_ENG = "Oricon bayonet",
                 NAME_JPN = "«ª«ê«³«óõÌÍÔ?óÌ?",
@@ -1380,7 +1380,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 10,
+                ICON = 13,
                 NAME_KOR = "Èñ±ÍÇÚµå",
                 NAME_ENG = "Palladium Gulf Bayonet",
                 NAME_JPN = "«¢«Þ«ó«¹«¿«¸«¢«à«°«ì?«È«½?«É",
@@ -1401,7 +1401,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 11,
+                ICON = 14,
                 NAME_KOR = "Èñ±Í°¡Á×ÇÚµå",
                 NAME_ENG = "Sword of Despair",
                 NAME_JPN = "ï¾ØÐªÎÓÞ?",
@@ -1422,7 +1422,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 12,
+                ICON = 15,
                 NAME_KOR = "Èñ±Í½ÇÅ©ÇÚµå",
                 NAME_ENG = "Infinity's Greatsword",
                 NAME_JPN = "ÙíùÚªÎ?â¢?",
@@ -1443,7 +1443,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 13,
+                ICON = 4,
                 NAME_KOR = "³°Àº°ÇÇÚµå",
                 NAME_ENG = "Asda seonggeom Karon",
                 NAME_JPN = "á¡?«¢«¹«««í«ó",
@@ -1464,7 +1464,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 14,
+                ICON = 8,
                 NAME_KOR = "ÀÏ¹Ý°ÇÇÚµå",
                 NAME_ENG = "Cheonsanguigeom",
                 NAME_JPN = "«Á«ç«ó«µ«ó«¦«¤«´«à",
@@ -1485,7 +1485,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_GLOVES02 {
-                ICON = 15,
+                ICON = 12,
                 NAME_KOR = "°í±Þ°ÇÇÚµå",
                 NAME_ENG = "Greatsword of patience",
                 NAME_JPN = "ìÛÒ±ªÎ?â¢?",
@@ -1635,7 +1635,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 4,
+                ICON = 5,
                 NAME_KOR = "ÀÏ¹ÝÃ»Å°Èú",
                 NAME_ENG = "Cathedral articles dagger",
                 NAME_JPN = "ÓÞá¡ÓÑªÎÑÀÞÀ«À«¬?",
@@ -1656,7 +1656,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 5,
+                ICON = 6,
                 NAME_KOR = "ÀÏ¹ÝÇÏÀÌÈú",
                 NAME_ENG = "Sword of greed",
                 NAME_JPN = "÷±é°ªÎ«°«ì?«È«½?«É",
@@ -1677,7 +1677,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 6,
+                ICON = 7,
                 NAME_KOR = "ÀÏ¹ÝÀüÅõÈú",
                 NAME_ENG = "Inyeonuigeom",
                 NAME_JPN = "«¤«ó«è«ó«¦«¤«´«à",
@@ -1698,7 +1698,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 7,
+                ICON = 9,
                 NAME_KOR = "°í±ÞÃ»Å°Èú",
                 NAME_ENG = "Wonjeongdaeuigeom",
                 NAME_JPN = "«¦«©«ó«¸«ç«ó«Ç«¦«¤«´«à",
@@ -1719,7 +1719,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 8,
+                ICON = 10,
                 NAME_KOR = "°í±ÞÇÏÀÌÈú",
                 NAME_ENG = "Scenes of the Sword",
                 NAME_JPN = "Ù£?ªÎ?",
@@ -1740,7 +1740,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 9,
+                ICON = 11,
                 NAME_KOR = "°í±ÞÀüÅõÈú",
                 NAME_ENG = "Oricon bayonet",
                 NAME_JPN = "«ª«ê«³«óõÌÍÔ?óÌ?",
@@ -1761,7 +1761,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 10,
+                ICON = 13,
                 NAME_KOR = "Èñ±ÍÃ»Å°Èú",
                 NAME_ENG = "Palladium Gulf Bayonet",
                 NAME_JPN = "«¢«Þ«ó«¹«¿«¸«¢«à«°«ì?«È«½?«É",
@@ -1782,7 +1782,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 11,
+                ICON = 14,
                 NAME_KOR = "Èñ±ÍÇÏÀÌÈú",
                 NAME_ENG = "Sword of Despair",
                 NAME_JPN = "ï¾ØÐªÎÓÞ?",
@@ -1803,7 +1803,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 12,
+                ICON = 15,
                 NAME_KOR = "Èñ±ÍÀüÅõÈú",
                 NAME_ENG = "Infinity's Greatsword",
                 NAME_JPN = "ÙíùÚªÎ?â¢?",
@@ -1824,7 +1824,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 13,
+                ICON = 4,
                 NAME_KOR = "³°ÀºÅ³Èú",
                 NAME_ENG = "Asda seonggeom Karon",
                 NAME_JPN = "á¡?«¢«¹«««í«ó",
@@ -1845,7 +1845,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 14,
+                ICON = 8,
                 NAME_KOR = "ÀÏ¹ÝÅ³Èú",
                 NAME_ENG = "Cheonsanguigeom",
                 NAME_JPN = "«Á«ç«ó«µ«ó«¦«¤«´«à",
@@ -1866,7 +1866,7 @@ namespace NXLData {
                 EFF_POS = 0,
             },
             new ITEM_CLASS2_SHOES02 {
-                ICON = 15,
+                ICON = 12,
                 NAME_KOR = "°í±ÞÅ³Èú",
                 NAME_ENG = "Greatsword of patience",
                 NAME_JPN = "ìÛÒ±ªÎ?â¢?",
