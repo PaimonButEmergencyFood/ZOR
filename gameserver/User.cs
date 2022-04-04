@@ -213,6 +213,15 @@ namespace ProjectZ {
             }
         }
 
+        public uint Userseq {
+            get {
+                return mUser.Info.Userseq;
+            }
+            set {
+                mUser.Info.Userseq = value;
+            }
+        }
+
         public void SetSlot(int index, Slot slot) {
             mUser.Info.ArraySlot[index] = slot;
         }
