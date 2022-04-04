@@ -3,10 +3,6 @@ using NXLData;
 
 namespace ProjectZ {
     public class ItemResource {
-        public ItemResource() {
-            
-        }
-
         public static int GetItemBagType(Item item) {
             switch ((EnumClassItemTableType)item.SubType) {
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_NECKLACE:
@@ -115,228 +111,228 @@ namespace ProjectZ {
         public static void SetItemEffect(Item item) {
             switch((EnumClassItemTableType)item.SubType) {
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_NECKLACE:
-                    item.EffType[0] = item_common.stItem_Common_Common_NECKLACE[item.Tid].EFFECT;
-                    item.EffValue[0] = item_common.stItem_Common_Common_NECKLACE[item.Tid].EFF_VALUE;
-                    item.EffPos[0] = item_common.stItem_Common_Common_NECKLACE[item.Tid].EFF_POS;
+                    item.SetEffType(0, item_common.stItem_Common_Common_NECKLACE[item.Tid].EFFECT);
+                    item.SetEffValue(0, item_common.stItem_Common_Common_NECKLACE[item.Tid].EFF_VALUE);
+                    item.SetEffPos(0, item_common.stItem_Common_Common_NECKLACE[item.Tid].EFF_POS);
                     return;
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_CLOAK:
-                    item.EffType[0] = item_common.stItem_Common_Commonitem_CLOAK[item.Tid].EFFECT;
-                    item.EffValue[0] = item_common.stItem_Common_Commonitem_CLOAK[item.Tid].EFF_VALUE;
-                    item.EffPos[0] = item_common.stItem_Common_Commonitem_CLOAK[item.Tid].EFF_POS;
+                    item.SetEffType(0, item_common.stItem_Common_Commonitem_CLOAK[item.Tid].EFFECT);
+                    item.SetEffValue(0, item_common.stItem_Common_Commonitem_CLOAK[item.Tid].EFF_VALUE);
+                    item.SetEffPos(0, item_common.stItem_Common_Commonitem_CLOAK[item.Tid].EFF_POS);
                     return;
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_RING:
-                    item.EffType[0] = item_common.stItem_Common_Commonitem_RING[item.Tid].EFFECT;
-                    item.EffValue[0] = item_common.stItem_Common_Commonitem_RING[item.Tid].EFF_VALUE;
-                    item.EffPos[0] = item_common.stItem_Common_Commonitem_RING[item.Tid].EFF_POS;
+                    item.SetEffType(0, item_common.stItem_Common_Commonitem_RING[item.Tid].EFFECT);
+                    item.SetEffValue(0, item_common.stItem_Common_Commonitem_RING[item.Tid].EFF_VALUE);
+                    item.SetEffPos(0, item_common.stItem_Common_Commonitem_RING[item.Tid].EFF_POS);
                     return;
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_CHARM:
-                    item.EffType[0] = item_common.stItem_Common_Commonitem_CHARM[item.Tid].EFFECT;
-                    item.EffValue[0] = item_common.stItem_Common_Commonitem_CHARM[item.Tid].EFF_VALUE;
-                    item.EffPos[0] = item_common.stItem_Common_Commonitem_CHARM[item.Tid].EFF_POS;
+                    item.SetEffType(0, item_common.stItem_Common_Commonitem_CHARM[item.Tid].EFFECT);
+                    item.SetEffValue(0, item_common.stItem_Common_Commonitem_CHARM[item.Tid].EFF_VALUE);
+                    item.SetEffPos(0, item_common.stItem_Common_Commonitem_CHARM[item.Tid].EFF_POS);
                     return;
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_TITLE:
-                    item.EffType[0] = item_common.stItem_Common_Commonitem_TITLE[item.Tid].EFFECT;
-                    item.EffValue[0] = item_common.stItem_Common_Commonitem_TITLE[item.Tid].EFF_VALUE;
-                    item.EffPos[0] = item_common.stItem_Common_Commonitem_TITLE[item.Tid].EFF_POS;
+                    item.SetEffType(0, item_common.stItem_Common_Commonitem_TITLE[item.Tid].EFFECT);
+                    item.SetEffValue(0, item_common.stItem_Common_Commonitem_TITLE[item.Tid].EFF_VALUE);
+                    item.SetEffPos(0, item_common.stItem_Common_Commonitem_TITLE[item.Tid].EFF_POS);
                     return;
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_CHARGE:
-                    item.EffType[0] = item_common.stItem_Common_Commonitem_CHARGE[item.Tid].EFFECT;
-                    item.EffValue[0] = item_common.stItem_Common_Commonitem_CHARGE[item.Tid].EFF_VALUE;
-                    item.EffPos[0] = item_common.stItem_Common_Commonitem_CHARGE[item.Tid].EFF_POS;
+                    item.SetEffType(0, item_common.stItem_Common_Commonitem_CHARGE[item.Tid].EFFECT);
+                    item.SetEffValue(0, item_common.stItem_Common_Commonitem_CHARGE[item.Tid].EFF_VALUE);
+                    item.SetEffPos(0, item_common.stItem_Common_Commonitem_CHARGE[item.Tid].EFF_POS);
                     return;
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_QUEST:
-                    item.EffType[0] = item_common.stItem_Common_Commonitem_QUEST[item.Tid].EFFECT;
-                    item.EffValue[0] = item_common.stItem_Common_Commonitem_QUEST[item.Tid].EFF_VALUE;
-                    item.EffPos[0] = item_common.stItem_Common_Commonitem_QUEST[item.Tid].EFF_POS;
+                    item.SetEffType(0, item_common.stItem_Common_Commonitem_QUEST[item.Tid].EFFECT);
+                    item.SetEffValue(0, item_common.stItem_Common_Commonitem_QUEST[item.Tid].EFF_VALUE);
+                    item.SetEffPos(0, item_common.stItem_Common_Commonitem_QUEST[item.Tid].EFF_POS);
                     return;
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_ETC:
-                    item.EffType[0] = item_common.stItem_Common_Commonitem_ETC[item.Tid].EFFECT;
-                    item.EffValue[0] = item_common.stItem_Common_Commonitem_ETC[item.Tid].EFF_VALUE;
-                    item.EffPos[0] = item_common.stItem_Common_Commonitem_ETC[item.Tid].EFF_POS;
+                    item.SetEffType(0, item_common.stItem_Common_Commonitem_ETC[item.Tid].EFFECT);
+                    item.SetEffValue(0, item_common.stItem_Common_Commonitem_ETC[item.Tid].EFF_VALUE);
+                    item.SetEffPos(0, item_common.stItem_Common_Commonitem_ETC[item.Tid].EFF_POS);
                     return;
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_VEHICLE:
-                    item.EffType[0] = item_common.stItem_Common_Commonitem_VEHICLE[item.Tid].EFFECT;
-                    item.EffValue[0] = item_common.stItem_Common_Commonitem_VEHICLE[item.Tid].EFF_VALUE;
-                    item.EffPos[0] = item_common.stItem_Common_Commonitem_VEHICLE[item.Tid].EFF_POS;
+                    item.SetEffType(0, item_common.stItem_Common_Commonitem_VEHICLE[item.Tid].EFFECT);
+                    item.SetEffValue(0, item_common.stItem_Common_Commonitem_VEHICLE[item.Tid].EFF_VALUE);
+                    item.SetEffPos(0, item_common.stItem_Common_Commonitem_VEHICLE[item.Tid].EFF_POS);
                     return;
                 case EnumClassItemTableType.CLASS_ITEM_TABLE_BATTLE_PET:
-                    item.EffType[0] = item_common.stItem_Common_Commonitem_PET[item.Tid].EFFECT;
-                    item.EffValue[0] = item_common.stItem_Common_Commonitem_PET[item.Tid].EFF_VALUE;
-                    item.EffPos[0] = item_common.stItem_Common_Commonitem_PET[item.Tid].EFF_POS;
+                    item.SetEffType(0, item_common.stItem_Common_Commonitem_PET[item.Tid].EFFECT);
+                    item.SetEffValue(0, item_common.stItem_Common_Commonitem_PET[item.Tid].EFF_VALUE);
+                    item.SetEffPos(0, item_common.stItem_Common_Commonitem_PET[item.Tid].EFF_POS);
                     return;
             }
 
             if (item.ClassType == (int)EnumCharClass.CLASS_TYPE_SLASHER) {
                 switch ((EnumClassItemTableType)item.SubType) {
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_WEAPON:
-                        item.EffType[0] = item_class1.stItem_CLASS1_Weapon01[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class1.stItem_CLASS1_Weapon01[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class1.stItem_CLASS1_Weapon01[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class1.stItem_CLASS1_Weapon01[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class1.stItem_CLASS1_Weapon01[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class1.stItem_CLASS1_Weapon01[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_HELMET:
-                        item.EffType[0] = item_class1.stItem_CLASS1_Helmet01[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class1.stItem_CLASS1_Helmet01[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class1.stItem_CLASS1_Helmet01[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class1.stItem_CLASS1_Helmet01[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class1.stItem_CLASS1_Helmet01[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class1.stItem_CLASS1_Helmet01[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_ARMOR:
-                        item.EffType[0] = item_class1.stItem_CLASS1_Armor01[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class1.stItem_CLASS1_Armor01[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class1.stItem_CLASS1_Armor01[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class1.stItem_CLASS1_Armor01[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class1.stItem_CLASS1_Armor01[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class1.stItem_CLASS1_Armor01[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_GLOVES:
-                        item.EffType[0] = item_class1.stItem_CLASS1_Gloves01[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class1.stItem_CLASS1_Gloves01[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class1.stItem_CLASS1_Gloves01[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class1.stItem_CLASS1_Gloves01[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class1.stItem_CLASS1_Gloves01[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class1.stItem_CLASS1_Gloves01[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_SHOES:
-                        item.EffType[0] = item_class1.stItem_CLASS1_Shoes01[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class1.stItem_CLASS1_Shoes01[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class1.stItem_CLASS1_Shoes01[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class1.stItem_CLASS1_Shoes01[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class1.stItem_CLASS1_Shoes01[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class1.stItem_CLASS1_Shoes01[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_AVATAR:
-                        item.EffType[0] = item_class1.stItem_CLASS1_Avatar01[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class1.stItem_CLASS1_Avatar01[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class1.stItem_CLASS1_Avatar01[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class1.stItem_CLASS1_Avatar01[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class1.stItem_CLASS1_Avatar01[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class1.stItem_CLASS1_Avatar01[item.Tid].EFF_POS);
                         return;
                 }
             } else if (item.ClassType == (int)EnumCharClass.CLASS_TYPE_RANGER) {
                 switch ((EnumClassItemTableType)item.SubType) {
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_WEAPON:
-                        item.EffType[0] = item_class2.stItem_CLASS2_Weapon02[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class2.stItem_CLASS2_Weapon02[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class2.stItem_CLASS2_Weapon02[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class2.stItem_CLASS2_Weapon02[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class2.stItem_CLASS2_Weapon02[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class2.stItem_CLASS2_Weapon02[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_HELMET:
-                        item.EffType[0] = item_class2.stItem_CLASS2_Helmet02[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class2.stItem_CLASS2_Helmet02[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class2.stItem_CLASS2_Helmet02[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class2.stItem_CLASS2_Helmet02[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class2.stItem_CLASS2_Helmet02[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class2.stItem_CLASS2_Helmet02[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_ARMOR:
-                        item.EffType[0] = item_class2.stItem_CLASS2_Armor02[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class2.stItem_CLASS2_Armor02[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class2.stItem_CLASS2_Armor02[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class2.stItem_CLASS2_Armor02[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class2.stItem_CLASS2_Armor02[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class2.stItem_CLASS2_Armor02[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_GLOVES:
-                        item.EffType[0] = item_class2.stItem_CLASS2_Gloves02[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class2.stItem_CLASS2_Gloves02[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class2.stItem_CLASS2_Gloves02[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class2.stItem_CLASS2_Gloves02[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class2.stItem_CLASS2_Gloves02[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class2.stItem_CLASS2_Gloves02[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_SHOES:
-                        item.EffType[0] = item_class2.stItem_CLASS2_Shoes02[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class2.stItem_CLASS2_Shoes02[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class2.stItem_CLASS2_Shoes02[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class2.stItem_CLASS2_Shoes02[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class2.stItem_CLASS2_Shoes02[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class2.stItem_CLASS2_Shoes02[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_AVATAR:
-                        item.EffType[0] = item_class2.stItem_CLASS2_Avatar02[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class2.stItem_CLASS2_Avatar02[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class2.stItem_CLASS2_Avatar02[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class2.stItem_CLASS2_Avatar02[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class2.stItem_CLASS2_Avatar02[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class2.stItem_CLASS2_Avatar02[item.Tid].EFF_POS);
                         return;
                 }
             } else if (item.ClassType == (int)EnumCharClass.CLASS_TYPE_FIGHTER) {
                 switch ((EnumClassItemTableType)item.SubType) {
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_WEAPON:
-                        item.EffType[0] = item_class3.stItem_CLASS3_Weapon03[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class3.stItem_CLASS3_Weapon03[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class3.stItem_CLASS3_Weapon03[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class3.stItem_CLASS3_Weapon03[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class3.stItem_CLASS3_Weapon03[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class3.stItem_CLASS3_Weapon03[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_HELMET:
-                        item.EffType[0] = item_class3.stItem_CLASS3_Helmet03[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class3.stItem_CLASS3_Helmet03[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class3.stItem_CLASS3_Helmet03[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class3.stItem_CLASS3_Helmet03[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class3.stItem_CLASS3_Helmet03[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class3.stItem_CLASS3_Helmet03[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_ARMOR:
-                        item.EffType[0] = item_class3.stItem_CLASS3_Armor03[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class3.stItem_CLASS3_Armor03[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class3.stItem_CLASS3_Armor03[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class3.stItem_CLASS3_Armor03[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class3.stItem_CLASS3_Armor03[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class3.stItem_CLASS3_Armor03[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_GLOVES:
-                        item.EffType[0] = item_class3.stItem_CLASS3_Gloves03[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class3.stItem_CLASS3_Gloves03[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class3.stItem_CLASS3_Gloves03[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class3.stItem_CLASS3_Gloves03[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class3.stItem_CLASS3_Gloves03[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class3.stItem_CLASS3_Gloves03[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_SHOES:
-                        item.EffType[0] = item_class3.stItem_CLASS3_Shoes03[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class3.stItem_CLASS3_Shoes03[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class3.stItem_CLASS3_Shoes03[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class3.stItem_CLASS3_Shoes03[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class3.stItem_CLASS3_Shoes03[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class3.stItem_CLASS3_Shoes03[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_AVATAR:
-                        item.EffType[0] = item_class3.stItem_CLASS3_Avatar03[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class3.stItem_CLASS3_Avatar03[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class3.stItem_CLASS3_Avatar03[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class3.stItem_CLASS3_Avatar03[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class3.stItem_CLASS3_Avatar03[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class3.stItem_CLASS3_Avatar03[item.Tid].EFF_POS);
                         return;
                 }
             } else if (item.ClassType == (int)EnumCharClass.CLASS_TYPE_MAGICIAN) {
                 switch ((EnumClassItemTableType)item.SubType) {
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_WEAPON:
-                        item.EffType[0] = item_class4.stItem_CLASS4_Weapon04[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class4.stItem_CLASS4_Weapon04[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class4.stItem_CLASS4_Weapon04[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class4.stItem_CLASS4_Weapon04[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class4.stItem_CLASS4_Weapon04[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class4.stItem_CLASS4_Weapon04[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_HELMET:
-                        item.EffType[0] = item_class4.stItem_CLASS4_Helmet04[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class4.stItem_CLASS4_Helmet04[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class4.stItem_CLASS4_Helmet04[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class4.stItem_CLASS4_Helmet04[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class4.stItem_CLASS4_Helmet04[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class4.stItem_CLASS4_Helmet04[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_ARMOR:
-                        item.EffType[0] = item_class4.stItem_CLASS4_Armor04[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class4.stItem_CLASS4_Armor04[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class4.stItem_CLASS4_Armor04[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class4.stItem_CLASS4_Armor04[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class4.stItem_CLASS4_Armor04[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class4.stItem_CLASS4_Armor04[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_GLOVES:
-                        item.EffType[0] = item_class4.stItem_CLASS4_Gloves04[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class4.stItem_CLASS4_Gloves04[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class4.stItem_CLASS4_Gloves04[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class4.stItem_CLASS4_Gloves04[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class4.stItem_CLASS4_Gloves04[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class4.stItem_CLASS4_Gloves04[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_SHOES:
-                        item.EffType[0] = item_class4.stItem_CLASS4_Shoes04[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class4.stItem_CLASS4_Shoes04[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class4.stItem_CLASS4_Shoes04[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class4.stItem_CLASS4_Shoes04[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class4.stItem_CLASS4_Shoes04[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class4.stItem_CLASS4_Shoes04[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_AVATAR:
-                        item.EffType[0] = item_class4.stItem_CLASS4_Avatar04[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class4.stItem_CLASS4_Avatar04[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class4.stItem_CLASS4_Avatar04[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class4.stItem_CLASS4_Avatar04[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class4.stItem_CLASS4_Avatar04[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class4.stItem_CLASS4_Avatar04[item.Tid].EFF_POS);
                         return;
                 }
             } else if (item.ClassType == (int)EnumCharClass.CLASS_TYPE_ASSASSIN) {
                 switch ((EnumClassItemTableType)item.SubType) {
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_WEAPON:
-                        item.EffType[0] = item_class5.stItem_CLASS5_Weapon05[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class5.stItem_CLASS5_Weapon05[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class5.stItem_CLASS5_Weapon05[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class5.stItem_CLASS5_Weapon05[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class5.stItem_CLASS5_Weapon05[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class5.stItem_CLASS5_Weapon05[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_HELMET:
-                        item.EffType[0] = item_class5.stItem_CLASS5_Helmet05[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class5.stItem_CLASS5_Helmet05[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class5.stItem_CLASS5_Helmet05[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class5.stItem_CLASS5_Helmet05[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class5.stItem_CLASS5_Helmet05[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class5.stItem_CLASS5_Helmet05[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_ARMOR:
-                        item.EffType[0] = item_class5.stItem_CLASS5_Armor05[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class5.stItem_CLASS5_Armor05[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class5.stItem_CLASS5_Armor05[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class5.stItem_CLASS5_Armor05[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class5.stItem_CLASS5_Armor05[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class5.stItem_CLASS5_Armor05[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_GLOVES:
-                        item.EffType[0] = item_class5.stItem_CLASS5_Gloves05[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class5.stItem_CLASS5_Gloves05[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class5.stItem_CLASS5_Gloves05[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class5.stItem_CLASS5_Gloves05[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class5.stItem_CLASS5_Gloves05[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class5.stItem_CLASS5_Gloves05[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_SHOES:
-                        item.EffType[0] = item_class5.stItem_CLASS5_Shoes05[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class5.stItem_CLASS5_Shoes05[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class5.stItem_CLASS5_Shoes05[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class5.stItem_CLASS5_Shoes05[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class5.stItem_CLASS5_Shoes05[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class5.stItem_CLASS5_Shoes05[item.Tid].EFF_POS);
                         return;
                     case EnumClassItemTableType.CLASS_ITEM_TABLE_AVATAR:
-                        item.EffType[0] = item_class5.stItem_CLASS5_Avatar05[item.Tid].EFFECT;
-                        item.EffValue[0] = item_class5.stItem_CLASS5_Avatar05[item.Tid].EFF_VALUE;
-                        item.EffPos[0] = item_class5.stItem_CLASS5_Avatar05[item.Tid].EFF_POS;
+                        item.SetEffType(0, item_class5.stItem_CLASS5_Avatar05[item.Tid].EFFECT);
+                        item.SetEffValue(0, item_class5.stItem_CLASS5_Avatar05[item.Tid].EFF_VALUE);
+                        item.SetEffPos(0, item_class5.stItem_CLASS5_Avatar05[item.Tid].EFF_POS);
                         return;
                 }
             }
 
             Console.WriteLine("Error: ItemEffect.GetItemEffect() - Unknown ClassType: {0} slot index {1}", item.ClassType, item.SubType);
-            item.EffType[0] = -1;
-            item.EffValue[0] = 0;
-            item.EffPos[0] = -1;
+            item.SetEffType(0, -1);
+            item.SetEffValue(0, 0);
+            item.SetEffPos(0, -1);
         }
     }
 }

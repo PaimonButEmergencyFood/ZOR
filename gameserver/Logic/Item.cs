@@ -151,7 +151,36 @@ namespace ProjectZ.Logic {
         }
 
         public void SetEffType(int index, int value) {
-            EffType[index] = value;
+            _item.EffType[index] = value;
+        }
+
+        public void SetEffType(List<int> effType) {
+            _item.EffType.Clear();
+            foreach (var eff in effType) {
+                _item.EffType.Add(eff);
+            }
+        }
+
+        public void SetEffValue(int index, int value) {
+            _item.EffValue[index] = value;
+        }
+
+        public void SetEffValue(List<int> effValue) {
+            _item.EffValue.Clear();
+            foreach (var eff in effValue) {
+                _item.EffValue.Add(eff);
+            }
+        }
+
+        public void SetEffPos(int index, int value) {
+            _item.EffPos[index] = value;
+        }
+
+        public void SetEffPos(List<int> effPos) {
+            _item.EffPos.Clear();
+            foreach (var eff in effPos) {
+                _item.EffPos.Add(eff);
+            }
         }
 
         public void SaveItem(User user) {
