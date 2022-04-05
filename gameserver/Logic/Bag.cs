@@ -11,7 +11,7 @@ namespace ProjectZ.Logic  {
             _bLoad = false;
             _bDecreaseBattlepetStamina = false;
             _itemCount = -1;
-            _eBagType = -1;
+            _eBagType = eBagType;
             _maxSlotCount = Function.GetBagSlotMaxOpenCount((INVEN_BAG_TYPE)eBagType);
         }
 
@@ -117,14 +117,21 @@ namespace ProjectZ.Logic  {
 
         public void ItemLoadFromList(List<ProjectZ.Common.Protocol.Protobuf.Item> items, int characterseq = -1) {
             foreach (var item in items) {
+                Console.WriteLine("ItemLoadFromList : " + item.BagType);
                 if (item.BagType == _eBagType) {
                     if (characterseq >= 0) {
                         if (item.CharacterSeq == characterseq) {
                             AddItem(item);
+                            _itemCount++;
+                        } else {
+                            Console.WriteLine("item not match characterseq");
                         }
                     } else {
                         AddItem(item);
+                        _itemCount++;
                     }
+                } else {
+                    Console.WriteLine("item bagtype {0} not match bagtype {1}", item.BagType, _eBagType);
                 }
             }
             _bLoad = true;

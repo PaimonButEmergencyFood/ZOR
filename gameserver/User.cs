@@ -258,6 +258,14 @@ namespace ProjectZ {
             mUser.Character[index] = character;
         }
 
+        public void SetEquip(Equip equip) {
+            _equip = equip;
+        }
+
+        public void SetBag(INVEN_BAG_TYPE bagType, Bag bag) {
+            _bag[(int)bagType] = bag;
+        }
+
         public void AddItem(ProjectZ.Common.Protocol.Protobuf.Item item) {
             mUser.Item.Add(item);
             mUser.ItemCount = mUser.ItemCount + 1;

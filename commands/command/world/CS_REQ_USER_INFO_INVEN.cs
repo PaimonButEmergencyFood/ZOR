@@ -12,8 +12,11 @@ namespace ProjectZ {
                 Bag pBag = session.user.GetBag((INVEN_BAG_TYPE)i);
 
                 if (pBag.IsLoad() == false) {
+                    Console.WriteLine("| user {0} loading bag {1}", session.user.Nickname, i);
                     pBag.ItemLoadFromList(session.user.Items, session.user.GetSlotIndex());
                 }
+                Console.WriteLine("bag item count " + pBag.HasItemCount());
+                session.user.SetBag((INVEN_BAG_TYPE)i, pBag);
             }
 
             Equip equip = session.user.GetEquip();
@@ -51,6 +54,9 @@ namespace ProjectZ {
                 rsp.U1((sbyte)EnumItemEquipPosition.ITEM_EQUIP_POS_NAME_TAG);
                 rsp.U8((long)pItem.GetItemSeq);
             }
+
+            session.user.SetEquip(equip);
+            Console.WriteLine("+-------------------------------------------------------------------");
 
             return rsp;
         }

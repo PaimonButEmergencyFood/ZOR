@@ -53,8 +53,8 @@ namespace ProjectZ.Logic
                 return false;
             }
 
-            if (ePosition != EnumItemEquipPosition.ITEM_EQUIP_POS_NAME_TAG && itemType != 62 && itemType != 63) {
-                Console.WriteLine("Equip.AddItem() : ePosition != itemType");
+            if (ePosition == EnumItemEquipPosition.ITEM_EQUIP_POS_NAME_TAG && itemType != 62 && itemType != 63) {
+                Console.WriteLine("Equip.AddItem() : ePosition != itemType && itemType != 62 && itemType != 63");
                 return false;
             }
 
@@ -69,14 +69,19 @@ namespace ProjectZ.Logic
         }
 
         public void EquipAddFromCharacterInfo(User user, CharacterInfo characterInfo) {
+            Console.WriteLine("normal bag item count : " + user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).HasItemCount());
             if (characterInfo.Weapon != 0) {
+                Console.WriteLine("need to add weapon");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Weapon);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_WEAPON, item);
+                } else {
+                    Console.WriteLine("Equip.EquipAddFromCharacterInfo() : item == null");
                 }
             }
 
             if (characterInfo.Helmet != 0) {
+                Console.WriteLine("need to add helmet");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Helmet);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_HELMET, item);
@@ -84,6 +89,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Armor != 0) {
+                Console.WriteLine("need to add armor");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Armor);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_ARMOR, item);
@@ -91,6 +97,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Glove != 0) {
+                Console.WriteLine("need to add glove");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Glove);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_GLOVE, item);
@@ -98,6 +105,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Shoes != 0) {
+                Console.WriteLine("need to add shoes");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Shoes);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_SHOES, item);
@@ -105,6 +113,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Necklace != 0) {
+                Console.WriteLine("need to add item");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Necklace);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_NECKLACE, item);
@@ -112,6 +121,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Ring != 0) {
+                Console.WriteLine("need to add ring");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Ring);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_RING, item);
@@ -119,6 +129,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Charm != 0) {
+                Console.WriteLine("need to add charm");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Charm);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_CHARM, item);
@@ -126,6 +137,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Avatar != 0) {
+                Console.WriteLine("need to add avatar");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Avatar);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_AVARTAR, item);
@@ -133,6 +145,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Vehicle != 0) {
+                Console.WriteLine("need to add vehicle");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Vehicle);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_VEHICLE, item);
@@ -140,6 +153,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Title != 0) {
+                Console.WriteLine("need to add title");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Title);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_TITLE, item);
@@ -147,6 +161,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Fairy != 0) {
+                Console.WriteLine("need to add fairy");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Fairy);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_FAIRY, item);
@@ -154,6 +169,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.Battlepet != 0) {
+                Console.WriteLine("need to add battlepet");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.Battlepet);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_PET, item);
@@ -161,6 +177,7 @@ namespace ProjectZ.Logic
             }
 
             if (characterInfo.NameTag != 0) {
+                Console.WriteLine("need to add name tag");
                 Item item = user.GetBag(INVEN_BAG_TYPE.BAG_TYPE_NORMAL).GetItem((uint)characterInfo.NameTag);
                 if (item != null) {
                     AddItem(EnumItemEquipPosition.ITEM_EQUIP_POS_NAME_TAG, item);
