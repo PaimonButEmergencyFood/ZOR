@@ -233,6 +233,16 @@ namespace ProjectZ {
             }
         }
 
+        public List<UInt32> ArrayTutorial {
+            get {
+                List<UInt32> array_tutorial = new List<UInt32>();
+                for (int i = 0; i < 4; i++) {
+                    array_tutorial.Add(mUser.Info.ArrayTutorial[i]);
+                }
+                return array_tutorial;
+            }
+        }
+
         public uint Zen {
             get {
                 return mUser.Zen;
