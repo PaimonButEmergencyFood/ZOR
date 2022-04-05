@@ -16,9 +16,6 @@ namespace ProjectZ {
                 }
             }
 
-
-            EqualityComparer 
-
             NetworkPacket rsp = new NetworkPacket(NetCMDTypes.ZNO_SC_REQ_USER_INFO_INVEN);
 
             return null;
