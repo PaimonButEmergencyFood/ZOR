@@ -23,6 +23,7 @@ namespace ProjectZ.Logic {
         };
 
         private ProjectZ.Common.Protocol.Protobuf.Item _item;
+        private int e_EquipPos;
 
         public int Tid {
             get {
@@ -114,6 +115,15 @@ namespace ProjectZ.Logic {
             }
         }
 
+        public int CharacterSeq {
+            get {
+                return (int)_item.CharacterSeq;
+            }
+            set {
+                _item.CharacterSeq = (uint)value;
+            }
+        }
+
         public List<int> EffType {
             get {
                 List<int> effType = new List<int>();
@@ -201,6 +211,19 @@ namespace ProjectZ.Logic {
                 _item.EffPos.Add(0);
                 _item.EffValue.Add(-1);
             }
+            e_EquipPos = -1;
+        }
+
+        public void SetItem(ProjectZ.Common.Protocol.Protobuf.Item item) {
+            _item = item;
+        }
+
+        public void SetEquip (int pos) {
+            e_EquipPos = pos;
+        }
+
+        public EnumItemEquipPosition GetEquipPos() {
+            return (EnumItemEquipPosition)e_EquipPos;
         }
     }
 }

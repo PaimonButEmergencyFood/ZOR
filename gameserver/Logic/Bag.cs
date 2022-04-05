@@ -49,6 +49,22 @@ namespace ProjectZ.Logic  {
             return true;
         }
 
+        public bool AddItem(ProjectZ.Common.Protocol.Protobuf.Item _item) {
+            if (_item == null) {
+                return false;
+            }
+
+            if (HasItemCount() >= _maxSlotCount) {
+                return false;
+            }
+
+            Item item = new Item();
+            item.SetItem(_item);
+            _clsItemVector.Add(item);
+            _itemCount++;
+            return true;
+        }
+
         public Item GetItem(UInt32 ItemSeq) {
             for (int i = 0; i < _clsItemVector.Count; i++) {
                 if (_clsItemVector[i].GetItemSeq == ItemSeq) {
@@ -92,8 +108,26 @@ namespace ProjectZ.Logic  {
                     return true;
                 }
             }
-
             return false;
+        }
+
+        public int RemainBagSlotCount() {
+            return _maxSlotCount - HasItemCount();
+        }
+
+        public void ItemLoadFromList(List<ProjectZ.Common.Protocol.Protobuf.Item> items, int characterseq = -1) {
+            foreach (var item in items) {
+                if (item.BagType == _eBagType) {
+                    if (characterseq >= 0) {
+                        if (item.CharacterSeq == characterseq) {
+                            AddItem(item);
+                        }
+                    } else {
+                        AddItem(item);
+                    }
+                }
+            }
+            _bLoad = true;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace ProjectZ {
         CLASS_ALL_ITEM_TABLE_MAX = CLASS_ITEM_TABLE_FAIRY
     };
 
-    enum EnumItemEquipPosition {
+    public enum EnumItemEquipPosition {
         ITEM_EQUIP_POS_NONE = -1,
 
         ITEM_EQUIP_POS_WEAPON = 0,

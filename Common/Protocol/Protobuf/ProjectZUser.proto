@@ -15,4 +15,5 @@ message ProjectZUser {
 	uint32 zen = 5;
 	repeated Item item = 6;
 	uint32 item_count = 7;
+	uint32 slot_index = 8;
 }

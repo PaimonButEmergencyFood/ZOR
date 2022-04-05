@@ -4,6 +4,7 @@ option csharp_namespace = "ProjectZ.Common.Protocol.Protobuf";
 
 message Item {
     uint32 seq = 30;
+    uint32 character_seq = 31;
     int32 bag_type = 1;
     int32 bag_slot_number = 2;	//u16
     int32 stack_num = 3;

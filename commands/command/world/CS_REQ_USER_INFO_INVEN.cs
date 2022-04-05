@@ -12,12 +12,16 @@ namespace ProjectZ {
                 Bag pBag = session.user.GetBag((INVEN_BAG_TYPE)i);
 
                 if (pBag.IsLoad() == false) {
-                    if (session.user.LoadBagItems((INVEN_BAG_TYPE)i) == false) {
-                        Console.WriteLine("| LoadBag({0}) failed", i);
-                        return null;
-                    }
+                    pBag.ItemLoadFromList(session.user.Items, session.user.GetSlotIndex());
                 }
             }
+
+
+            EqualityComparer 
+
+            NetworkPacket rsp = new NetworkPacket(NetCMDTypes.ZNO_SC_REQ_USER_INFO_INVEN);
+
+            return null;
         }
     }
 }

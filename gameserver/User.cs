@@ -11,8 +11,10 @@ namespace ProjectZ {
         private Space? _world;
         private Space? _reserveSpace;
         private Bag[] _bag;
+        private Equip _equip;
         private int _worldIndex;
         private List<UInt32> _array_dungeon_clear_info;
+        private int _slot_index;
         public string encryption_key { get; set; }
         public bool isAuth { get; set; }
         public uint gid { get; set; }
@@ -36,6 +38,7 @@ namespace ProjectZ {
             for (int i = (int)INVEN_BAG_TYPE.BAG_TYPE_NORMAL; i < (int)INVEN_BAG_TYPE.BAG_TYPE_MAX; i++) {
                 _bag[i] = new Bag(i);
             }
+            _equip = new Equip();
         }
 
         public string Nickname {
@@ -243,16 +246,8 @@ namespace ProjectZ {
             return _bag[(int)bagType];
         }
 
-        public bool LoadBagItems(INVEN_BAG_TYPE bagType) {
-            if (bagType == INVEN_BAG_TYPE.BAG_TYPE_MAX) {
-                return false;
-            }
-            foreach (var item in Items) {
-                if (item.BagType == (int)bagType) {
-                    _bag[(int)bagType].AddItem(item);
-                }
-            }
-            return true;
+        public Equip GetEquip() {
+            return _equip;
         }
 
         public void SetSlot(int index, Slot slot) {
@@ -367,8 +362,18 @@ namespace ProjectZ {
 
             mUser.ItemCount = 0;
 
+            mUser.SlotIndex = 0;
+
             SaveUser();
             return this;
+        }
+
+        public void SetSlotIndex(int index) {
+            mUser.SlotIndex = (uint)index;
+        }
+
+        public int GetSlotIndex() {
+            return (int)mUser.SlotIndex;
         }
 
         public bool Exists() {
@@ -407,6 +412,8 @@ namespace ProjectZ {
             item.BagType = ItemResource.GetItemBagType(item);
             item.BagSlotNumber = 0;
 
+            item.CharacterSeq = slot_index;
+
             ItemResource.SetItemEffect(item);
 
             item.SaveItem(this);
@@ -416,6 +423,7 @@ namespace ProjectZ {
             
             // fairy
             item = new ProjectZ.Logic.Item();
+            item.CharacterSeq = slot_index;
             FairyResource.SetBaseFairyInfo(item, (int)mUser.Character[slot_index].Classtype);
             item.SaveItem(this);
             mUser.Character[slot_index].Fairy = item.GetItemSeq;
@@ -428,6 +436,8 @@ namespace ProjectZ {
             item.ClassType = -1;
             item.BagType = ItemResource.GetItemBagType(item);
             item.BagSlotNumber = 0;
+
+            item.CharacterSeq = slot_index;
 
             ItemResource.SetItemEffect(item);
 
