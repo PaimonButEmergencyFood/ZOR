@@ -1,5 +1,27 @@
 namespace ProjectZ.Logic {
     public class Function {
+        public static int GetBagSlotMaxOpenCount(INVEN_BAG_TYPE eBagType)
+        {
+            switch (eBagType)
+            {
+            case INVEN_BAG_TYPE.BAG_TYPE_NORMAL:
+                return 52;
+            case INVEN_BAG_TYPE.BAG_TYPE_ACCESSORY:
+                return 52;
+            case INVEN_BAG_TYPE.BAG_TYPE_MISC:
+                return 32;
+            case INVEN_BAG_TYPE.BAG_TYPE_TITLE:
+                return 32;
+            case INVEN_BAG_TYPE.BAG_TYPE_WAREHOUSE:
+                return 8;
+            case INVEN_BAG_TYPE.BAG_TYPE_FAIRY:
+                return 60;
+            case INVEN_BAG_TYPE.BAG_TYPE_BATTLE_PET:
+                return 80;
+            default:
+                return 0;
+            }
+        }
         public static int GetDefaultStat(int classtype, ESTATNAME statname) {
             switch (statname) {
                 case ESTATNAME.STAT_STR:

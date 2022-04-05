@@ -10,6 +10,7 @@ namespace ProjectZ {
         private Space? _space;
         private Space? _world;
         private Space? _reserveSpace;
+        private Bag[] _bag;
         private int _worldIndex;
         private List<UInt32> _array_dungeon_clear_info;
         public string encryption_key { get; set; }
@@ -29,6 +30,11 @@ namespace ProjectZ {
             _array_dungeon_clear_info = new List<UInt32>();
             for (int i = 0; i < Constants.MAX_DUNGEON_COUNT; i++) {
                 _array_dungeon_clear_info.Add(0);
+            }
+
+            _bag = new Bag[(int)INVEN_BAG_TYPE.BAG_TYPE_MAX];
+            for (int i = (int)INVEN_BAG_TYPE.BAG_TYPE_NORMAL; i < (int)INVEN_BAG_TYPE.BAG_TYPE_MAX; i++) {
+                _bag[i] = new Bag(i);
             }
         }
 
@@ -231,6 +237,22 @@ namespace ProjectZ {
             set {
                 mUser.Info.Userseq = value;
             }
+        }
+
+        public Bag GetBag(INVEN_BAG_TYPE bagType) {
+            return _bag[(int)bagType];
+        }
+
+        public bool LoadBagItems(INVEN_BAG_TYPE bagType) {
+            if (bagType == INVEN_BAG_TYPE.BAG_TYPE_MAX) {
+                return false;
+            }
+            foreach (var item in Items) {
+                if (item.BagType == (int)bagType) {
+                    _bag[(int)bagType].AddItem(item);
+                }
+            }
+            return true;
         }
 
         public void SetSlot(int index, Slot slot) {

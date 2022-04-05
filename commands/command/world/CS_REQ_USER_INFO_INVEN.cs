@@ -9,7 +9,14 @@ namespace ProjectZ {
             Console.WriteLine("+-------------------------------------------------------------------");
 
             for (int i = (int)INVEN_BAG_TYPE.BAG_TYPE_NORMAL; i < (int)INVEN_BAG_TYPE.BAG_TYPE_MAX; i++) {
-                //Bag pBag = session.user.GetBag((INVEN_BAG_TYPE)i);
+                Bag pBag = session.user.GetBag((INVEN_BAG_TYPE)i);
+
+                if (pBag.IsLoad() == false) {
+                    if (session.user.LoadBagItems((INVEN_BAG_TYPE)i) == false) {
+                        Console.WriteLine("| LoadBag({0}) failed", i);
+                        return null;
+                    }
+                }
             }
         }
     }
