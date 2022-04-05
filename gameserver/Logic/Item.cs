@@ -160,6 +160,12 @@ namespace ProjectZ.Logic {
             }
         }
 
+        public uint Iconidx {
+            get {
+                return (uint)_item.Iconidx;
+            }
+        }
+
         public void SetEffType(int index, int value) {
             _item.EffType[index] = value;
         }
