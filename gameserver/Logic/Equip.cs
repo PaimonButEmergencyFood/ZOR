@@ -259,7 +259,7 @@ namespace ProjectZ.Logic
                 characterInfo.AvartarIconidx = this.GetItem((int)EnumItemEquipPosition.ITEM_EQUIP_POS_AVARTAR).Iconidx;
             } else {
                 characterInfo.Avatar = 0;
-                characterInfo.AvartarIconidx = 0;
+                characterInfo.AvartarIconidx = 1000;
             }
 
             if (IsExistItem(EnumItemEquipPosition.ITEM_EQUIP_POS_VEHICLE)) {

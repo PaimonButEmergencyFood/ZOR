@@ -51,6 +51,8 @@ namespace ProjectZ {
                     rsp.U8((long)(session.user.Characters[slot.i].DrillEnd - session.user.Characters[slot.i].DrillStart));
 
                     if (session.user.Characters[slot.i].AvartarIconidx == 1000) {
+                        Console.WriteLine("| avartar_icon_idx: " + session.user.Characters[slot.i].AvartarIconidx);
+                        Console.WriteLine("+-------------------------------------------------------------------");
                         rsp.U1((sbyte)session.user.Characters[slot.i].HelmetIconidx);
                         rsp.U1((sbyte)session.user.Characters[slot.i].ArmorIconidx);
                         rsp.U1((sbyte)session.user.Characters[slot.i].WeaponIconidx);

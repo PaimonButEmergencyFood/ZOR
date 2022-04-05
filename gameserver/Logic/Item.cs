@@ -115,6 +115,33 @@ namespace ProjectZ.Logic {
             }
         }
 
+        public int EvolveStep {
+            get {
+                return _item.EvolveStep;
+            }
+            set {
+                _item.EvolveStep = value;
+            }
+        }
+
+        public int EvolveMax {
+            get {
+                return _item.EvolveMax;
+            }
+            set {
+                _item.EvolveMax = value;
+            }
+        }
+
+        public int EvolveValue {
+            get {
+                return _item.EvolveValue;
+            }
+            set {
+                _item.EvolveValue = value;
+            }
+        }
+
         public int CharacterSeq {
             get {
                 return (int)_item.CharacterSeq;
@@ -163,6 +190,87 @@ namespace ProjectZ.Logic {
         public uint Iconidx {
             get {
                 return (uint)_item.Iconidx;
+            }
+        }
+
+        public int CurDuration {
+            get {
+                return _item.CurDuration;
+            }
+            set {
+                _item.CurDuration = value;
+            }
+        }
+
+        public int MaxDuration {
+            get {
+                return _item.MaxDuration;
+            }
+            set {
+                _item.MaxDuration = value;
+            }
+        }
+
+        public int SetType {
+            get {
+                return _item.SetType;
+            }
+            set {
+                _item.SetType = value;
+            }
+        }
+
+        public int CurRefineStep {
+            get {
+                return _item.CurRefineStep;
+            }
+            set {
+                _item.CurRefineStep = value;
+            }
+        }
+
+        public int NonIdentity {
+            get {
+                return _item.NonIdentity;
+            }
+            set {
+                _item.NonIdentity = value;
+            }
+        }
+
+        public int OpenUpgradeStoneSlot {
+            get {
+                return _item.OpenUpgradeStoneSlot;
+            }
+            set {
+                _item.OpenUpgradeStoneSlot = value;
+            }
+        }
+
+        public int AbilityEnhanceRate {
+            get {
+                return _item.AbilityEnhanceRate;
+            }
+            set {
+                _item.AbilityEnhanceRate = value;
+            }
+        }
+
+        public int MaxEnhanceStep {
+            get {
+                return _item.MaxEnhanceStep;
+            }
+            set {
+                _item.MaxEnhanceStep = value;
+            }
+        }
+
+        public int BuyUse {
+            get {
+                return _item.BuyUse;
+            }
+            set {
+                _item.BuyUse = value;
             }
         }
 
@@ -218,6 +326,7 @@ namespace ProjectZ.Logic {
                 _item.EffValue.Add(-1);
             }
             e_EquipPos = -1;
+            _item.SetType = -1;
         }
 
         public void SetItem(ProjectZ.Common.Protocol.Protobuf.Item item) {

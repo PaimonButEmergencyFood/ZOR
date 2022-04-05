@@ -10,6 +10,7 @@ namespace ProjectZ {
 
             if (session.user.GetSpace == null) {
                 Console.WriteLine("| CS_DUNGEON_CLEAR_LIST: user {0} is not in space", session.user.Nickname);
+                Console.WriteLine("+-------------------------------------------------------------------");
                 return null;
             }
 

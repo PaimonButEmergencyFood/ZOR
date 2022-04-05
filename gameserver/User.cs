@@ -104,6 +104,15 @@ namespace ProjectZ {
             }
         }
 
+        public uint WpLastWeek {
+            get {
+                return mUser.Info.WpLastWeek;
+            }
+            set {
+                mUser.Info.WpLastWeek = value;
+            }
+        }
+
         public uint HeartBlocked {
             get {
                 return mUser.Info.HeartBlocked;
@@ -309,6 +318,7 @@ namespace ProjectZ {
             mUser.Social = new SocialInfo();
             mUser.Zen = 100000;
             for (int i = 0; i < 8; i++) {
+                CharacterInfo character = new CharacterInfo();
                 mUser.Character.Add(new CharacterInfo());
             }
             mUser.SocialId = social_id;
