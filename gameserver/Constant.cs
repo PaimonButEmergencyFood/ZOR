@@ -4,6 +4,7 @@ namespace ProjectZ {
         public const int STAT_MIN = 6;
         public const int STAT_MAX = 13;
         public const int STAT_SUM_MAX = 40;
+        public const int MAX_DUNGEON_COUNT = 150;
 
     }
 }

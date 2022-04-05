@@ -61,9 +61,9 @@ message CharacterInfo {
 
 	uint64	reg_date = 47;
 
-    string	dungeon_clear_info = 48;
+    repeated uint32	array_dungeon_clear_info = 48;
 
-	string	bag_order_info = 49;
+	repeated uint32	array_bag_order_info = 49;
 
 	string	buff_info = 50;
 	string	battle_afterEffect_info = 51;

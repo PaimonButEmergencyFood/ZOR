@@ -11,6 +11,7 @@ namespace ProjectZ {
         private Space? _world;
         private Space? _reserveSpace;
         private int _worldIndex;
+        private List<UInt32> _array_dungeon_clear_info;
         public string encryption_key { get; set; }
         public bool isAuth { get; set; }
         public uint gid { get; set; }
@@ -25,6 +26,10 @@ namespace ProjectZ {
             mUser.Zen = 100000;
             _worldIndex = -1;
             encryption_key = "";
+            _array_dungeon_clear_info = new List<UInt32>();
+            for (int i = 0; i < Constants.MAX_DUNGEON_COUNT; i++) {
+                _array_dungeon_clear_info.Add(0);
+            }
         }
 
         public string Nickname {
@@ -267,6 +272,10 @@ namespace ProjectZ {
 
         public void SetWorldSpace(Space? pSpace) {
             _world = pSpace;
+        }
+
+        public uint GetDungeonClear(int index) {
+            return _array_dungeon_clear_info[index];
         }
 
         public User CreateUser(string social_id) {
