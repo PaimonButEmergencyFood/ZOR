@@ -75,12 +75,12 @@ namespace ProjectZ {
                 }
                 character.Characterseq = (uint)character_seq;
                 character.EventStamina = -1;
-                character.Avatar = 1;
                 character.AvartarIconidx = 1000;
+                character.Level = 1;
+                character.Classtype = class_type;
 
                 session.user.SetCharacter(slot_number, character);
 
-                /**
                 if (session.user.Slots[1].Open == false) {
                     Slot slot1 = new Slot();
 
@@ -91,7 +91,6 @@ namespace ProjectZ {
 
                     session.user.SetSlot(1, slot1);
                 }
-                **/
             } else {
                 Slot slot = new Slot();
                 slot.Open = true;
@@ -106,6 +105,9 @@ namespace ProjectZ {
                 character.Slotindex = slot_number;
                 character.Characterseq = (uint)character_seq;
                 character.EventStamina = -1;
+                character.AvartarIconidx = 1000;
+                character.Level = 1;
+                character.Classtype = class_type;
 
                 session.user.SetCharacter(slot_number, character);
             }

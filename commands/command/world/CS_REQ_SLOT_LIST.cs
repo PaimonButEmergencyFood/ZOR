@@ -7,6 +7,7 @@ namespace ProjectZ {
             Console.WriteLine("+-------------------------------------------------------------------");
 
             NetworkPacket rsp = new NetworkPacket(NetCMDTypes.ZNO_SC_REQ_SLOT_LIST);
+            Console.WriteLine("| MainSlot: " + session.user.MainSlotIndex);
             rsp.U1(session.user.MainSlotIndex);
             // if (useViewIntroState)
             rsp.U1(session.user.IntroState);
@@ -23,7 +24,6 @@ namespace ProjectZ {
             foreach (var slot in session.user.Slots.Select((value, i) => new { i, value })) {
                 if (slot.value.Open == true) {
                     Console.WriteLine("| open slot_number: " + slot.i);
-                    Console.WriteLine("+-------------------------------------------------------------------");
                     rsp.U1((sbyte)slot.i);
                     rsp.U1((sbyte)slot.value.RemainStatResetCount);
                 }
@@ -35,13 +35,16 @@ namespace ProjectZ {
                     characterMaxCount++;
                 }
             }
+            Console.WriteLine("| characterMaxCount: " + characterMaxCount);
             rsp.U1((sbyte)characterMaxCount);
 
             foreach (var slot in session.user.Slots.Select((value, i) => new { i, value })) {
                 if (slot.value.Open == true && slot.value.MakeCharacter == true && slot.value.CharacterSeq != 0) {
+                    Console.WriteLine("| character slot_number: " + slot.i);
                     rsp.U1((sbyte)session.user.Characters[slot.i].Slotindex);
                     rsp.U1((sbyte)session.user.Characters[slot.i].Classtype);
                     rsp.U2((short)session.user.Characters[slot.i].Level);
+                    Console.WriteLine("| character level: " + session.user.Characters[slot.i].Level);
                     // TODO: convert to "Wed Feb 13 15:46:11 2013" time format
                     String strTime = "Wed Feb 13 15:46:11 2013";
                     rsp.U2((short)strTime.Length);
@@ -52,7 +55,6 @@ namespace ProjectZ {
 
                     if (session.user.Characters[slot.i].AvartarIconidx == 1000) {
                         Console.WriteLine("| avartar_icon_idx: " + session.user.Characters[slot.i].AvartarIconidx);
-                        Console.WriteLine("+-------------------------------------------------------------------");
                         rsp.U1((sbyte)session.user.Characters[slot.i].HelmetIconidx);
                         rsp.U1((sbyte)session.user.Characters[slot.i].ArmorIconidx);
                         rsp.U1((sbyte)session.user.Characters[slot.i].WeaponIconidx);
@@ -76,6 +78,7 @@ namespace ProjectZ {
                 rsp.U1((sbyte)ProjectZ.Logic.Function.GetDefaultStat(i, ESTATNAME.STAT_CON)); //STAT_CON
                 rsp.U1((sbyte)ProjectZ.Logic.Function.GetDefaultStat(i, ESTATNAME.STAT_SPI)); //STAT_SPI
             }
+            Console.WriteLine("+-------------------------------------------------------------------");
             return rsp;
         }
     }

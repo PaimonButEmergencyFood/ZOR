@@ -151,6 +151,15 @@ namespace ProjectZ.Logic {
             }
         }
 
+        public int Seq {
+            get {
+                return (int)_item.Seq;
+            }
+            set {
+                _item.Seq = (uint)value;
+            }
+        }
+
         public List<int> EffType {
             get {
                 List<int> effType = new List<int>();
