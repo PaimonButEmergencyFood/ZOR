@@ -1,9 +1,9 @@
 namespace ProjectZ {
-    public class API_ZNO_SC_REQ_MY_LEVEL_EXP
+    public class API_ZNO_CS_REQ_MY_LEVEL_EXP
     {
-        public NetworkPacket ZNO_SC_REQ_MY_LEVEL_EXP(NetworkPacket req, Session session) {
+        public NetworkPacket ZNO_CS_REQ_MY_LEVEL_EXP(NetworkPacket req, Session session) {
             Console.WriteLine("+-------------------------------------------------------------------");
-            Console.WriteLine("| TODO: API_ZNO_SC_REQ_MY_LEVEL_EXP");
+            Console.WriteLine("| TODO: API_ZNO_CS_REQ_MY_LEVEL_EXP");
             Console.WriteLine("+-------------------------------------------------------------------");
 
             NetworkPacket rsp = new NetworkPacket(NetCMDTypes.ZNO_SC_REQ_MY_LEVEL_EXP);
