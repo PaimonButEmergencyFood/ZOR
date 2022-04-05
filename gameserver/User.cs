@@ -7,6 +7,10 @@ using Google.Protobuf;
 namespace ProjectZ {
     public class User {
         private ProjectZUser mUser;
+        private Space? _space;
+        private Space? _world;
+        private Space? _reserveSpace;
+        private int _worldIndex;
         public string encryption_key { get; set; }
         public bool isAuth { get; set; }
         public uint gid { get; set; }
@@ -19,6 +23,8 @@ namespace ProjectZ {
                 mUser.Character.Add(new CharacterInfo());
             }
             mUser.Zen = 100000;
+            _worldIndex = -1;
+            encryption_key = "";
         }
 
         public string Nickname {
@@ -239,6 +245,28 @@ namespace ProjectZ {
             get {
                 return mUser.ItemCount;
             }
+        }
+
+        public Space GetSpace() {
+            return _space;
+        }
+        public void SetSpace(Space? pSpace) {
+            _space = pSpace;
+        }
+
+        public Space GetReserveSpace() {
+            return _reserveSpace;
+        }
+        public void SetReserveSpace(Space? pSpace) {
+            _reserveSpace = pSpace;
+        }
+
+        public Space GetWorldSpace() {
+            return _world;
+        }
+
+        public void SetWorldSpace(Space? pSpace) {
+            _world = pSpace;
         }
 
         public User CreateUser(string social_id) {
