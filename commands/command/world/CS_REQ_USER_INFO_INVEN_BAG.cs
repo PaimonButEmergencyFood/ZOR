@@ -74,12 +74,12 @@ namespace ProjectZ {
 
                 rsp.U1((sbyte)item_.EvolveStep);
                 rsp.U1((sbyte)item_.EvolveMax);
-                rsp.U1((sbyte)item_.EvolvePoint);
-                rsp.U1((sbyte)item_.EvolvePercent);
-                rsp.U1((sbyte)item_.EvolveValue);
+                rsp.U2((short)item_.EvolvePoint);
+                rsp.U2((short)item_.EvolvePercent);
+                rsp.U2((sbyte)item_.EvolveValue);
                 rsp.U1((sbyte)item_.ClassType);
                 rsp.U1((sbyte)item_.SubType);
-                rsp.U1((sbyte)item_.Tid);
+                rsp.U2((sbyte)item_.Tid);
             }
 
             return rsp;
