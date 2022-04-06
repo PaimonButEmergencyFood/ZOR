@@ -78,6 +78,10 @@ namespace ProjectZ {
                 character.AvartarIconidx = 1000;
                 character.Level = 1;
                 character.Classtype = class_type;
+                character.Str = (uint)str;
+                character.Con = (uint)con;
+                character.Dex = (uint)dex;
+                character.Spi = (uint)spi;
 
                 session.user.SetCharacter(slot_number, character);
 
@@ -108,6 +112,10 @@ namespace ProjectZ {
                 character.AvartarIconidx = 1000;
                 character.Level = 1;
                 character.Classtype = class_type;
+                character.Str = (uint)str;
+                character.Con = (uint)con;
+                character.Dex = (uint)dex;
+                character.Spi = (uint)spi;
 
                 session.user.SetCharacter(slot_number, character);
             }

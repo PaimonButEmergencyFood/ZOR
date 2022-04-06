@@ -32,7 +32,7 @@ namespace ProjectZ {
             rsp.U2((short)posy);
             rsp.U2((short)degree);
             rsp.U2((short)session.user.Characters[session.user.GetSlotIndex()].Level);
-            rsp.U2((short)session.user.Characters[session.user.GetSlotIndex()].Classtype);
+            rsp.U1((sbyte)session.user.Characters[session.user.GetSlotIndex()].Classtype);
 
             rsp.U2((short)session.user.Characters[session.user.GetSlotIndex()].RemainStatPoint);
             rsp.U2((short)session.user.Characters[session.user.GetSlotIndex()].RemainSkillPoint);
