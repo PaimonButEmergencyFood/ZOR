@@ -133,7 +133,7 @@ namespace ProjectZ {
                         Console.WriteLine(e.StackTrace);
                         // print time
                         Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                        if (e.GetType().Name == "NullReferenceException") {
+                        if (e.GetType().Name == "NullReferenceException" || e.GetType().Name == "ArgumentNullException") {
                             Console.WriteLine("Function not implemented");
                         } else {
                             Console.WriteLine("Error: " + e.GetType().Name);

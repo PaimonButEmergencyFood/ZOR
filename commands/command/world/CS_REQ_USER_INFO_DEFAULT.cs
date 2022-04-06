@@ -27,6 +27,13 @@ namespace ProjectZ {
             //}
 
             rsp.U4((int)session.user.Userseq);
+
+            rsp.U2((short)posx);
+            rsp.U2((short)posy);
+            rsp.U2((short)degree);
+            rsp.U2((short)session.user.Characters[session.user.GetSlotIndex()].Level);
+            rsp.U2((short)session.user.Characters[session.user.GetSlotIndex()].Classtype);
+
             rsp.U2((short)session.user.Characters[session.user.GetSlotIndex()].RemainStatPoint);
             rsp.U2((short)session.user.Characters[session.user.GetSlotIndex()].RemainSkillPoint);
             
@@ -52,6 +59,9 @@ namespace ProjectZ {
                 rsp.U2((short)(i + session.user.Characters[session.user.GetSlotIndex()].Classtype * Constants.MAX_SKILL));
                 rsp.U1((sbyte)session.user.Characters[session.user.GetSlotIndex()].ArraySkill[i]);
             }
+
+            rsp.U2(1); // len of string
+            rsp.Set("F");
 
             if (session.user.GetEquip().IsExistItem(EnumItemEquipPosition.ITEM_EQUIP_POS_NAME_TAG)) {
                 rsp.U1((sbyte)(session.user.GetEquip().HasItemCount() - 1));
