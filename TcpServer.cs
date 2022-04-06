@@ -8,9 +8,13 @@ namespace ProjectZ {
     public class Session {
         public TcpClient client;
         public NetworkStream stream;
-
         public User user;
         public bool isRunning = true;
+
+        public Session() {
+            client = new TcpClient();
+            user = new User();
+        }
 
         bool IsNeedEnc(NetCMDTypes wCMD)
         {
@@ -45,8 +49,8 @@ namespace ProjectZ {
         }
         public void HandleClient(TcpClient client) {
             this.client = client;
+            client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
             stream = client.GetStream();
-            user = new User();
             Thread t = new Thread(run);
             t.Start();
         }
@@ -128,6 +132,7 @@ namespace ProjectZ {
                         } else {
                             Console.WriteLine("No return value given");
                         }
+                        Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     } catch (Exception e) {
                         Console.WriteLine(e.Message);
                         Console.WriteLine(e.StackTrace);
@@ -158,15 +163,16 @@ namespace ProjectZ {
         public TcpServer(int port = 55000) {
             // listen on any IP address
             server = new TcpListener(IPAddress.Any, port);
+            TcpClient client;
             // start the server
             server.Start();
             isRunning = true;
             // run HandlePacketAsync in background
-            while (true) {
+            while (isRunning) {
                 Console.WriteLine("waiting for connection...");
-                TcpClient client = server.AcceptTcpClient();
+                client = server.AcceptTcpClient();
                 // create a new stream to read and write data
-                NetworkStream stream = client.GetStream();
+                //NetworkStream stream = client.GetStream();
                 Console.WriteLine("new client connected");
                 Session session = new Session();
                 session.HandleClient(client);

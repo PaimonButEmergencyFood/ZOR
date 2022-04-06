@@ -137,6 +137,8 @@ namespace ProjectZ {
             rsp.U2((short)session.user.WpLastWeek);
             rsp.U1((sbyte)gender);
 
+            rsp.U1(0);
+
             return rsp;
             } catch (Exception e) {
                 // print stacktrace
