@@ -154,7 +154,7 @@ namespace ProjectZ {
         public byte[] AsBytes() {
             byte[] header = new byte[HEADER_LEN];
             ByteArray.SetUInt16(header, 0, flag);
-            ByteArray.SetUInt16(header, 1, (ushort)(data.Length + 3)); // idk why +3
+            ByteArray.SetUInt16(header, 1, (ushort)(data.Length + 3)); // idk why +4
             header[3] = reserved;
             ByteArray.SetUInt16(header, 4, cmd);
             if (length > 0) {
