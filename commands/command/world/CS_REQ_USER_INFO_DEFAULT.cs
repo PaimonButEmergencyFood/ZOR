@@ -60,8 +60,8 @@ namespace ProjectZ {
                 rsp.U1((sbyte)session.user.Characters[session.user.GetSlotIndex()].ArraySkill[i]);
             }
 
-            rsp.U2(1); // len of string
-            rsp.Set("F");
+            rsp.U2((short)session.user.Nickname.Length); // len of string
+            rsp.Set(session.user.Nickname);
 
             if (session.user.GetEquip().IsExistItem(EnumItemEquipPosition.ITEM_EQUIP_POS_NAME_TAG)) {
                 rsp.U1((sbyte)(session.user.GetEquip().HasItemCount() - 1));
