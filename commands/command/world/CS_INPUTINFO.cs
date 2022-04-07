@@ -29,6 +29,7 @@ namespace ProjectZ {
             if (channel_id > 0) {
                 ChannelChangeProcess(session.user, (int)channel_id);
             }
+            /**
 
             Space pSpace = session.user.GetSpace();
             if (pSpace != null) {
@@ -43,9 +44,10 @@ namespace ProjectZ {
                 pSpace = worldTree;
                 session.user.SetWorldSpace(worldTree);
             }
+            **/
 
             NetworkPacket rsp = new NetworkPacket(NetCMDTypes.ZNO_SC_REQ_ENTER_MY_INFO);
-
+            /**
             if (pSpace == null) {
                 rsp.U2((short)NetACKTypes.ACK_CHANNEL_USER_FULL);
                 rsp.U4((int)session.user.Userseq);
@@ -53,7 +55,8 @@ namespace ProjectZ {
                 rsp.U2(0);
                 rsp.U2(0);
             } else {
-                pSpace.EnterUser(session.user);
+            **/
+                //pSpace.EnterUser(session.user);
                 rsp.U2((short)NetACKTypes.ACK_OK);
                 rsp.U4((int)session.user.Userseq);
                 rsp.U2(0); // session.user.GetBattle().GetData().X
