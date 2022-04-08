@@ -62,7 +62,7 @@ namespace ProjectZ {
                 rsp.U2(0); // session.user.GetBattle().GetData().X
                 rsp.U2(0); // session.user.GetBattle().GetData().Y
                 rsp.U2(0); // pSpace.GetData()._index
-            }
+            //}
 
             return rsp;
         }
