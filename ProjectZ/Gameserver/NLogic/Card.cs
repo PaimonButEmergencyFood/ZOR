@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Card {
+    public class Card {
         public Card() {
             
         }

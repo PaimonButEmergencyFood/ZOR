@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class BackEndServerInfo {
+    public class BackEndServerInfo {
         public BackEndServerInfo() {
             
         }

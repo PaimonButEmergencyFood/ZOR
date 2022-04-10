@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class MailBox {
+    public class MailBox {
         public MailBox() {
             
         }

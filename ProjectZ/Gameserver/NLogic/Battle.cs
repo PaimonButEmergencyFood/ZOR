@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Battle {
+    public class Battle {
         public Battle() {
             
         }

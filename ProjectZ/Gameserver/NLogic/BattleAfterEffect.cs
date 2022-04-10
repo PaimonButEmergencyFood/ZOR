@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class BattleAfterEffect {
+    public class BattleAfterEffect {
         public BattleAfterEffect() {
             
         }

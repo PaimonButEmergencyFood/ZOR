@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class MemcachedKey {
+    public class MemcachedKey {
         public MemcachedKey() {
             
         }

@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Status {
+    public class Status {
         public Status() {
             
         }

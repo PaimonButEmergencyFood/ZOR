@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Score {
+    public class Score {
         public Score() {
             
         }

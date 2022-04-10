@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Space {
+    public class Space {
         public Space() {
             
         }

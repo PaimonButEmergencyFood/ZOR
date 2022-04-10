@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Fishing {
+    public class Fishing {
         public Fishing() {
             
         }

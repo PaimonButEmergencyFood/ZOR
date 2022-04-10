@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Trade {
+    public class Trade {
         public Trade() {
             
         }

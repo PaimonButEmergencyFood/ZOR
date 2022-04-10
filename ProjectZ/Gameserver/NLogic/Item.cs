@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Item {
+    public class Item {
         public enum ItemStatus {
             EM_ITEM_STATUS_NORMAL = 0,
 

@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class QuestInfo {
+    public class QuestInfo {
         public QuestInfo() {
             
         }

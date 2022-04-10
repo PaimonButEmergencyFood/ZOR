@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class UserLocation {
+    public class UserLocation {
         public UserLocation() {
             
         }

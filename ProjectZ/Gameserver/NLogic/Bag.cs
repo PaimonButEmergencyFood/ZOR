@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Bag {
+    public class Bag {
         public Bag() {
             
         }

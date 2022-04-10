@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class VirtualCurrency {
+    public class VirtualCurrency {
         public VirtualCurrency() {
             
         }

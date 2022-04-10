@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Equip {
+    public class Equip {
         public Equip() {
             
         }

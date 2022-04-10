@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class SocialInfo {
+    public class SocialInfo {
         public SocialInfo() {
             
         }

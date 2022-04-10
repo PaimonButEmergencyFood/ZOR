@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Stamina {
+    public class Stamina {
         public Stamina() {
             
         }

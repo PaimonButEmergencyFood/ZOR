@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Reward {
+    public class Reward {
         public Reward() {
             
         }

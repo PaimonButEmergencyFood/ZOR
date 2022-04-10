@@ -1,5 +1,5 @@
 namespace ProjectZ.NLogic {
-    class Party {
+    public class Party {
         public Party() {
             
         }
