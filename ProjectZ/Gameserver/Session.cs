@@ -16,7 +16,7 @@ namespace ProjectZ {
 
         public Session() {
             client = new TcpClient();
-            user = new User();
+            //user = new User();
             _mutex_send = new Mutex();
         }
 

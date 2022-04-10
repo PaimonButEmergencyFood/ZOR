@@ -12,7 +12,7 @@ namespace ProjectZ {
             }
 
             public delegate void Command(ref User pUser, NetworkPacket packet);
-            Command? GetCommand(ushort cmd) {
+            public Command? GetCommand(ushort cmd) {
                 if (clsCommandMap.ContainsKey(cmd)) {
                     return clsCommandMap[cmd];
                 }
@@ -116,7 +116,7 @@ namespace ProjectZ {
         
         public User() {
             _clsBagVector = new List<NLogic.Bag>((int)INVEN_BAG_TYPE.BAG_TYPE_MAX);
-            _session = new Session();
+            _session = null;
             _bClose = false;
             _bDelUser = false;
             _bZENEvent = false;
@@ -134,10 +134,24 @@ namespace ProjectZ {
             _array_bag_order_info = new List<int>((int)INVEN_BAG_TYPE.BAG_TYPE_MAX);
 
             SetState(NState.Static.instance.TITLE());
+
+            GID = 69420;
         }
 
         public void SetState(State pState) {
             _state = pState;
+        }
+
+        public ref State GetState() {
+            return ref _state;
+        }
+
+        public void printGID() {
+            Console.WriteLine("GID : " + GID);
+        }
+
+        public void SetGID(int pGID) {
+            GID = pGID;
         }
     }
 }
