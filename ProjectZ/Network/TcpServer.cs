@@ -55,6 +55,7 @@ namespace ProjectZ {
             t.Start();
         }
         public void Send(NetworkPacket packet) {
+            /**
             if (IsNeedEnc(packet.Cmd)) {
                 if (packet.Cmd == NetCMDTypes.ZNO_SC_REQ_SERVER_ADDR || packet.Cmd == NetCMDTypes.ZNO_SC_CONNECT) {
                     //Console.WriteLine("Encrypting with user key");
@@ -73,6 +74,7 @@ namespace ProjectZ {
                 // return;
             }
             Console.WriteLine("Sent " + packet.Cmd.ToString());
+            **/
         }
         private void run() {
             try {
@@ -88,6 +90,7 @@ namespace ProjectZ {
                         byte[] body = new byte[packet.Length];
                         if (packet.Length > 0) {
                             stream.Read(body, 0, body.Length);
+                            /**
                             if (IsNeedEnc(packet.Cmd)) {
                                 if (packet.Cmd == NetCMDTypes.ZNO_CS_CONNECT || packet.Cmd == NetCMDTypes.ZNO_CS_REQ_SERVER_ADDR) {
                                     //Console.WriteLine("Decrypting");
@@ -98,41 +101,20 @@ namespace ProjectZ {
                                 }
                             }
                             packet.data = body;
+                            **/
                         }
 
                         String func = "ProjectZ.API_" + packet.Cmd.ToString();
                         Console.WriteLine("func " + func);
 
+                        /**
                         Type t = Type.GetType(func);
                         var instance = Activator.CreateInstance(t);
                         MethodInfo method = t.GetMethod(packet.Cmd.ToString());
 
-                        NetworkPacket returnValue = (NetworkPacket)method.Invoke(instance, new object[] {packet, this});
-
-                        if (returnValue != null) {
-                            if (IsNeedEnc(returnValue.Cmd)) {
-                                if (returnValue.Cmd == NetCMDTypes.ZNO_SC_REQ_SERVER_ADDR || returnValue.Cmd == NetCMDTypes.ZNO_SC_CONNECT) {
-                                    //Console.WriteLine("Encrypting with user key");
-                                    xorEncode(returnValue.data, (uint)returnValue.data.Length, Encoding.ASCII.GetBytes(user.SocialID), (uint)Encoding.ASCII.GetBytes(user.SocialID).Length);
-                                } else {
-                                    //Console.WriteLine("Encrypting");
-                                    xorEncode(returnValue.data, (uint)returnValue.data.Length, Encoding.ASCII.GetBytes(user.encryption_key), (uint)Encoding.ASCII.GetBytes(user.encryption_key).Length);
-                                }
-                            }
-                            stream.Write(returnValue.GetHeader(), 0, returnValue.GetHeader().Length);
-                            stream.Write(returnValue.data, 0, returnValue.data.Length);
-                            if (returnValue.Cmd == NetCMDTypes.ZNO_SC_REQ_SERVER_ADDR) {
-                                // close stream
-                                Console.WriteLine("Closing stream");
-                                //stream.Close();
-                                break;
-                            }
-                            Console.WriteLine("Sent " + returnValue.Cmd.ToString());
-
-                        } else {
-                            Console.WriteLine("No return value given");
-                        }
-                        Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        method.Invoke(instance, new object[] {packet, this});
+                        Console.WriteLine("Invoked at " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                        **/
                     } catch (Exception e) {
                         Console.WriteLine(e.Message);
                         Console.WriteLine(e.StackTrace);

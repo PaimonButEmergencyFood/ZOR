@@ -46,12 +46,12 @@ namespace ProjectZ.NResource {
         };
 
         //private Dictionary<Key, Flyweight> ITEMRESOURCETREE = new Dictionary<Key, Flyweight>();
-        private List<Dictionary<Key, Flyweight>> ITEMRESOURCETREEVECTOR = new List<Dictionary<Key, Flyweight>>((int)Enum.EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX);
+        private List<Dictionary<Key, Flyweight>> ITEMRESOURCETREEVECTOR = new List<Dictionary<Key, Flyweight>>((int)EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX);
 
         String? emptyString;
 
         public ItemResource() {
-            ITEMRESOURCETREEVECTOR = new List<Dictionary<Key, Flyweight>>((int)Enum.EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX);
+            ITEMRESOURCETREEVECTOR = new List<Dictionary<Key, Flyweight>>((int)EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX);
             emptyString = "";
         }
 
@@ -186,13 +186,13 @@ namespace ProjectZ.NResource {
             return (int)((max - min) * (float)new Random().NextDouble() + min);
         }
 
-        public Dictionary<Key, Flyweight> GetItemResourceTree(Enum.EnumClassItemTableType eClassItemTableType) {
+        public Dictionary<Key, Flyweight> GetItemResourceTree(EnumClassItemTableType eClassItemTableType) {
             return ITEMRESOURCETREEVECTOR[(int)eClassItemTableType];
         }
 
         public Flyweight? getFly(int sub_type, int tid, int class_type) {
             var key = new Key(tid, class_type);
-            if (sub_type > (int)Enum.EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX) {
+            if (sub_type > (int)EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX) {
                 key = new Key(tid, -1);
             }
             var tree = ITEMRESOURCETREEVECTOR[(int)class_type];

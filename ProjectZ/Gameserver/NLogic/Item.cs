@@ -147,7 +147,7 @@ namespace ProjectZ.NLogic {
         private UInt64 _itemSeq;
         private User? _user;
         private int _status;
-        private Enum.EnumClassItemTableType e_EquipPos;
+        private EnumClassItemTableType e_EquipPos;
 
         private static int s_index = 1;
 
@@ -156,7 +156,7 @@ namespace ProjectZ.NLogic {
         }
 
         public void Initialize() {
-            e_EquipPos = Enum.EnumClassItemTableType.CLASS_ITEM_TABLE_NONE;
+            e_EquipPos = EnumClassItemTableType.CLASS_ITEM_TABLE_NONE;
             _itemSeq = 0;
             _user = null;
             _status = 0;
@@ -207,16 +207,16 @@ namespace ProjectZ.NLogic {
             NResource.Static.instance.GetItemResource().SetItemDataFromResource(ref _user, ref _data);
         }
 
-        public void SetEquip(Enum.EnumClassItemTableType eEquipPos) {
+        public void SetEquip(EnumClassItemTableType eEquipPos) {
             e_EquipPos = eEquipPos;
         }
 
-        public Enum.EnumClassItemTableType GetEquipPos() {
+        public EnumClassItemTableType GetEquipPos() {
             return e_EquipPos;
         }
 
         public bool IsEquip() {
-            return e_EquipPos != Enum.EnumClassItemTableType.CLASS_ITEM_TABLE_NONE;
+            return e_EquipPos != EnumClassItemTableType.CLASS_ITEM_TABLE_NONE;
         }
 
         public UInt64 GetItemSeq() {
@@ -235,7 +235,56 @@ namespace ProjectZ.NLogic {
             throw new NotImplementedException();
         }
 
-        // WriteToPacket
+        public void WriteToPacket(ref NetworkPacket packet) {
+            packet.U1((sbyte)_data.cur_duration);
+            packet.U1((sbyte)_data.max_duration);
+            packet.U1((sbyte)_data.quantity);
+            packet.U1((sbyte)_data.set_type);
+            packet.U1((sbyte)_data.non_identity);
+            packet.U1((sbyte)_data.cur_refine_step);
+
+            packet.U1((sbyte)_data.quality);
+            packet.U1((sbyte)_data.level);
+
+            for (int i = 0; i < 7; ++i) {
+                packet.U1((sbyte)_data.eff_type[i]);
+                packet.U1((sbyte)_data.eff_pos[i]);
+                
+                if (i == 0 && (int)EnumItemEquipPosition.ITEM_EQUIP_POS_NAME_TAG == NResource.Static.instance.GetItemResource().GetItemSubType(_data)) {
+                    long remainTime = (_data.reg_date + (_data.eff_value[0] * 60)) - DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
+                    if (remainTime > 0) {
+                        packet.U2((short)(remainTime / 60));
+                    } else {
+                        packet.U2(0);
+                    }
+                } else if (i == 0 && (int)EnumItemEquipPosition.ITEM_EQUIP_POS_NAME_TAG_WORLDBOSS != NResource.Static.instance.GetItemResource().GetItemSubType(_data)) {
+                    long remainTime = (_data.reg_date + (_data.eff_value[0] * 60)) - DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
+                    if (remainTime > 0) {
+                        packet.U2((short)(remainTime / 60));
+                    } else {
+                        packet.U2(0);
+                    }
+                } else {
+                    packet.U2((short)_data.eff_value[i]);
+                }
+            }
+
+            packet.U1((sbyte)_data.open_upgrade_stone_slot);
+            packet.U1((sbyte)_data.ability_enhance_rate);
+            packet.U1((sbyte)_data.max_enhance_step);
+            packet.U1((sbyte)_data.buy_use);
+
+            packet.U1((sbyte)_data.evolve_step);
+            packet.U1((sbyte)_data.evolve_max);
+            packet.U2((short)_data.evolve_point);
+            packet.U2((short)_data.evolve_percent);
+            packet.U2((short)_data.evolve_value);
+            packet.U1((sbyte)_data.class_type);
+            packet.U1((sbyte)_data.sub_type);
+            packet.U2((short)_data.tid);
+        }
 
         public void SetStatus(int status) {
             _status = status;
@@ -250,7 +299,7 @@ namespace ProjectZ.NLogic {
         }
 
         public void ChangeBagTypeWareHouse() {
-            _data.bag_type = (int)Enum.INVEN_BAG_TYPE.BAG_TYPE_WAREHOUSE;
+            _data.bag_type = (int)INVEN_BAG_TYPE.BAG_TYPE_WAREHOUSE;
         }
 
         public void ChangeIdentifyItem() {
