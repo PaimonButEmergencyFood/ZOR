@@ -82,6 +82,21 @@ namespace ProjectZ.NResource {
             clsData.cur_duration = GetItemDurability(clsData);
             clsData.max_duration = GetItemDurability(clsData);
             clsData.max_enhance_step = GetItemMaxRefine(pBalance, clsData);
+            clsData.iconidx = GetIconIndex(clsData);
+
+            clsData.item_type = GetItemUsing(clsData);
+
+            clsData.buy_use = GetItemBelong(pBalance, clsData);
+            
+            clsData.open_upgrade_stone_slot = GetItemOpenSlotCount(clsData);
+
+            clsData.set_type = GetItemSettedType(pBalance, clsData);
+
+            clsData.non_identity = Convert.ToInt32(IsItemIdentify(pBalance, clsData));
+
+            SetAdditionalEffect(ref clsData);
+
+            return true;
 
         }
 
@@ -101,11 +116,17 @@ namespace ProjectZ.NResource {
             throw new System.NotImplementedException();
         }
 
-        // GetItemSettedType
+        public int GetItemSettedType(NResource.BalanceData pBalance, NLogic.Item.Data clsData) {
+            throw new System.NotImplementedException();
+        }
 
-        // IsItemIdentify
+        public bool IsItemIdentify(NResource.BalanceData pBalance, NLogic.Item.Data clsData) {
+            throw new System.NotImplementedException();
+        }
 
-        // GetItemBelong
+        public int GetItemBelong(NResource.BalanceData, NLogic.Item.Data clsData) {
+            throw new System.NotImplementedException();
+        }
 
         public int GetItemMaxRefine(NResource.BalanceData pBalance, NLogic.Item.Data clsData) {
             if (isEquip(clsData) == false) {
