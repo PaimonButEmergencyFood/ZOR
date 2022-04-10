@@ -74,14 +74,24 @@ namespace ProjectZ.NResource {
 
             switch(eType) {
                 case E_TYPE._ALL_:
-                    if (false == _itemResource.LoadResource()) {
+                    if (_itemResource.LoadResource() == false) {
                         throw new Exception("_itemResource->LoadResource() failed");
+                        bResult = false;
+                    }
+                    if (_balanceResource.LoadResource() == false) {
+                        throw new Exception("_balanceResource->LoadResource() failed");
                         bResult = false;
                     }
                     break;
                 case E_TYPE.ITEM:
-                    if (false == _itemResource.LoadResource()) {
+                    if (_itemResource.LoadResource() == false) {
                         throw new Exception("_itemResource->LoadResource() failed");
+                        bResult = false;
+                    }
+                    break;
+                case E_TYPE.BALANCE:
+                    if (_balanceResource.LoadResource() == false) {
+                        throw new Exception("_balanceResource->LoadResource() failed");
                         bResult = false;
                     }
                     break;
@@ -92,12 +102,15 @@ namespace ProjectZ.NResource {
             return bResult;
         }
 
-        public ItemResource?GetItemResource() { return _itemResource; }
+        public ItemResource? GetItemResource() { return _itemResource; }
+        public BalanceResource? GetBalanceResource() { return _balanceResource; }
 
         private ItemResource? _itemResource;
+        private BalanceResource? _balanceResource;
 
         public Static() {
             _itemResource = new ItemResource();
+            _balanceResource = new BalanceResource();
         }
     }
 }

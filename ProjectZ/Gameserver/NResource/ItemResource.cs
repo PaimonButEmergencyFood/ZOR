@@ -63,8 +63,26 @@ namespace ProjectZ.NResource {
             throw new System.NotImplementedException();
         }
 
-        public bool SetItemDataFromResource(ref User user, ref NLogic.Item.Data clsData) {
-            throw new System.NotImplementedException();
+        public bool SetItemDataFromResource(ref User pUser, ref NLogic.Item.Data clsData) {
+            NResource.BalanceData pBalance = NResource.Static.instance.GetBalanceResource().GetBalancePtr(ref pUser);
+            if (pBalance == null) {
+                Console.WriteLine("pBalance is null");
+                return false;
+            }
+
+            Flyweight? flyweight = getFly(clsData.sub_type, clsData.tid, clsData.class_type);
+
+            if (flyweight == null) {
+                Console.WriteLine("flyweight is null, sub_type: {0}, tid: {1}, class_type: {2}", clsData.sub_type, clsData.tid, clsData.class_type);
+                return false;
+            }
+
+            clsData.bag_type = GetItemBagType(clsData);
+            clsData.level = GetItemLevel(clsData);
+            clsData.cur_duration = GetItemDurability(clsData);
+            clsData.max_duration = GetItemDurability(clsData);
+            clsData.max_enhance_step = GetItemMaxRefine(pBalance, clsData);
+
         }
 
         public bool SetItemFromXLS(ref User user, ref NLogic.Item.Data clsData, int sheet, int tid, int quantity) {
@@ -89,30 +107,75 @@ namespace ProjectZ.NResource {
 
         // GetItemBelong
 
-        // GetItemMaxRefine
+        public int GetItemMaxRefine(NResource.BalanceData pBalance, NLogic.Item.Data clsData) {
+            if (isEquip(clsData) == false) {
+                return 0;
+            }
+
+            switch (clsData.quality) {
+                case (int)EnumItemQuality.ITEM_QUALITY_D: return pBalance.GetValue((int)EnumBalance.EM_REFINE_ABLE_MAX_COUNT_D_GRADE);
+                case (int)EnumItemQuality.ITEM_QUALITY_C: return pBalance.GetValue((int)EnumBalance.EM_REFINE_ABLE_MAX_COUNT_C_GRADE);
+                case (int)EnumItemQuality.ITEM_QUALITY_B: return pBalance.GetValue((int)EnumBalance.EM_REFINE_ABLE_MAX_COUNT_B_GRADE);
+                case (int)EnumItemQuality.ITEM_QUALITY_A: return pBalance.GetValue((int)EnumBalance.EM_REFINE_ABLE_MAX_COUNT_A_GRADE);
+                case (int)EnumItemQuality.ITEM_QUALITY_S: return pBalance.GetValue((int)EnumBalance.EM_REFINE_ABLE_MAX_COUNT_S_GRADE);
+                case (int)EnumItemQuality.ITEM_QUALITY_SP: return pBalance.GetValue((int)EnumBalance.EM_REFINE_ABLE_MAX_COUNT_SP_GRADE);
+                case (int)EnumItemQuality.ITEM_QUALITY_SS: return pBalance.GetValue((int)EnumBalance.EM_REFINE_ABLE_MAX_COUNT_SS_GRADE);
+                case (int)EnumItemQuality.ITEM_QUALITY_SSP: return pBalance.GetValue((int)EnumBalance.EM_REFINE_ABLE_MAX_COUNT_SSP_GRADE);
+                case (int)EnumItemQuality.ITEM_QUALITY_SSS: return pBalance.GetValue((int)EnumBalance.EM_REFINE_ABLE_MAX_COUNT_SSS_GRADE);
+            }
+            return 0;
+        }
 
         public int GetItemOpenSlotCount(NLogic.Item.Data clsData) {
             throw new System.NotImplementedException();
         }
 
         public bool isEquip(NLogic.Item.Data clsData) {
-            throw new System.NotImplementedException();
+            switch (clsData.sub_type) {
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_WEAPON:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_HELMET:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_ARMOR:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_SHOES:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_GLOVES:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_NECKLACE:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_RING:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_CHARM:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_CLOAK:
+                    return true;
+            }
+            return false;
         }
 
         public bool isUpstone(NLogic.Item.Data clsData) {
-            throw new System.NotImplementedException();
+            if (clsData.sub_type == (int)EnumClassItemTableType.CLASS_ITEM_TABLE_ETC && clsData.tid == Constants.UPSTONE_TID) {
+                return true;
+            }
+            return false;
         }
 
         public bool isFairy(NLogic.Item.Data clsData) {
-            throw new System.NotImplementedException();
+            if (clsData.bag_type == (int)INVEN_BAG_TYPE.BAG_TYPE_FAIRY) {
+                return true;
+            }
+            return false;
         }
 
         public bool isBattlePet(NLogic.Item.Data clsData) {
-            throw new System.NotImplementedException();
+            if (clsData.bag_type == (int)INVEN_BAG_TYPE.BAG_TYPE_BATTLE_PET) {
+                return true;
+            }
+            return false;
         }
 
-        public bool isAccessary(NLogic.Item.Data clsData) {
-            throw new System.NotImplementedException();
+        public bool isAccessory(NLogic.Item.Data clsData) {
+            switch (clsData.sub_type) {
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_NECKLACE:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_RING:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_CHARM:
+                case (int)EnumClassItemTableType.CLASS_ITEM_TABLE_CLOAK:
+                    return true;
+            }
+            return false;
         }
 
         public void SetAdditionalEffect(ref NLogic.Item.Data clsData, bool bFairySacrifice=false) {
@@ -137,6 +200,15 @@ namespace ProjectZ.NResource {
 
         public int GetItemBagType(NLogic.Item.Data clsData) {
             throw new System.NotImplementedException();
+            /**
+            Flyweight? pFly = getFly(clsData.sub_type, clsData.tid, clsData.class_type);
+            
+            if (pFly == null) {
+                Console.WriteLine("pFly is null: " + clsData.sub_type + " " + clsData.tid + " " + clsData.class_type);
+                return -1;
+            }
+            return pFly._BAGTYPE;
+            **/
         }
 
         public int GetItemPrice(NLogic.Item.Data clsData) {

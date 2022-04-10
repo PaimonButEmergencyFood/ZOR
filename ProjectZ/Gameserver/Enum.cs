@@ -589,7 +589,7 @@ namespace ProjectZ {
             ESN_MSG_DUPLICATEDUSER,
             
             ESN_MSG_MAX
-        }
+        };
         public enum NetCMDTypes
         {
             ZNO_CS_PING								= 0x0201,
@@ -1379,5 +1379,21 @@ namespace ProjectZ {
             ZNO_CS_REQ_WORLD_BOSS_PARTY_JOIN		 		= 0x401B,
             ZNO_SC_REQ_WORLD_BOSS_PARTY_JOIN		 		= 0x401C,
             ZNO_MAX
-        }
+        };
+
+        enum EnumItemQuality
+        {
+            ITEM_QUALITY_F = 0,
+            ITEM_QUALITY_D,
+            ITEM_QUALITY_C,
+            ITEM_QUALITY_B,
+            ITEM_QUALITY_A,
+            ITEM_QUALITY_S,
+            ITEM_QUALITY_SP,
+            ITEM_QUALITY_SS,
+            ITEM_QUALITY_SSP,
+            ITEM_QUALITY_SSS,
+
+            MAX_ITEM_QUALITY
+        };
 }
