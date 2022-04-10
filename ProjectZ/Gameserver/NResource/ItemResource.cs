@@ -124,7 +124,7 @@ namespace ProjectZ.NResource {
             throw new System.NotImplementedException();
         }
 
-        public int GetItemBelong(NResource.BalanceData, NLogic.Item.Data clsData) {
+        public int GetItemBelong(NResource.BalanceData pBalance, NLogic.Item.Data clsData) {
             throw new System.NotImplementedException();
         }
 
