@@ -7,19 +7,17 @@ using System.Reflection;
 namespace ProjectZ {
     public class Session {
         public TcpClient client;
-        public NetworkStream stream;
+        public NetworkStream? stream;
         public bool isRunning = true;
 
         private User? user;
-        private Queue<NetworkPacket> _clsWaitAsyncSender;
-        private Mutex _mutex_Async;
 
-        private Queue<NetworkPacket> _clsWaitAsyncReceiver;
-        private Mutex _mutex_Sync;
+        private Mutex _mutex_send;
 
         public Session() {
             client = new TcpClient();
             user = new User();
+            _mutex_send = new Mutex();
         }
 
         bool IsNeedEnc(NetCMDTypes wCMD)
@@ -61,6 +59,7 @@ namespace ProjectZ {
             t.Start();
         }
         public void Send(NetworkPacket packet) {
+            _mutex_send.WaitOne();
             /**
             if (IsNeedEnc(packet.Cmd)) {
                 if (packet.Cmd == NetCMDTypes.ZNO_SC_REQ_SERVER_ADDR || packet.Cmd == NetCMDTypes.ZNO_SC_CONNECT) {
@@ -81,6 +80,7 @@ namespace ProjectZ {
             }
             Console.WriteLine("Sent " + packet.Cmd.ToString());
             **/
+            _mutex_send.ReleaseMutex();
         }
         private void run() {
             try {
@@ -90,9 +90,9 @@ namespace ProjectZ {
                     NetworkPacket packet;
                     try {
                         packet = new NetworkPacket(data);
-                        //Console.WriteLine("Received a packet");
+                        // Console.WriteLine("Received a packet");
                         // print the name of the cmd from the NetCMDTypes enum
-                        //Console.WriteLine("cmd " + packet.Cmd.ToString());
+                        // Console.WriteLine("cmd " + packet.Cmd.ToString());
                         byte[] body = new byte[packet.Length];
                         if (packet.Length > 0) {
                             stream.Read(body, 0, body.Length);

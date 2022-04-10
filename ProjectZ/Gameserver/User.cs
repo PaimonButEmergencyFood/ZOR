@@ -2,8 +2,36 @@ using Cache;
 using Location;
 using iFriends;
 
+using System.Reflection;
+
 namespace ProjectZ {
     public class User {
+        public class State {
+            public State() {
+                clsCommandMap = new Dictionary<int, Command>();
+            }
+
+            public delegate void Command(ref User pUser, NetworkPacket packet);
+            Command? GetCommand(ushort cmd) {
+                if (clsCommandMap.ContainsKey(cmd)) {
+                    return clsCommandMap[cmd];
+                }
+                return null;
+            }
+
+            public virtual String GetName() {
+                return "";
+            }
+            
+            protected bool AddCommand(ushort cmd, Command pCommand) {
+                if (clsCommandMap.ContainsKey(cmd)) {
+                    return false;
+                }
+                clsCommandMap.Add(cmd, pCommand);
+                return true;
+            }
+            protected Dictionary<int, Command> clsCommandMap;
+        }
         public enum EnumState {
             __NONE__,
             __MAX__
@@ -51,15 +79,15 @@ namespace ProjectZ {
         private NLogic.Stamina _stamina;
 
         private State _state;
-        private Session _session;
+        private Session? _session;
 
         private bool _bClose;
         private bool _bDelUser;
         private bool _bZENEvent;
         private bool _bBattleReconnect;
-        private NLogic.Space _space;
-        private NLogic.Space _world;
-        private NLogic.Space _reserveSpace;
+        private NLogic.Space? _space;
+        private NLogic.Space? _world;
+        private NLogic.Space? _reserveSpace;
         private int _worldIndex;
         private NLogic.Battle _battle;
 
@@ -87,7 +115,29 @@ namespace ProjectZ {
 
         
         public User() {
-            
+            _clsBagVector = new List<NLogic.Bag>((int)INVEN_BAG_TYPE.BAG_TYPE_MAX);
+            _session = new Session();
+            _bClose = false;
+            _bDelUser = false;
+            _bZENEvent = false;
+            _bBattleReconnect = false;
+            _space = null;
+            _world = null;
+            _reserveSpace = null;
+            _worldIndex = -1;
+            _partyAccept = false;
+            _bagInfoCache = false;
+            _battle_aftereffect = false;
+            _latency = 0;
+            _refCount = 0;
+            _array_dungeon_clear_info = new List<int>(Constants.MAX_DUNGEON_COUNT);
+            _array_bag_order_info = new List<int>((int)INVEN_BAG_TYPE.BAG_TYPE_MAX);
+
+            SetState(NState.Static.instance.TITLE());
+        }
+
+        public void SetState(State pState) {
+            _state = pState;
         }
     }
 }
