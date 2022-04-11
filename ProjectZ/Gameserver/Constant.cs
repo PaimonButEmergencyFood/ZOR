@@ -13,6 +13,15 @@ namespace ProjectZ {
         public const int STAT_SUM_MAX = 40;
 
         public const int MAX_DUNGEON_COUNT = 150;
+        public const int MAX_PARTY_DUNGEON_INVITE = 2;
+        public const int MAX_SPACE_POOL = 1024;
 
+        public const int MAX_NEW_PARTY_ROOM = 999;
+        public const int MAX_WORLDBOSS_PARTY_ROOM = 999;
+
+        public const int MAX_NEW_PVP_ROOM = 999;
+        public const int MAX_NEW_PK_ROOM = 999;
+
+        public const int STAMINA_MAX = 5;
     }
 }

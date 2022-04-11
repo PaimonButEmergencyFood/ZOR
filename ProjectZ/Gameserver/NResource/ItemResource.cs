@@ -13,11 +13,11 @@ namespace ProjectZ.NResource {
             int _tid;
             int _class_type;
 
-            bool Equals(Key other) {
+            public bool Equals(Key other) {
                 return _tid == other._tid && _class_type == other._class_type;
             }
 
-            bool Smaller(Key other) {
+            public bool Smaller(Key other) {
                 return _tid < other._tid || (_tid == other._tid && _class_type < other._class_type);
             }
         };
@@ -46,17 +46,17 @@ namespace ProjectZ.NResource {
         };
 
         //private Dictionary<Key, Flyweight> ITEMRESOURCETREE = new Dictionary<Key, Flyweight>();
-        private List<Dictionary<Key, Flyweight>> ITEMRESOURCETREEVECTOR = new List<Dictionary<Key, Flyweight>>((int)EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX);
+        private List<Dictionary<Key, Flyweight>> _clsItemResourceTreeVector = new List<Dictionary<Key, Flyweight>>((int)EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX);
 
         String? emptyString;
 
         public ItemResource() {
-            ITEMRESOURCETREEVECTOR = new List<Dictionary<Key, Flyweight>>((int)EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX);
+            _clsItemResourceTreeVector = new List<Dictionary<Key, Flyweight>>((int)EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX);
             emptyString = "";
         }
 
         public void Clear() {
-            ITEMRESOURCETREEVECTOR.Clear();
+            _clsItemResourceTreeVector.Clear();
         }
 
         public bool LoadResource() {
@@ -280,7 +280,7 @@ namespace ProjectZ.NResource {
         }
 
         public Dictionary<Key, Flyweight> GetItemResourceTree(EnumClassItemTableType eClassItemTableType) {
-            return ITEMRESOURCETREEVECTOR[(int)eClassItemTableType];
+            return _clsItemResourceTreeVector[(int)eClassItemTableType];
         }
 
         public Flyweight? getFly(int sub_type, int tid, int class_type) {
@@ -288,7 +288,7 @@ namespace ProjectZ.NResource {
             if (sub_type > (int)EnumClassItemTableType.CLASS_ALL_ITEM_TABLE_MAX) {
                 key = new Key(tid, -1);
             }
-            var tree = ITEMRESOURCETREEVECTOR[(int)class_type];
+            var tree = _clsItemResourceTreeVector[(int)class_type];
             if (tree.ContainsKey(key)) {
                 return tree[key];
             }

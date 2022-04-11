@@ -18,46 +18,45 @@ namespace ProjectZ.Logic {
             __MAX__,
         };
 
-        public Dictionary<Int32, User> USERTREE;
-        public Dictionary<int, Monster> MONSTERTREE;
-        public Dictionary<Int32, bool> INVITETREE;
-        public Dictionary<int, Item> ITEMTREE;
-        public List<UInt32> RESERVEVECTOR;
-        public List<User> PKOUTPLAYUSERVECTOR;
-        public Dictionary<int, Battle> BATTLETREE;
+        public delegate Dictionary<Int32, User> USERTREE();
+        public delegate Dictionary<int, Monster> MONSTERTREE();
+        public delegate Dictionary<Int32, bool> INVITETREE();
+        public delegate Dictionary<int, Item> ITEMTREE();
+        public delegate List<UInt32> RESERVEVECTOR();
+        public delegate List<User> PKOUTPLAYUSERVECTOR();
+        public delegate Dictionary<int, Battle> BATTLETREE();
 
-        private Dictionary<Int32, User> _userTree;
+        private USERTREE _userTree;
         private User? master;
-        private Dictionary<int, Monster> _monsterTree;
-        private Dictionary<int, Monster> _deadMonsterTree;
-        private Dictionary<Int32, bool> _inviteTree;
-        private Dictionary<int, Item> _itemTree;
-        private List<User> _pkOutPlayUser;
-        private List<UInt32> _reserveVector;
-        private Dictionary<int, Battle> _battleTree;
+        private MONSTERTREE _monsterTree;
+        private MONSTERTREE _deadMonsterTree;
+        private INVITETREE _inviteTree;
+        private ITEMTREE _itemTree;
+        private PKOUTPLAYUSERVECTOR _pkOutPlayUser;
+        private RESERVEVECTOR _reserveVector;
+        private BATTLETREE _battleTree;
 
         public Space() {
-            USERTREE = new Dictionary<Int32, User>();
-            MONSTERTREE = new Dictionary<int, Monster>();
-            INVITETREE = new Dictionary<Int32, bool>();
-            ITEMTREE = new Dictionary<int, Item>();
-            RESERVEVECTOR = new List<UInt32>();
-            PKOUTPLAYUSERVECTOR = new List<User>();
-            BATTLETREE = new Dictionary<int, Battle>();
 
-            _userTree = new Dictionary<Int32, User>();
-            _monsterTree = new Dictionary<int, Monster>();
-            _deadMonsterTree = new Dictionary<int, Monster>();
-            _inviteTree = new Dictionary<Int32, bool>();
-            _itemTree = new Dictionary<int, Item>();
-            _pkOutPlayUser = new List<User>();
-            _reserveVector = new List<UInt32>();
-            _battleTree = new Dictionary<int, Battle>();
+            _userTree = new USERTREE(() => new Dictionary<Int32, User>());
+            _monsterTree = new MONSTERTREE(() => new Dictionary<int, Monster>());
+            _deadMonsterTree = new MONSTERTREE(() => new Dictionary<int, Monster>());
+            _inviteTree = new INVITETREE(() => new Dictionary<int, bool>());
+            _itemTree = new ITEMTREE(() => new Dictionary<int, Item>());
+            _pkOutPlayUser = new PKOUTPLAYUSERVECTOR(() => new List<User>());
+            _reserveVector = new RESERVEVECTOR(() => new List<UInt32>());
+            _battleTree = new BATTLETREE(() => new Dictionary<int, Battle>());
 
             master = null;
         }
 
         public void LeaveUser(User user) {
+            foreach (var muser in _userTree()) {
+                if (muser.Value.GetUserId() == user.GetUserId()) {
+                    _userTree().Remove(muser.Key);
+                    break;
+                }
+            }
             if (_userTree.FirstOrDefault(x => x.Value == user).Value != null) {
                 _userTree.Remove((int)user.Userseq);
             } else {

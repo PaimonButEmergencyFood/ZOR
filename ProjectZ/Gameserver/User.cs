@@ -76,7 +76,7 @@ namespace ProjectZ {
             __MAX__
         }
 
-        public List<int> VECTORINFO = new List<int>();
+        public delegate List<int> VECTORINFO();
 
         private string _socialID;
         private string _userNickName;
@@ -111,7 +111,7 @@ namespace ProjectZ {
         private NLogic.BattleResult _battleResult;
         private NLogic.UserLocation _userLocation;
         private NLogic.Trade _trade;
-        private NLogic.MemcachedKey _memcachedKey;
+        private NLogic.Memcached _memcachedKey;
         private NLogic.BackEndServerInfo _backEndServerInfo;
         private NLogic.QuestInfo _questInfo;
         private NLogic.Fishing _fishing;
@@ -235,7 +235,7 @@ namespace ProjectZ {
         public void SetUserSeq(int pUserSeq) {
             _userSeq = pUserSeq;
             throw new NotImplementedException();
-            //_memcachedKey.SetMemcachedKey(userSeq);
+            //_memcachedKey.SetMemcached(userSeq);
         }
 
         public int GetUserSeq() {
@@ -408,7 +408,7 @@ namespace ProjectZ {
             return ref _userLocation;
         }
 
-        public ref NLogic.MemcachedKey GetMemcachedKey() {
+        public ref NLogic.Memcached GetMemcached() {
             return ref _memcachedKey;
         }
 
@@ -429,23 +429,31 @@ namespace ProjectZ {
         }
 
         public bool GiveBaseItem(int slotIndex) {
-            NLogic.Item.Data clsData = new NLogic.Item.Data();
-            clsData.tid = 0;
-            clsData.sub_type = (int)EnumClassItemTableType.CLASS_ITEM_TABLE_WEAPON;
-            clsData.quantity = 1;
-            clsData.class_type = (int)GetCharacterInfoFromIndex(slotIndex).classtype;
-            clsData.bag_type = NResource.Static.instance.GetItemResource().GetItemBagType(clsData);
-            clsData.bag_slot_number = 0;
+            // weapon
+            {
+                NLogic.Item.Data clsData = new NLogic.Item.Data();
+                clsData.tid = 0;
+                clsData.sub_type = (int)EnumClassItemTableType.CLASS_ITEM_TABLE_WEAPON;
+                clsData.quantity = 1;
+                clsData.class_type = (int)GetCharacterInfoFromIndex(slotIndex).classtype;
+                clsData.bag_type = NResource.Static.instance.GetItemResource().GetItemBagType(clsData);
+                clsData.bag_slot_number = 0;
 
-            NResource.Static.instance.GetItemResource().setItemEffect(ref clsData);
+                NResource.Static.instance.GetItemResource().setItemEffect(ref clsData);
 
-            NLogic.Item pItem = new NLogic.Item();
-            var me = this; // ugh this is horrible
-            pItem.Open_Normal(clsData, ref me);
-            pItem.InsertToDatabaseItemInfo(slotIndex);
-            GetCharacterInfoFromIndex(slotIndex).weapon = pItem.GetItemSeq();
-            GetCharacterInfoFromIndex(slotIndex).weapon_iconidx = 0;
+                NLogic.Item pItem = new NLogic.Item();
+                var me = this; // ugh this is horrible
+                pItem.Open_Normal(clsData, ref me);
+                pItem.InsertToDatabaseItemInfo(slotIndex);
+                GetCharacterInfoFromIndex(slotIndex).weapon = pItem.GetItemSeq();
+                GetCharacterInfoFromIndex(slotIndex).weapon_iconidx = 0;
+            }
 
+            // fairy
+            {
+                throw new NotImplementedException();
+            }
+            
             return true;
         }
 
@@ -510,7 +518,7 @@ namespace ProjectZ {
             _reward = new NLogic.Reward();
             _battleResult = new NLogic.BattleResult();
             _userLocation = new NLogic.UserLocation();
-            _memcachedKey = new NLogic.MemcachedKey();
+            _memcachedKey = new NLogic.Memcached();
             _backEndServerInfo = new NLogic.BackEndServerInfo();
             _questInfo = new NLogic.QuestInfo();
             _fishing = new NLogic.Fishing();
