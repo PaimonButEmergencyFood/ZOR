@@ -86,8 +86,8 @@ namespace ProjectZ {
         private UInt32 _company;
         private UInt32 _sale_code;
 
-        private UserInfo? _userInfo;
-        private CharacterInfo[] _characterInfo;
+        private UserInfo _userInfo = new UserInfo();
+        private CharacterInfo[] _characterInfo = new CharacterInfo[8];
         private List<UInt64> _dailyEPTime;
         private int _userSeq;
         private int _encrypt_key;
@@ -557,7 +557,10 @@ namespace ProjectZ {
         }
 
         public void Initialize() {
-            
+            _userInfo = new Cache.UserInfo();
+            for (int i = 0; i < 8; i++) {
+                _characterInfo[i] = new Cache.CharacterInfo();
+            }
         }
 
         public void SetState(State pState) {
