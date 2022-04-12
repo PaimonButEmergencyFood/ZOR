@@ -58,6 +58,7 @@ namespace ProjectZ.NCommand.NConnection {
 
             Console.WriteLine("[CHANNEL CS_REQ_LOGIN] ProjectZ::Initial seq : " + _user.GetUserSeq());
             _user.SetState(NState.Static.instance.READYMAINFRIENDLIST());
+            NProxy.Proxy.instance.RegistUser(ref _user);
         }
     }
 }
