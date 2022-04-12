@@ -119,7 +119,31 @@ namespace ProjectZ {
         }
 
         private void on_CS_REQ_SERVER_ADDR(ref NetworkPacket pPacket) {
+            Console.WriteLine("[CHANNEL] on_CS_REQ_SERVER_ADDR");
 
+            String socialid;
+
+            Encryption.instance.Decrypt_First(ref pPacket);
+
+            socialid = pPacket.Get(pPacket.U2());
+
+            Console.WriteLine("on_CS_REQ_SERVER_ADDR socialid: {0}", socialid);
+
+            // TODO check if user is blocked if we have a blacklist or allowlist
+            // TODO check if we reached the max amount of connected users
+
+            String server_ip = "192.168.178.144";
+            ushort server_port = 55000;
+            short server_key = 1;
+
+            NetworkPacket rsp = new NetworkPacket(NetCMDTypes.ZNO_CS_REQ_SERVER_ADDR);
+            rsp.U2((short)server_ip.Length);
+            rsp.Set(server_ip);
+            rsp.U2((short)server_port);
+            rsp.U2(server_key);
+            rsp.U2(0);
+            Encryption.instance.EncryptFirst(socialid, ref rsp);
+            SendPacket(ref rsp, true, true);
         }
 
         private void work() {
