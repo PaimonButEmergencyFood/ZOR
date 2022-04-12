@@ -11,7 +11,7 @@ namespace ProjectZ {
                 clsCommandMap = new Dictionary<int, Command>();
             }
 
-            public delegate void Command(ref User pUser, NetworkPacket packet);
+            public delegate void Command(ref User pUser, ref NetworkPacket packet);
             public Command? GetCommand(ushort cmd) {
                 if (clsCommandMap.ContainsKey(cmd)) {
                     return clsCommandMap[cmd];
@@ -133,7 +133,7 @@ namespace ProjectZ {
         private NLogic.Battle _battle;
 
         private EnumState _enumStateType;
-        private NLogic.Party _party;
+        private NLogic.Party? _party;
         private bool _partyAccept;
 
         private List<int> _array_dungeon_clear_info;
@@ -562,6 +562,73 @@ namespace ProjectZ {
 
         public ref State GetState() {
             return ref _state;
+        }
+
+        public void SetSession(ref Session session) {
+            _session = session;
+        }
+
+        public ref Session? GetSession() {
+            return ref _session;
+        }
+
+        public void SetDelUser() {
+            _bDelUser = true;
+        }
+        public bool GetDelUser() {
+            return _bDelUser;
+        }
+
+        public void SetSpace(ref NLogic.Space space) {
+            _space = space;
+        }
+        public ref NLogic.Space? GetSpace() {
+            return ref _space;
+        }
+        public void SetReserveSpace(ref NLogic.Space space) {
+            _reserveSpace = space;
+        }
+        public ref NLogic.Space? GetReserveSpace() {
+            return ref _reserveSpace;
+        }
+        public void _setWorldSpace(ref NLogic.Space space) {
+            _world = space;
+        }
+        public ref NLogic.Space? _getWorldSpace() {
+            return ref _world;
+        }
+        public int GetOldWorldSpaceIndex() {
+            return _worldIndex;
+        }
+        public void SetEnumState(EnumState enumStateType) {
+            _enumStateType = enumStateType;
+        }
+        public EnumState GetEnumState() {
+            return _enumStateType;
+        }
+        public void SetParty(ref NLogic.Party party) {
+            _party = party;
+        }
+        public ref NLogic.Party? GetParty() {
+            return ref _party;
+        }
+        public void SetPartyAccept() {
+            _partyAccept = true;
+        }
+        public bool GetPartyAccept() {
+            return _partyAccept;
+        }
+        public void OnDisconnect() {
+            throw new NotImplementedException();
+        }
+        public void OnReconnect() {
+            throw new NotImplementedException();
+        }
+        public void CleanUp() {
+            throw new NotImplementedException();
+        }
+        public void ForcedCleanUp() {
+            throw new NotImplementedException();
         }
 
         public void printGID() {
