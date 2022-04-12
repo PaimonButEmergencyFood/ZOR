@@ -2,6 +2,29 @@ using System.Text;
 
 namespace ProjectZ {
     class Encryption : NUtil.Single<Encryption> {
+        private bool IsNeedEnc(NetCMDTypes wCMD)
+        {
+            if (wCMD == NetCMDTypes.ZNO_CS_PING ||		
+                wCMD == NetCMDTypes.ZNO_CS_MOVE || 
+                wCMD == NetCMDTypes.ZNO_SC_MOVE ||
+                wCMD == NetCMDTypes.ZNO_CS_STOP ||
+                wCMD == NetCMDTypes.ZNO_SC_STOP ||
+                wCMD == NetCMDTypes.ZNO_CS_DASH ||
+                wCMD == NetCMDTypes.ZNO_SC_DASH ||
+                wCMD == NetCMDTypes.ZNO_CS_RECONNECT ||
+                wCMD == NetCMDTypes.ZNO_SC_RECONNECT ||
+                wCMD == NetCMDTypes.ZNO_CS_REQ_LOCATION ||
+                wCMD == NetCMDTypes.ZNO_SN_REQ_LOCATION ||
+                wCMD == NetCMDTypes.ZNO_CS_MOVE_MOB ||
+                wCMD == NetCMDTypes.ZNO_SC_MOVE_MOB ||
+                wCMD == NetCMDTypes.ZNO_CN_LOCATION_MODIFY ||
+                wCMD == NetCMDTypes.ZNO_SN_LOCATION_MODIFY ||
+                wCMD == NetCMDTypes.ZNO_CS_ATTACK_START ||
+                wCMD == NetCMDTypes.ZNO_SC_ATTACK_START ) {
+                    return false;
+                }
+	        return true;
+        }
         private int _key1;
         private int _key2;
         private int _key3;
@@ -69,7 +92,7 @@ namespace ProjectZ {
         }
 
         public void Encrypt(ref NetworkPacket pPacket) {
-            if (!pPacket.GetEncrypt()) {
+            if (!IsNeedEnc(pPacket.Cmd)) {
                 return;
             }
 
@@ -79,10 +102,16 @@ namespace ProjectZ {
             keys[2] = _key3;
             keys[3] = _key4;
 
+            byte[] public_key = new byte[16];
+            ByteArray.SetUInt32(public_key, 0, (uint)_key1);
+            ByteArray.SetUInt32(public_key, 4, (uint)_key2);
+            ByteArray.SetUInt32(public_key, 8, (uint)_key3);
+            ByteArray.SetUInt32(public_key, 12, (uint)_key4);
+
             int public_keys_len = 16;
 
             for (int i = 0; i < pPacket.data.Length; i++) {
-                pPacket.data[i] ^= (byte)(keys[i % public_keys_len] & 0xFF);
+                pPacket.data[i] ^= public_key[i % public_keys_len];
             }
         }
 
