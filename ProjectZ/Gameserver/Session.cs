@@ -56,6 +56,7 @@ namespace ProjectZ {
 
                     _user = new User();
                     var _this = this;
+                    _user.Initialize();
                     _user.SetSession(ref _this);
                 }
 
@@ -82,11 +83,11 @@ namespace ProjectZ {
                     continue;
                 }
                 Int64 starttick = DateTime.Now.Ticks;
-                Console.WriteLine("[SESSION: Executing command {0} GID: {1}", command.ToString(), _user.GetUserInfo().userseq);
+                Console.WriteLine("[SESSION: Executing command {0} GID: {1}", command.ToString(), _user.GetUserInfo() == null ? "null" : _user.GetUserInfo().userseq);
 
                 pCommand(ref _user, ref packet);
 
-                Console.WriteLine("[SESSION: Executed command {0} GID: {1} in {2} ticks", command.ToString(), _user.GetUserInfo().userseq, DateTime.Now.Ticks - starttick);
+                Console.WriteLine("[SESSION: Executed command {0} GID: {1} in {2} ticks", command.ToString(), _user.GetUserInfo() == null ? "null" : _user.GetUserInfo().userseq, DateTime.Now.Ticks - starttick);
             }
         }
 

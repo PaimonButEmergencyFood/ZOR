@@ -14,6 +14,8 @@ namespace ProjectZ {
         private int pos;
         private static readonly byte FLAG_MAGIC = 0xFF;
 
+        private bool _encrypt = true;
+
         public uint Length {
             get {
                 return length;
@@ -168,29 +170,11 @@ namespace ProjectZ {
             }
         }
 
-        public bool GetEncrypt()
-        {
-            NetCMDTypes wCMD = (NetCMDTypes)cmd;
-            if (wCMD == NetCMDTypes.ZNO_CS_PING ||		
-                wCMD == NetCMDTypes.ZNO_CS_MOVE || 
-                wCMD == NetCMDTypes.ZNO_SC_MOVE ||
-                wCMD == NetCMDTypes.ZNO_CS_STOP ||
-                wCMD == NetCMDTypes.ZNO_SC_STOP ||
-                wCMD == NetCMDTypes.ZNO_CS_DASH ||
-                wCMD == NetCMDTypes.ZNO_SC_DASH ||
-                wCMD == NetCMDTypes.ZNO_CS_RECONNECT ||
-                wCMD == NetCMDTypes.ZNO_SC_RECONNECT ||
-                wCMD == NetCMDTypes.ZNO_CS_REQ_LOCATION ||
-                wCMD == NetCMDTypes.ZNO_SN_REQ_LOCATION ||
-                wCMD == NetCMDTypes.ZNO_CS_MOVE_MOB ||
-                wCMD == NetCMDTypes.ZNO_SC_MOVE_MOB ||
-                wCMD == NetCMDTypes.ZNO_CN_LOCATION_MODIFY ||
-                wCMD == NetCMDTypes.ZNO_SN_LOCATION_MODIFY ||
-                wCMD == NetCMDTypes.ZNO_CS_ATTACK_START ||
-                wCMD == NetCMDTypes.ZNO_SC_ATTACK_START ) {
-                    return false;
-                }
-	        return true;
+        public bool GetEncrypt() {
+            return _encrypt;
+        }
+        public void SetNoEncrypt() {
+            _encrypt = false;
         }
     }
 }

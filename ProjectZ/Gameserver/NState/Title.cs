@@ -8,7 +8,6 @@ namespace ProjectZ.NState {
 
         public Title() {
             name = "TITLE";
-            Console.WriteLine("Title state created");
             AddCommand((ushort)NetCMDTypes.ZNO_CS_CONNECT, ProjectZ.NCommand.NConnection.CS_CONNECT.OnExecute);
         }
     }

@@ -86,7 +86,7 @@ namespace ProjectZ {
         private UInt32 _company;
         private UInt32 _sale_code;
 
-        private UserInfo _userInfo;
+        private UserInfo? _userInfo;
         private CharacterInfo[] _characterInfo;
         private List<UInt64> _dailyEPTime;
         private int _userSeq;
@@ -554,6 +554,10 @@ namespace ProjectZ {
             _userInfoCache = false;
 
             _isKick = false;
+        }
+
+        public void Initialize() {
+            
         }
 
         public void SetState(State pState) {

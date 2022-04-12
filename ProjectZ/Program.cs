@@ -13,7 +13,7 @@
                 user.printGID();
             }
             **/
-            TcpServer server = new TcpServer();
+            TcpServer server = new TcpServer(54000);
             while (server.isRunning) {
                 Thread.Sleep(1000);
             }
