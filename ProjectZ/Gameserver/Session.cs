@@ -30,6 +30,8 @@ namespace ProjectZ {
             _queueMutex.WaitOne();
             NetworkPacket packet = _packetQueue.Dequeue();
             _queueMutex.ReleaseMutex();
+
+            Console.WriteLine("Received packet: " + packet.Cmd);
         }
 
         public void ResetUser() {
@@ -112,9 +114,13 @@ namespace ProjectZ {
                     Thread t = new Thread(OnPacket);
                     t.Start();
                 } catch (Exception e) {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine(e.StackTrace);
-                    Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    Console.WriteLine("+------------------------------------------------------------");
+                    Console.WriteLine("| ERROR!");
+                    Console.WriteLine("+------------------------------------------------------------");
+                    Console.WriteLine("| " + e.Message);
+                    Console.WriteLine("| " + e.StackTrace);
+                    Console.WriteLine("| " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    Console.WriteLine("+------------------------------------------------------------");
                     client.Close();
                     break;
                 }

@@ -16,6 +16,7 @@ namespace ProjectZ {
                 if (clsCommandMap.ContainsKey(cmd)) {
                     return clsCommandMap[cmd];
                 }
+                Console.WriteLine("Command not found: " + cmd);
                 return null;
             }
 
@@ -25,6 +26,7 @@ namespace ProjectZ {
             
             protected bool AddCommand(ushort cmd, Command pCommand) {
                 if (clsCommandMap.ContainsKey(cmd)) {
+                    Console.WriteLine("Command already exists");
                     return false;
                 }
                 clsCommandMap.Add(cmd, pCommand);
@@ -544,7 +546,7 @@ namespace ProjectZ {
             _loginTime = 0;
             _party = null;
             _sale_code = 0;
-            _state = null;
+            //_state = null;
             _userSeq = 0;
             _version = 0;
             GID = 0;
