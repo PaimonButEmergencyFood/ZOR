@@ -25,7 +25,7 @@ namespace ProjectZ.NCommand.NConnection {
 
             Encryption.instance.EncryptFirst(social_id, ref response);
             response.SetNoEncrypt();
-            _user.GetSession().SendPacket(ref response, true, true);
+            _user.GetSession().SendPacketAsync(response);
         }
     }
 }

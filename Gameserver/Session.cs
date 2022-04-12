@@ -50,7 +50,7 @@ namespace ProjectZ {
 
                         NetworkPacket rsp = new NetworkPacket(NetCMDTypes.ZNO_SC_CONNECT);
                         rsp.U2(-11);
-                        SendPacket(ref rsp, true);
+                        SendPacketAsync(rsp);
                         continue;
                     }
 
@@ -108,15 +108,18 @@ namespace ProjectZ {
         }
 
         public async Task<int> SendPacketAsync(NetworkPacket pPacket) {
-            _sendMutex.WaitOne();
-            if (pPacket.GetEncrypt()) {
-                Encryption.instance.Encrypt(ref pPacket);
-            }
-            await stream.WriteAsync(pPacket.GetHeader(), 0, pPacket.GetHeader().Length);
-            await stream.WriteAsync(pPacket.data, 0, pPacket.data.Length);
-            _sendMutex.ReleaseMutex();
+            await Task.Run(() => {
+                _sendMutex.WaitOne();
+                if (pPacket.GetEncrypt()) {
+                    Encryption.instance.Encrypt(ref pPacket);
+                }
+                stream.Write(pPacket.GetHeader(), 0, pPacket.GetHeader().Length);
+                stream.Write(pPacket.data, 0, pPacket.data.Length);
+                _sendMutex.ReleaseMutex();
 
-            return (int)pPacket.Length + pPacket.GetHeader().Length;
+                return (int)pPacket.Length + pPacket.GetHeader().Length;
+            });
+            return 0;
         }
 
         private void on_CS_REQ_SERVER_ADDR(ref NetworkPacket pPacket) {
@@ -144,7 +147,7 @@ namespace ProjectZ {
             rsp.U2(server_key);
             rsp.U2(0);
             Encryption.instance.EncryptFirst(socialid, ref rsp);
-            SendPacket(ref rsp, true, true);
+            SendPacketAsync(rsp);
         }
 
         private void work() {
