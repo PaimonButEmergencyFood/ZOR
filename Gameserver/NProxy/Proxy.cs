@@ -6,12 +6,20 @@ namespace ProjectZ.NProxy {
     public class Proxy : NUtil.Single<Proxy> {
         LocationServer[] _locationServer;
         public Proxy() {
+            _locationServer = new LocationServer[10]; // number of users
             // TODO load all saved locations
         }
 
         public ref LocationServer? GetLocationServer(int user_seq) {
-            if (_locationServer.Length >= user_seq) {
+            if (_locationServer.Length > user_seq) {
+                if (_locationServer[user_seq] == null) {
+                    _locationServer[user_seq] = new LocationServer();
+                    _locationServer[user_seq].SetSeq(user_seq);
+                }
                 return ref _locationServer[user_seq];
+            }
+            if (_locationServer.Length <= user_seq) {
+                throw new Exception("[PROXY] LocationServer malformed -> user_seq out of range");
             }
             Console.WriteLine("[PROXY] Registering new LocationServer, SEQ: " + user_seq);
             _locationServer[user_seq] = new LocationServer();

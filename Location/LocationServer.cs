@@ -24,10 +24,10 @@ namespace Location {
         }
 
         public int GetSeq() {
-            return _user.GetSeq();
+            return _mUser.GetSeq();
         }
         public void SetSeq(int user_seq) {
-            _user.SetSeq(user_seq);
+            _mUser.SetSeq(user_seq);
         }
     }
 }

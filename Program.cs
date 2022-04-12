@@ -13,10 +13,23 @@
                 user.printGID();
             }
             **/
+
             TcpServer server = new TcpServer(54000);
             while (server.isRunning) {
                 Thread.Sleep(1000);
             }
+
+            /**
+            User user = new User();
+            user.SetUserSeq(0);
+            NProxy.Proxy.instance.RegistUser(ref user);
+            user = new User();
+            user.SetUserSeq(1);
+            NProxy.Proxy.instance.RegistUser(ref user);
+            user = new User();
+            user.SetUserSeq(2);
+            NProxy.Proxy.instance.RegistUser(ref user);
+            **/
         }
     }
 }
