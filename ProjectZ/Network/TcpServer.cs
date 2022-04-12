@@ -25,8 +25,7 @@ namespace ProjectZ {
                 // create a new stream to read and write data
                 //NetworkStream stream = client.GetStream();
                 Console.WriteLine("new client connected");
-                Session session = new Session();
-                session.HandleClient(client);
+                Session session = new Session(client);
                 sessions.Add(session);
             }
         }
