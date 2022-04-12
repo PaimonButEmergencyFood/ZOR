@@ -27,18 +27,74 @@ namespace ProjectZ {
         }
 
         public void OnPacket() {
-            _queueMutex.WaitOne();
-            NetworkPacket packet = _packetQueue.Dequeue();
-            _queueMutex.ReleaseMutex();
+            NetworkPacket packet;
+            while (_packetQueue.Count > 0) {
+                _queueMutex.WaitOne();
+                packet = _packetQueue.Dequeue();
+                _queueMutex.ReleaseMutex();
 
-            Console.WriteLine("Received packet: " + packet.Cmd);
+                Console.WriteLine("[SESSION: Received packet: " + packet.Cmd);
+
+                NetCMDTypes command = packet.Cmd;
+
+                if (command == NetCMDTypes.ZNO_CS_REQ_SERVER_ADDR) {
+                    on_CS_REQ_SERVER_ADDR(ref packet);
+                    continue;
+                }
+
+                if (command == NetCMDTypes.ZNO_CS_CONNECT) {
+                    Console.WriteLine("[SESSION: New user connected");
+
+                    if (_user != null) {
+                        Console.WriteLine("[SESSION: User already connected");
+
+                        NetworkPacket rsp = new NetworkPacket(NetCMDTypes.ZNO_SC_CONNECT);
+                        rsp.U2(-11);
+                        SendPacket(ref rsp, true);
+                        continue;
+                    }
+
+                    _user = new User();
+                    var _this = this;
+                    _user.SetSession(ref _this);
+                }
+
+                if (command == NetCMDTypes.ZNO_CS_RECONNECT) {
+                    Console.WriteLine("[SESSION: TODO on user reconnect");
+                    continue;
+                }
+
+                if (_user == null) {
+                    Console.WriteLine("[SESSION: User not connected");
+                    continue;
+                }
+
+                User.State pState = _user.GetState();
+                if (pState == null) {
+                    Console.WriteLine("[SESSION: User state is null");
+                    continue;
+                }
+
+                User.State.Command pCommand = pState.GetCommand((ushort)command);
+
+                if (pCommand == null) {
+                    Console.WriteLine("[SESSION: User state {0} has no command {1}", pState.GetName(), command.ToString());
+                    continue;
+                }
+                Int64 starttick = DateTime.Now.Ticks;
+                Console.WriteLine("[SESSION: Executing command {0} GID: {1}", command.ToString(), _user.GetUserInfo().userseq);
+
+                pCommand(ref _user, ref packet);
+
+                Console.WriteLine("[SESSION: Executed command {0} GID: {1} in {2} ticks", command.ToString(), _user.GetUserInfo().userseq, DateTime.Now.Ticks - starttick);
+            }
         }
 
         public void ResetUser() {
             _user = null;
         }
 
-        public int SendPacket(NetworkPacket pPacket, bool bStatus, bool bOneShot = true) {
+        public int SendPacket(ref NetworkPacket pPacket, bool bStatus, bool bOneShot = true) {
             _sendMutex.WaitOne();
             if (pPacket.GetEncrypt()) {
                 Encryption.instance.Encrypt(ref pPacket);
@@ -62,7 +118,7 @@ namespace ProjectZ {
             return (int)pPacket.Length + pPacket.GetHeader().Length;
         }
 
-        private void on_CS_REQ_SERVER_ADDR(NetworkPacket pPacket) {
+        private void on_CS_REQ_SERVER_ADDR(ref NetworkPacket pPacket) {
 
         }
 
