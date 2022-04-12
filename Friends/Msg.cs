@@ -1,5 +1,0 @@
-namespace iFriends {
-    class Msg {
-        
-    }
-}

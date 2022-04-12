@@ -1,5 +1,0 @@
-namespace Cache {
-    class Msg {
-        
-    }
-}
