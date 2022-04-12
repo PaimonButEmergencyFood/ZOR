@@ -30,8 +30,6 @@ namespace ProjectZ {
             _queueMutex.WaitOne();
             NetworkPacket packet = _packetQueue.Dequeue();
             _queueMutex.ReleaseMutex();
-
-
         }
 
         public void ResetUser() {
@@ -40,6 +38,9 @@ namespace ProjectZ {
 
         public int SendPacket(NetworkPacket pPacket, bool bStatus, bool bOneShot = true) {
             _sendMutex.WaitOne();
+            if (pPacket.GetEncrypt()) {
+                Encryption.instance.Encrypt(ref pPacket);
+            }
             stream.Write(pPacket.GetHeader(), 0, pPacket.GetHeader().Length);
             stream.Write(pPacket.data, 0, pPacket.data.Length);
             _sendMutex.ReleaseMutex();
@@ -49,6 +50,9 @@ namespace ProjectZ {
 
         public async Task<int> SendPacketAsync(NetworkPacket pPacket) {
             _sendMutex.WaitOne();
+            if (pPacket.GetEncrypt()) {
+                Encryption.instance.Encrypt(ref pPacket);
+            }
             await stream.WriteAsync(pPacket.GetHeader(), 0, pPacket.GetHeader().Length);
             await stream.WriteAsync(pPacket.data, 0, pPacket.data.Length);
             _sendMutex.ReleaseMutex();
@@ -87,7 +91,7 @@ namespace ProjectZ {
             }
         }
 
-        private void workAsync() {
+        private void workAsync() { // ik this is not reall async
             while (true) {
                 try {
                     byte[] data = new byte[6]; // read a header first
