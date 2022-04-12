@@ -1,5 +1,5 @@
 namespace Location {
-    class User {
+    public class User {
         public struct MainCharacterInfo {
             public int _level;
             public int _class;

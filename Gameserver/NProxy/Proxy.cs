@@ -38,6 +38,18 @@ namespace ProjectZ.NProxy {
             pLocationServer.SetUser(pUser);
             return ref GetLocationServer(pUser.GetUserSeq());
         }
+
+        public void RemoveUser(ref User pUser) {
+            if (pUser == null) {
+                throw new System.Exception("[PROXY] User is null");
+            }
+            if (_locationServer.Length > pUser.GetUserSeq()) {
+                if (_locationServer[pUser.GetUserSeq()] != null) {
+                    _locationServer[pUser.GetUserSeq()] = new LocationServer();
+                }
+            }
+        }
+
         public bool RegistUser(ref User _user) {
             LocationServer? pLocationServer = GetLocationServer(_user);
             if (pLocationServer == null) {
@@ -49,7 +61,7 @@ namespace ProjectZ.NProxy {
 
             RegistSyn msg = new RegistSyn();
             msg.seq = (uint)_user.GetUserSeq();
-            pLocationServer.OnMsg(msg);
+            pLocationServer.SendMsg(msg);
             Console.WriteLine("[PROXY RegistUser] success, SEQ: " + _user.GetUserSeq());
             return true;
         }

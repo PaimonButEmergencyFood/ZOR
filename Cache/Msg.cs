@@ -1,4 +1,4 @@
-namespace Location {
+namespace Cache {
     class Msg {
         
     }
