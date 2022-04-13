@@ -4,80 +4,48 @@ using iFriends;
 
 namespace ProjectZ.NProxy {
     public class Proxy : NUtil.Single<Proxy> {
-        LocationServer[] _locationServer;
-        CacheServer[] _cacheServer;
-        User[] _userTree;
+        private RefTree<User> _userTree;
+
         public Proxy() {
-            uint max_user = 10;
-            _locationServer = new LocationServer[max_user]; // number of LocationServer
-            _cacheServer = new CacheServer[max_user]; // number of CacheServer
-            _userTree = new User[max_user]; // number of users
-            // TODO load all saved locations
+            _userTree = new RefTree<User>();
         }
 
-        public ref LocationServer? GetLocationServer(int user_seq) {
-            if (_locationServer.Length > user_seq) {
-                if (_locationServer[user_seq] == null) {
-                    _locationServer[user_seq] = new LocationServer();
-                    _locationServer[user_seq].SetSeq(user_seq);
-                }
-                return ref _locationServer[user_seq];
-            }
-            if (_locationServer.Length <= user_seq) {
-                throw new Exception("[PROXY] LocationServer malformed -> user_seq out of range");
-            }
-            Console.WriteLine("[PROXY] Registering new LocationServer, SEQ: " + user_seq);
-            _locationServer[user_seq] = new LocationServer();
-            _locationServer[user_seq].SetSeq(user_seq);
-            return ref _locationServer[user_seq];
-        }
-
-        public ref LocationServer? GetLocationServer(User pUser) {
-            if (pUser == null) {
-                throw new System.Exception("[PROXY] User is null");
-            }
-            LocationServer? pLocationServer = GetLocationServer(pUser.GetUserSeq());
-            if (pLocationServer == null) {
-                throw new System.Exception("[PROXY] LocationServer is null");
-            }
-            pLocationServer.SetUser(pUser);
-            return ref GetLocationServer(pUser.GetUserSeq());
-        }
-
-        public void RemoveUser(ref User pUser) {
-            if (pUser == null) {
-                throw new System.Exception("[PROXY] User is null");
-            }
-            if (_locationServer.Length > pUser.GetUserSeq()) {
-                if (_locationServer[pUser.GetUserSeq()] != null) {
-                    _locationServer[pUser.GetUserSeq()] = new LocationServer();
-                }
-            }
-        }
-
-        public bool Initial(ref User _user, int user_seq) {
-            return true;
-        }
-
-        public bool RegistUser(ref User _user) {
-            LocationServer? pLocationServer = GetLocationServer(_user);
-            if (pLocationServer == null) {
-                Console.WriteLine("[PROXY LOCATION] no locationserver, pLocationServer is null");
+        public bool Initial(ref User pUser, int user_seq) {
+            if (pUser.GetUserSeq() == 0) {
+                Console.WriteLine("Invalid user_seq: {0}", user_seq);
                 return false;
             }
+            if (_userTree.HasKey(user_seq)) {
+                pUser = _userTree.Get(user_seq);
+                return true;
+            }
+            _userTree.Add(user_seq, ref pUser);
+            return false;
+        }
 
-            Console.WriteLine("[PROXY LOCATION] RegistUser, SEQ: " + pLocationServer.GetSeq());
+        public void Final(ref User pUser) {
+            Console.WriteLine("[PROXY] PROXY::Final SOCIALID {0} GID {1}", pUser.GetSocialID(), pUser.GetUserSeq());
 
-            RegistSyn msg = new RegistSyn();
-            msg.seq = (uint)_user.GetUserSeq();
-            pLocationServer.SendMsg(msg);
-            Console.WriteLine("[PROXY RegistUser] success, SEQ: " + _user.GetUserSeq());
+            if (!_userTree.HasKey(pUser.GetUserSeq())) {
+                return;
+            }
+            _userTree.Remove(pUser.GetUserSeq());
+
+            // RemoveUser(pUser);
+            // RemoveFRUserSyn(pUser);
+        }
+
+        public ref User? GetUser(int user_seq) {
+            return ref _userTree.Get(user_seq);
+        }
+
+        public bool RegistUser(ref User pUser) {
+            _userTree.Add(pUser.GetUserSeq(), ref pUser);
             return true;
         }
 
-        public bool UserInfoSyn(ref User _user) {
-            throw new NotImplementedException();
-            return true;
+        public int GetNewUserSeq() {
+            return _userTree.Count;
         }
     }
 }

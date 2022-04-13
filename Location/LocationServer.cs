@@ -1,19 +1,12 @@
 namespace Location {
     public class LocationServer {
         private User _mUser;
-        private ProjectZ.User _pUser;
         public LocationServer() {
             _mUser = new User();
-            _pUser = new ProjectZ.User();
         }
 
         public LocationServer(User user) {
             _mUser = user;
-            _pUser = new ProjectZ.User();
-        }
-
-        public void SetUser(ProjectZ.User pUser) {
-            _pUser = pUser;
         }
 
         public async void SendMsg<T> (T msg) {
@@ -103,19 +96,7 @@ namespace Location {
         }
 
         private void OnRegistAck(RegistAck ans) {
-            if (ans.result == LocationResult.LOCATION_FAIL) {
-                ProjectZ.NetworkPacket packet = new ProjectZ.NetworkPacket(ProjectZ.NetCMDTypes.ZNO_SC_REQ_LOGIN);
-                packet.U2((short)ProjectZ.NetACKTypes.ACK_EXIST_USER);
-                packet.U4(0);
-                _pUser.GetSession().SendPacketAsync(packet);
-                _pUser.SetState(ProjectZ.NState.Static.instance.TITLE());
-                ProjectZ.NProxy.Proxy.instance.RemoveUser(ref _pUser);
-                return;
-            }
 
-            Console.WriteLine("[LOCATION OnRegistAck ] Regist Success UserInfoSyn");
-            ProjectZ.NProxy.Proxy.instance.UserInfoSyn(ref _pUser);
-            _pUser.SetLocationRegist();
         }
 
         private void OnUnRegistSyn(UnRegistSyn syn) {
@@ -123,13 +104,11 @@ namespace Location {
         }
 
         private void OnUnRegistAck(UnRegistAck ans) {
-            if (ans.result == LocationResult.LOCATION_SUCCESS) {
-                Console.WriteLine("[LOCATION OnUnRegistAck ] UnRegist Success");
-            } else {
+            if (ans.result == LocationResult.LOCATION_FAIL) {
                 Console.WriteLine("[LOCATION OnUnRegistAck ] UnRegist Fail");
             }
-            _pUser.SetState(ProjectZ.NState.Static.instance.TITLE());
-            ProjectZ.NProxy.Proxy.instance.RemoveUser(ref _pUser);
+
+        ProjectZ.User _user = ProjectZ.NProxy.Proxy.instance.GetUser((int)ans.seq);
         }
 
         public int GetSeq() {

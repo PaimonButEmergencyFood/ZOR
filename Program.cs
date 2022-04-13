@@ -30,6 +30,33 @@
             user.SetUserSeq(2);
             NProxy.Proxy.instance.RegistUser(ref user);
             **/
+
+            /**
+            RefTree<User> userTree = new RefTree<User>();
+            User _user = new User();
+            _user.SetSocialID("test");
+            userTree.Add(0, ref _user);
+            User _sampleuser = userTree.Get(0);
+            Console.WriteLine("_sampleuser.GetSocialID(): {0}", _sampleuser.GetSocialID());
+            _user = new User();
+            _user.SetSocialID("test2");
+            userTree.Add(1, ref _user);
+            _sampleuser = userTree.Get(1);
+            Console.WriteLine("_sampleuser.GetSocialID(): {0}", _sampleuser.GetSocialID());
+            _user.SetSocialID("asdadas");
+            _user = new User();
+            _user = userTree.Get(1);
+            Console.WriteLine("_sampleuser.GetSocialID(): {0}", _sampleuser.GetSocialID());
+            userTree.Remove(0);
+            _sampleuser = userTree.Get(0);
+            if (_sampleuser == null) {
+                Console.WriteLine("_sampleuser is null");
+            }
+            else {
+                Console.WriteLine("_sampleuser is not null");
+                Console.WriteLine("_sampleuser.GetSocialID(): {0}", _sampleuser.GetSocialID());
+            }
+            **/
         }
     }
 }

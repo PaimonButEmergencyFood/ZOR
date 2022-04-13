@@ -52,9 +52,18 @@ namespace ProjectZ.NCommand.NConnection {
             _user.SetSaleCode(sale_code);
             _user.SetVersion(version);
 
-            // TODO loginQuery -> sets user userseq -> primary key
+            bool isBlock = false;
+            string image_profile_url = "";
 
-            // todo check if userseq already connected
+            if (loginQuery(ref _user, _user.GetUserNickName(), image_profile_url, _user.GetUUID(), ref isBlock) == false) {
+                Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::OnExecute::LOGIN_QUERY_FAILED");
+                return;
+            }
+
+            if (isBlock) {
+                Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::OnExecute::USER_BLOCKED");
+                return;
+            }
 
             if (NProxy.Proxy.instance.Initial(ref _user, _user.GetUserSeq()) == false) {
                 Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::OnExecute::Initial failed");
@@ -64,6 +73,34 @@ namespace ProjectZ.NCommand.NConnection {
             Console.WriteLine("[CHANNEL CS_REQ_LOGIN] ProjectZ::Initial seq : " + _user.GetUserSeq());
             _user.SetState(NState.Static.instance.READYMAINFRIENDLIST());
             NProxy.Proxy.instance.RegistUser(ref _user);
+        }
+
+        private static bool loginQuery(ref User pUser, string username, string user_profile_image, string uuid, ref bool is_block) {
+            if (File.Exists(username + ".mbn")) {
+                Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_EXIST");
+                
+                String user_seq = File.ReadAllText(username + ".mbn");
+                int userseq = int.Parse(user_seq);
+                Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ : " + userseq);
+
+                if (userseq == 0) {
+                    Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ_ZERO");
+                    return false;
+                }
+
+                if (NProxy.Proxy.instance.GetUser(userseq) == null || NProxy.Proxy.instance.GetUser(userseq).GetUserSeq() == 0 || NProxy.Proxy.instance.GetUser(userseq).GetUserSeq() != userseq) {
+                    Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ_NOT_EXIST");
+                    return false;
+                }
+            } else {
+                int getNewUserSeq = NProxy.Proxy.instance.GetNewUserSeq();
+                if (getNewUserSeq < 0) {
+                    Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::GET_NEW_USER_SEQ_ZERO");
+                    throw new Exception("[CHANNEL] CS_REQ_LOGIN::loginQuery::GET_NEW_USER_SEQ_ZERO");
+                }
+                File.WriteAllText(username + ".mbn", getNewUserSeq.ToString());
+            }
+            return true;
         }
     }
 }
