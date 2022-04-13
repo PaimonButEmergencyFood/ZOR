@@ -56,6 +56,11 @@ namespace ProjectZ.NCommand.NConnection {
 
             // todo check if userseq already connected
 
+            if (NProxy.Proxy.instance.Initial(ref _user, _user.GetUserSeq()) == false) {
+                Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::OnExecute::Initial failed");
+                return;
+            }
+
             Console.WriteLine("[CHANNEL CS_REQ_LOGIN] ProjectZ::Initial seq : " + _user.GetUserSeq());
             _user.SetState(NState.Static.instance.READYMAINFRIENDLIST());
             NProxy.Proxy.instance.RegistUser(ref _user);

@@ -5,8 +5,13 @@ using iFriends;
 namespace ProjectZ.NProxy {
     public class Proxy : NUtil.Single<Proxy> {
         LocationServer[] _locationServer;
+        CacheServer[] _cacheServer;
+        User[] _userTree;
         public Proxy() {
-            _locationServer = new LocationServer[10]; // number of users
+            uint max_user = 10;
+            _locationServer = new LocationServer[max_user]; // number of LocationServer
+            _cacheServer = new CacheServer[max_user]; // number of CacheServer
+            _userTree = new User[max_user]; // number of users
             // TODO load all saved locations
         }
 
@@ -48,6 +53,10 @@ namespace ProjectZ.NProxy {
                     _locationServer[pUser.GetUserSeq()] = new LocationServer();
                 }
             }
+        }
+
+        public bool Initial(ref User _user, int user_seq) {
+            return true;
         }
 
         public bool RegistUser(ref User _user) {
