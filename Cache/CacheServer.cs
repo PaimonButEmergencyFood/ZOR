@@ -1,5 +1,5 @@
 namespace Cache {
-    class CacheServer {
-        
+    public class CacheServer {
+
     }
 }

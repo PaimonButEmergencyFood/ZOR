@@ -5,11 +5,9 @@ using iFriends;
 namespace ProjectZ.NProxy {
     public class Proxy : NUtil.Single<Proxy> {
         private RefTree<User> _userTree;
-        private RefTree<LocationServer> _locationTree;
 
         public Proxy() {
             _userTree = new RefTree<User>();
-            _locationTree = new RefTree<LocationServer>();
         }
 
         public bool Initial(ref User pUser, int user_seq) {
@@ -18,6 +16,12 @@ namespace ProjectZ.NProxy {
                 return false;
             }
             _userTree.Add(user_seq, ref pUser);
+            LocationServer? pLocationServer = new LocationServer();
+            if (pLocationServer == null) {
+                Console.WriteLine("[PROXY] PROXY::Initial::LOCATION_SERVER_NULL");
+                return false;
+            }
+            pUser.SetLocationServer(ref pLocationServer);
             return true;
         }
 
@@ -38,26 +42,17 @@ namespace ProjectZ.NProxy {
             return ref _userTree.Get(user_seq);
         }
 
-        private ref LocationServer GetLocationServer(ref User pUser) {
-            try {
-                if (_locationTree.HasKey(pUser.GetUserSeq())) {
-                    Console.WriteLine("[PROXY] PROXY::GetLocationServer::LOCATION_EXIST");
-                    return ref _locationTree.Get(pUser.GetUserSeq());
-                } 
-            } catch (Exception e) {
-                LocationServer pLocationServer = new LocationServer();
-                _locationTree.Add(pUser.GetUserSeq(), ref pLocationServer);
-                Console.WriteLine("[PROXY] PROXY::GetLocationServer::LOCATION_SERVER_CREATED");
-                return ref _locationTree.Get(pUser.GetUserSeq());
-            }
-            Console.WriteLine("[PROXY] PROXY::GetLocationServer::LOCATION_SERVER_CREATED -> after try");
-            LocationServer mpLocationServer = new LocationServer();
-             _locationTree.Add(pUser.GetUserSeq(), ref mpLocationServer);
-            return ref _locationTree.Get(pUser.GetUserSeq());
+        private ref LocationServer? GetLocationServer(ref User pUser) {
+            return ref pUser.GetLocationServer();
         }
 
         public bool RegistUser(ref User pUser) {
-            LocationServer pLocationServer = GetLocationServer(ref pUser);
+            LocationServer? pLocationServer = GetLocationServer(ref pUser);
+
+            if (pLocationServer == null) {
+                Console.WriteLine("[PROXY] PROXY::RegistUser::LOCATION_SERVER_NULL");
+                return false;
+            }
 
             RegistSyn msg = new RegistSyn();
             msg.seq = (uint)pUser.GetUserSeq();

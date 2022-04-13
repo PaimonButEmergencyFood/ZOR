@@ -16,7 +16,7 @@ namespace ProjectZ {
                 if (clsCommandMap.ContainsKey(cmd)) {
                     return clsCommandMap[cmd];
                 }
-                Console.WriteLine("Command not found: " + cmd);
+                Console.WriteLine("[USER]: Command not found: " + cmd);
                 return null;
             }
 
@@ -26,7 +26,7 @@ namespace ProjectZ {
             
             protected bool AddCommand(ushort cmd, Command pCommand) {
                 if (clsCommandMap.ContainsKey(cmd)) {
-                    Console.WriteLine("Command already exists");
+                    Console.WriteLine("[USER]: Command already exists");
                     return false;
                 }
                 clsCommandMap.Add(cmd, pCommand);
@@ -98,6 +98,10 @@ namespace ProjectZ {
         private int _openCharacterCount;
         private int _loadCharacterCount;
 
+        private LocationServer? _locationServer;
+        private CacheServer? _cacheServer;
+        //private iFriendsServer _iFriendsServer;
+
         private NLogic.Bag[] _clsBagVector;
 
         private NLogic.Equip _equip;
@@ -155,6 +159,22 @@ namespace ProjectZ {
         private int _version;
 
         private bool _isKick;
+
+        public void SetLocationServer(ref LocationServer pLocationServer) {
+            _locationServer = pLocationServer;
+        }
+
+        public void SetCacheServer(ref CacheServer pCacheServer) {
+            _cacheServer = pCacheServer;
+        }
+
+        public ref LocationServer? GetLocationServer() {
+            return ref _locationServer;
+        }
+
+        public ref CacheServer? GetCacheServer() {
+            return ref _cacheServer;
+        }
 
         public void SetSocialID(string pSocialID) {
             _socialID = pSocialID;
@@ -216,7 +236,7 @@ namespace ProjectZ {
 
             if (_userInfo.main_slot_index == -1) {
                 _userInfo.main_slot_index = slotIndex;
-                Console.WriteLine("SetMainSlotIndex : " + slotIndex);
+                Console.WriteLine("[USER]: SetMainSlotIndex : " + slotIndex);
             }
 
             if (_userInfo.main_slot_index == slotIndex) {
@@ -639,7 +659,7 @@ namespace ProjectZ {
         }
 
         public void printGID() {
-            Console.WriteLine("GID : " + GID);
+            Console.WriteLine("[USER]: GID : " + GID);
         }
 
         public void SetGID(int pGID) {
