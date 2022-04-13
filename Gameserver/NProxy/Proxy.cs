@@ -5,22 +5,20 @@ using iFriends;
 namespace ProjectZ.NProxy {
     public class Proxy : NUtil.Single<Proxy> {
         private RefTree<User> _userTree;
+        private RefTree<LocationServer> _locationTree;
 
         public Proxy() {
             _userTree = new RefTree<User>();
+            _locationTree = new RefTree<LocationServer>();
         }
 
         public bool Initial(ref User pUser, int user_seq) {
-            if (pUser.GetUserSeq() == 0) {
-                Console.WriteLine("Invalid user_seq: {0}", user_seq);
+            if (_userTree.HasKey(user_seq)) {
+                Console.WriteLine("[PROXY] PROXY::Initial::USER_EXIST");
                 return false;
             }
-            if (_userTree.HasKey(user_seq)) {
-                pUser = _userTree.Get(user_seq);
-                return true;
-            }
             _userTree.Add(user_seq, ref pUser);
-            return false;
+            return true;
         }
 
         public void Final(ref User pUser) {
@@ -31,6 +29,7 @@ namespace ProjectZ.NProxy {
             }
             _userTree.Remove(pUser.GetUserSeq());
 
+            throw new NotImplementedException();
             // RemoveUser(pUser);
             // RemoveFRUserSyn(pUser);
         }
@@ -39,8 +38,31 @@ namespace ProjectZ.NProxy {
             return ref _userTree.Get(user_seq);
         }
 
+        private ref LocationServer GetLocationServer(ref User pUser) {
+            try {
+                if (_locationTree.HasKey(pUser.GetUserSeq())) {
+                    Console.WriteLine("[PROXY] PROXY::GetLocationServer::LOCATION_EXIST");
+                    return ref _locationTree.Get(pUser.GetUserSeq());
+                } 
+            } catch (Exception e) {
+                LocationServer pLocationServer = new LocationServer();
+                _locationTree.Add(pUser.GetUserSeq(), ref pLocationServer);
+                Console.WriteLine("[PROXY] PROXY::GetLocationServer::LOCATION_SERVER_CREATED");
+                return ref _locationTree.Get(pUser.GetUserSeq());
+            }
+            Console.WriteLine("[PROXY] PROXY::GetLocationServer::LOCATION_SERVER_CREATED -> after try");
+            LocationServer mpLocationServer = new LocationServer();
+             _locationTree.Add(pUser.GetUserSeq(), ref mpLocationServer);
+            return ref _locationTree.Get(pUser.GetUserSeq());
+        }
+
         public bool RegistUser(ref User pUser) {
-            _userTree.Add(pUser.GetUserSeq(), ref pUser);
+            LocationServer pLocationServer = GetLocationServer(ref pUser);
+
+            RegistSyn msg = new RegistSyn();
+            msg.seq = (uint)pUser.GetUserSeq();
+
+            pLocationServer.SendMsg(msg);
             return true;
         }
 

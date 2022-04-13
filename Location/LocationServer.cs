@@ -23,6 +23,7 @@ namespace Location {
                         Console.WriteLine("[LOCATION SERVER] RegistSyn is null");
                         return;
                     }
+                    Console.WriteLine("[LOCATION SERVER] RegistSyn {0}", syn.seq);
                     OnRegistSyn(syn);
                     return;
                 }
@@ -32,6 +33,7 @@ namespace Location {
                         Console.WriteLine("[LOCATION SERVER] RegistAck is null");
                         return;
                     }
+                    Console.WriteLine("[LOCATION SERVER] RegistAck {0}", ack.seq);
                     OnRegistAck(ack);
                     return;
                 }

@@ -28,19 +28,20 @@ namespace ProjectZ.NCommand.NConnection {
             sale_code = req.U1();
 
             // check if user blocked or allowed
-            Console.WriteLine("CS_REQ_LOGIN SOCIALID: " + user_id);
+            Console.WriteLine("[CHANNEL]: CS_REQ_LOGIN SOCIALID: " + user_id);
 
             // TODO check version
 
-            Console.WriteLine("version : " + version);
-            Console.WriteLine("user_id : " + user_id);
-            Console.WriteLine("user_nickname : " + user_nickname);
-            Console.WriteLine("user_profile_image_url : " + user_profile_image_url);
-            Console.WriteLine("isBlocked : " + isBlocked);
-            Console.WriteLine("isAuth : " + isAuth);
-            Console.WriteLine("uuid : " + uuid);
-            Console.WriteLine("company : " + company);
-            Console.WriteLine("sale_code : " + sale_code);
+            Console.WriteLine("[CHANNEL]: version : " + version);
+            Console.WriteLine("[CHANNEL]: user_id : " + user_id);
+            Console.WriteLine("[CHANNEL]: user_nickname : " + user_nickname);
+            Console.WriteLine("[CHANNEL]: user_profile_image_url : " + user_profile_image_url);
+            Console.WriteLine("[CHANNEL]: isBlocked : " + isBlocked);
+            Console.WriteLine("[CHANNEL]: isAuth : " + isAuth);
+            Console.WriteLine("[CHANNEL]: uuid : " + uuid);
+            Console.WriteLine("[CHANNEL]: company : " + company);
+            Console.WriteLine("[CHANNEL]: sale_code : " + sale_code);
+            Console.WriteLine("[CHANNEL] ----------------------------------------");
 
             _user.SetSocialID(user_id);
             _user.SetUserNickName(user_nickname);
@@ -72,7 +73,13 @@ namespace ProjectZ.NCommand.NConnection {
 
             Console.WriteLine("[CHANNEL CS_REQ_LOGIN] ProjectZ::Initial seq : " + _user.GetUserSeq());
             _user.SetState(NState.Static.instance.READYMAINFRIENDLIST());
-            NProxy.Proxy.instance.RegistUser(ref _user);
+            try {
+                NProxy.Proxy.instance.RegistUser(ref _user);
+            } catch (KeyNotFoundException) {
+                Console.WriteLine("FATAL ERROR: PROXY::REGISTUSER FAILED!");
+                Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::OnExecute::RegistUser failed");
+                return;
+            }
         }
 
         private static bool loginQuery(ref User pUser, string username, string user_profile_image, string uuid, ref bool is_block) {
@@ -83,14 +90,20 @@ namespace ProjectZ.NCommand.NConnection {
                 int userseq = int.Parse(user_seq);
                 Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ : " + userseq);
 
-                if (userseq == 0) {
+                if (userseq < 0) {
                     Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ_ZERO");
                     return false;
                 }
-
-                if (NProxy.Proxy.instance.GetUser(userseq) == null || NProxy.Proxy.instance.GetUser(userseq).GetUserSeq() == 0 || NProxy.Proxy.instance.GetUser(userseq).GetUserSeq() != userseq) {
+                try {
+                    if (NProxy.Proxy.instance.GetUser(userseq) == null || NProxy.Proxy.instance.GetUser(userseq).GetUserSeq() == 0 || NProxy.Proxy.instance.GetUser(userseq).GetUserSeq() != userseq) {
+                        Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ_NOT_EXIST");
+                        is_block = false;
+                        return true;
+                    }
+                } catch (Exception e) {
                     Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ_NOT_EXIST");
-                    return false;
+                    is_block = false;
+                    return true;
                 }
             } else {
                 int getNewUserSeq = NProxy.Proxy.instance.GetNewUserSeq();
@@ -100,6 +113,7 @@ namespace ProjectZ.NCommand.NConnection {
                 }
                 File.WriteAllText(username + ".mbn", getNewUserSeq.ToString());
             }
+            is_block = false;
             return true;
         }
     }
