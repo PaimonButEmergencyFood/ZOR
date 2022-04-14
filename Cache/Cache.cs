@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+
+using LiteDB;
+
 namespace Cache{
 public class slot {
 	public bool	open = false;
@@ -78,7 +81,8 @@ public struct slot_Serializer {
 	public static int Size(slot obj) { return obj.Size(); }
 };
 public class UserInfo {
-	public uint	userseq = 0;
+	[BsonId]
+	public uint	userseq {get; set; }
 	public slot[]	array_Slot = new slot[8];
 	public int	main_slot_index = 0;
 	public string	nickname = "";
@@ -378,8 +382,10 @@ public struct QuickSlot_Serializer {
 	public static int Size(QuickSlot obj) { return obj.Size(); }
 };
 public class CharacterInfo {
-	public uint	characterseq = 0;
-	public uint	userSeq = 0;
+	[BsonId]
+	public uint	characterseq {get; set; }
+	[BsonId]
+	public uint	userSeq {get; set; }
 	public uint	classtype = 0;
 	public uint	slotindex = 0;
 	public uint	remain_stat_point = 0;

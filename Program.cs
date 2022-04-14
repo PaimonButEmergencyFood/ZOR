@@ -20,6 +20,7 @@
             }
             **/
 
+            /**
             User user = new User();
             user.SetUserSeq(1);
             NProxy.Proxy.instance.Initial(ref user, user.GetUserSeq());
@@ -32,6 +33,51 @@
             NProxy.Proxy.instance.RegistUser(user.GetUserSeq());
 
             Console.WriteLine("Hello World!");
+            **/
+
+            /**
+            Console.WriteLine("Hello World!");
+
+            Database.NoSql database = new Database.NoSql();
+
+            Cache.UserInfo userInfo = new Cache.UserInfo();
+            userInfo.userseq = 1;
+            userInfo.uuid = "567189209384";
+            userInfo.nickname = "TESTNICKNAME";
+            userInfo.u8intro_state = 0;
+
+            database.CreateUser(userInfo);
+            for (int i = 0; i < 8; i++) {
+                Cache.CharacterInfo characterInfo = new Cache.CharacterInfo();
+                characterInfo.userSeq = userInfo.userseq;
+                characterInfo.characterseq = (uint)i;
+                database.CreateCharacter(characterInfo);
+            }
+
+            Cache.UserInfo? userInfo2 = database.GetUser((int)userInfo.userseq);
+            if (userInfo2 == null) {
+                Console.WriteLine("userInfo2 is null");
+            }
+            else {
+                Console.WriteLine("userInfo2 is not null");
+                Console.WriteLine("userInfo2.userseq: {0}", userInfo2.userseq);
+                Console.WriteLine("userInfo2.uuid: {0}", userInfo2.uuid);
+                Console.WriteLine("userInfo2.nickname: {0}", userInfo2.nickname);
+                Console.WriteLine("userInfo2.u8intro_state: {0}", userInfo2.u8intro_state);
+
+                for (int i = 0; i < 8; i++) {
+                    Cache.CharacterInfo? characterInfo = database.GetCharacter((int)userInfo2.userseq, (int)i);
+                    if (characterInfo == null) {
+                        Console.WriteLine("characterInfo is null");
+                    }
+                    else {
+                        Console.WriteLine("characterInfo is not null");
+                        Console.WriteLine("characterInfo.userSeq: {0}", characterInfo.userSeq);
+                        Console.WriteLine("characterInfo.characterseq: {0}", characterInfo.characterseq);
+                    }
+                }
+            }
+            **/
 
             /**
             User user = new User();
