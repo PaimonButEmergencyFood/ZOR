@@ -10,8 +10,8 @@ public class RefTree<T>
     {
         if (_array.Length == 0)
         {
-            _array = new T[1];
-            _array[0] = value;
+            _array = new T[key + 1];
+            _array[key] = value;
             return;
         }
 

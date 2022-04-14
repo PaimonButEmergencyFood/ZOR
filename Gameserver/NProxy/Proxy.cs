@@ -11,9 +11,13 @@ namespace ProjectZ.NProxy {
         }
 
         public bool Initial(ref User pUser, int user_seq) {
-            if (_userTree.HasKey(user_seq)) {
-                Console.WriteLine("[PROXY] PROXY::Initial::USER_EXIST");
-                return false;
+            try {
+                if (_userTree.HasKey(user_seq) || _userTree.Get(user_seq) != null) {
+                    Console.WriteLine("[PROXY] PROXY::Initial::USER_EXIST");
+                    return false;
+                }
+            } catch (KeyNotFoundException) {
+                Console.WriteLine("[PROXY] PROXY::Initial::USER_NOT_EXIST");
             }
             _userTree.Add(user_seq, ref pUser);
             LocationServer? pLocationServer = new LocationServer();
@@ -33,7 +37,7 @@ namespace ProjectZ.NProxy {
             }
             _userTree.Remove(pUser.GetUserSeq());
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             // RemoveUser(pUser);
             // RemoveFRUserSyn(pUser);
         }
