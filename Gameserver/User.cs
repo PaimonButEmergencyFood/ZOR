@@ -256,7 +256,7 @@ namespace ProjectZ {
 
         public void SetUserSeq(int pUserSeq) {
             _userSeq = pUserSeq;
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             //_memcachedKey.SetMemcached(userSeq);
         }
 

@@ -20,13 +20,35 @@ namespace ProjectZ.NProxy {
                 Console.WriteLine("[PROXY] PROXY::Initial::USER_NOT_EXIST");
             }
             _userTree.Add(user_seq, ref pUser);
-            LocationServer? pLocationServer = new LocationServer();
+            LocationServer? pLocationServer = new LocationServer(user_seq);
             if (pLocationServer == null) {
                 Console.WriteLine("[PROXY] PROXY::Initial::LOCATION_SERVER_NULL");
                 return false;
             }
             pUser.SetLocationServer(ref pLocationServer);
             return true;
+        }
+
+        public void RemoveUser(ref User mUser) {
+            if (mUser == null) {
+                Console.WriteLine("[PROXY] PROXY::RemoveUser User == null");
+                return;
+            }
+
+            LocationServer mLocationServer = new LocationServer(mUser.GetUserSeq());
+            CacheServer mCacheServer = new CacheServer();
+
+            mUser.SetLocationServer(ref mLocationServer);
+            mUser.SetCacheServer(ref mCacheServer);
+
+            Final(ref mUser);
+        }
+
+        public void RemoveUser(int user_seq) {
+            if (!_userTree.HasKey(user_seq)) {
+                return;
+            }
+            _userTree.Remove(user_seq);
         }
 
         public void Final(ref User pUser) {
@@ -38,7 +60,7 @@ namespace ProjectZ.NProxy {
             _userTree.Remove(pUser.GetUserSeq());
 
             //throw new NotImplementedException();
-            // RemoveUser(pUser);
+            RemoveUser(ref pUser);
             // RemoveFRUserSyn(pUser);
         }
 
