@@ -33,6 +33,26 @@ namespace Cache {
                     OnUserInfoAck(ack);
                     return;
                 }
+                if (msg is CharacterInfoSyn) {
+                    CharacterInfoSyn? syn = msg as CharacterInfoSyn;
+                    if (syn == null) {
+                        Console.WriteLine("[CACHE SERVER] CharacterInfoSyn is null");
+                        return;
+                    }
+                    Console.WriteLine("[CACHE SERVER] CharacterInfoSyn {0}", syn.seq);
+                    OnCharacterInfoSyn(syn);
+                    return;
+                }
+                if (msg is CharacterInfoAck) {
+                    CharacterInfoAck? ack = msg as CharacterInfoAck;
+                    if (ack == null) {
+                        Console.WriteLine("[CACHE SERVER] CharacterInfoAck is null");
+                        return;
+                    }
+                    Console.WriteLine("[CACHE SERVER] CharacterInfoAck {0}", ack.seq);
+                    OnCharacterInfoAck(ack);
+                    return;
+                }
                 Console.WriteLine("[CACHE SERVER] Unknown msg type "  + msg.GetType());
             });
         }
@@ -108,7 +128,7 @@ namespace Cache {
                 return;
             }
             
-            ProjectZ.User? pUser = ProjectZ.NProxy.Proxy.instance.GetUser((int)ack.seq)
+            ProjectZ.User? pUser = ProjectZ.NProxy.Proxy.instance.GetUser((int)ack.seq);
             if (pUser == null) {
                 Console.WriteLine("[CACHE SERVER] UserInfoAck failed - user doesnt exist");
                 return;
@@ -150,6 +170,71 @@ namespace Cache {
 
             // reward...
             Console.WriteLine("[CACHE SERVER] UserInfoAck OPEN CHARACTER COUNT {0}", pUser.GetOpenCharacterCount());
+        }
+
+        public void OnCharacterInfoSyn(CharacterInfoSyn syn) {
+            _pUser.Initialize();
+
+            CharacterInfo? characterInfo = Database.NoSql.instance.GetCharacter((int)syn.seq, (int)syn.char_seq);
+            if (characterInfo == null) {
+                Console.WriteLine("[CACHE SERVER] CharacterInfo doesnt exist (yet?) - using default");
+                return;
+            }
+
+            Console.WriteLine("[CACHE SERVER] CharacterInfo {0}", syn.seq);
+
+            CharacterInfoAck ack = new CharacterInfoAck();
+            ack.seq = syn.seq;
+            ack.result = CacheResult.CACHE_SUCCESS;
+            ack.stCharacterInfo = characterInfo;
+            SendMsg(ack);
+            return;
+        }
+
+        public void OnCharacterInfoAck(CharacterInfoAck ack) {
+            ProjectZ.User? pUser = ProjectZ.NProxy.Proxy.instance.GetUser((int)ack.seq);
+            if (pUser == null) {
+                Console.WriteLine("[CACHE SERVER] CharacterInfoAck failed - user doesnt exist");
+                return;
+            }
+
+            ProjectZ.Session? session = pUser.GetSession();
+            if (session == null) {
+                Console.WriteLine("[CACHE SERVER] CharacterInfoAck failed - session doesnt exist");
+                return;
+            }
+
+            if (ack.result != CacheResult.CACHE_SUCCESS) {
+                Console.WriteLine("[CACHE SERVER] CharacterInfoAck failed {0}", ack.strError);
+                ProjectZ.NetworkPacket mrsp = new ProjectZ.NetworkPacket(ProjectZ.NetCMDTypes.ZNO_SC_REQ_ENTER_MY_INFO);
+                mrsp.U2((short)ProjectZ.NetACKTypes.ACK_DB_ERROR);
+                mrsp.U4((int)ack.seq);
+
+                session.SendPacketAsync(mrsp);
+                return;
+            }
+
+            Console.WriteLine("[CACHE SERVER] CharacterInfoAck GID {0}", ack.seq);
+
+            pUser.SetCharacterInfo(ack.stCharacterInfo, (int)ack.stCharacterInfo.slotindex);
+            pUser.AddLoadCharacterCount();
+
+            if (pUser.GetLoadCharacterCount() < pUser.GetOpenCharacterCount()) {
+                Console.WriteLine("[CACHE SERVER] CharacterInfoAck OPEN CHARACTER COUNT {0}", pUser.GetOpenCharacterCount());
+                return;
+            }
+
+            pUser.SetLogin();
+            pUser.SetState(ProjectZ.NState.Static.instance.MAINFRIENDLIST());
+
+            ProjectZ.NetworkPacket rsp = new ProjectZ.NetworkPacket(ProjectZ.NetCMDTypes.ZNO_SC_REQ_LOGIN);
+            rsp.U2((short)ProjectZ.NetACKTypes.ACK_OK);
+            rsp.U4(pUser.GetUserSeq());
+
+            session.SendPacketAsync(rsp);
+
+            //ProjectZ.NProxy.Proxy.instance.SetMainCharacterInfo(ref pUser);
+            return;
         }
     }
 }
