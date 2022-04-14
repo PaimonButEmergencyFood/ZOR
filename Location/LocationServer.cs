@@ -3,8 +3,10 @@ using Cache;
 namespace Location {
     public class LocationServer {
         private int user_seq;
+        private User pUser;
         public LocationServer(int seq) {
             user_seq = seq;
+            pUser = new User();
         }
 
         public async void SendMsg<T> (T msg) {
@@ -92,19 +94,22 @@ namespace Location {
         }
 
         private void OnRegistSyn(RegistSyn syn) {
-            Console.WriteLine("OnRegistSyn seq {0} regist success", syn.seq);
+            Console.WriteLine("[LOCATION] OnRegistSyn seq ]{0} regist success", syn.seq);
+            pUser = new User();
+            pUser.SetSeq((int)syn.seq);
             SendRegistAck((uint)syn.seq, LocationResult.LOCATION_SUCCESS, "User Regist Success");
         }
 
         private void OnRegistAck(RegistAck ans) {
-            ProjectZ.User mUser  = ProjectZ.NProxy.Proxy.instance.GetUser((int)ans.seq);
+            ProjectZ.User? mUser  = ProjectZ.NProxy.Proxy.instance.GetUser((int)ans.seq);
             if (mUser == null) {
                 Console.WriteLine("LOCATION OnRegistAck] mUser == nulll");
                 return;
             }
-            CacheServer mCacheServer = mUser.GetCacheServer();
+            CacheServer? mCacheServer = mUser.GetCacheServer();
             if (mCacheServer == null) {
                 Console.WriteLine("LOCATION OnRegistAck] mCacheServer == null");
+                return;
             }
 
             if (ans.result == LocationResult.LOCATION_FAIL) {
@@ -114,12 +119,22 @@ namespace Location {
                 rsp.U2((short)ProjectZ.NetACKTypes.ACK_EXIST_USER);
                 rsp.U4(0);
 
-                mUser.GetSession().SendPacketAsync(rsp);
+                ProjectZ.Session? session = mUser.GetSession();
+                if (session == null) {
+                    Console.WriteLine("LOCATION OnRegistAck] session == null");
+                    return;
+                }
+
+                session.SendPacketAsync(rsp);
 
                 mUser.SetState(ProjectZ.NState.Static.instance.TITLE());
                 ProjectZ.NProxy.Proxy.instance.RemoveUser((int)ans.seq);
                 return;
             }
+
+            Console.WriteLine("[LOCATION OnRegistAck] ACK_REGIST_SUCCESS");
+            ProjectZ.NProxy.Proxy.instance.UserInfoSyn(ref mUser);
+            mUser.SetLocationRegist();
         }
 
         private void OnUnRegistSyn(UnRegistSyn syn) {

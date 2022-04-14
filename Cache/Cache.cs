@@ -98,7 +98,8 @@ public class UserInfo {
 	public uint	wp_cur_week = 0;
 	public ulong	wp_reg_date = 0;
 	public uint[]	array_tutorial = new uint[4];
-	public string	uuid = "";
+	[BsonId]
+	public string uuid { get; set; }
 	public uint	battle_aftereffect_time = 0;
 	public string	reward = "";
 	public uint	shard_Item_db_type = 0;
@@ -383,9 +384,9 @@ public struct QuickSlot_Serializer {
 };
 public class CharacterInfo {
 	[BsonId]
-	public uint	characterseq {get; set; }
+	public uint	characterseq { get; set; }
 	[BsonId]
-	public uint	userSeq {get; set; }
+	public uint	userSeq { get; set; }
 	public uint	classtype = 0;
 	public uint	slotindex = 0;
 	public uint	remain_stat_point = 0;

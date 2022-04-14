@@ -13,12 +13,39 @@
                 user.printGID();
             }
             **/
+
+            // create user
             /**
+            uint userseq = 0;
+            Cache.User cacheUser = new Cache.User();
+            cacheUser.Initialize();
+            Cache.UserInfo userInfo = cacheUser.GetUserInfo();
+            if (userInfo == null) {
+                Console.WriteLine("userInfo is null");
+                return;
+            }
+            userInfo.userseq = userseq;
+            userInfo.nickname = "TestNickname";
+            userInfo.uuid = "291241201AJSASNJDBSAHUZBDIWQE";
+            userInfo.u8intro_state = 0;
+
+            Database.NoSql db = Database.NoSql.instance;
+            db.CreateUser(userInfo);
+
+            for (int i = 0; i < 8; i++) {
+                Cache.CharacterInfo characterInfo = new Cache.CharacterInfo();
+                characterInfo.userSeq = userInfo.userseq;
+                characterInfo.characterseq = (uint)i;
+                db.CreateCharacter(characterInfo);
+            }
+            **/
+            
             TcpServer server = new TcpServer(54000);
             while (server.isRunning) {
                 Thread.Sleep(1000);
             }
-            **/
+            
+            
 
             /**
             User user = new User();

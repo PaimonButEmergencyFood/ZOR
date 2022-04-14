@@ -4,7 +4,7 @@ using Location;
 using iFriends;
 
 namespace Database {
-    public class NoSql {
+    public class NoSql : ProjectZ.NUtil.Single<NoSql> {
         private LiteDatabase _db = new LiteDatabase(Directory.GetCurrentDirectory() + "/database.db");
 
         public NoSql() {
@@ -31,6 +31,14 @@ namespace Database {
 
         public Cache.UserInfo? GetUser(int userSeq) {
             return _db.GetCollection<Cache.UserInfo>("userinfo").FindOne(x => x.userseq == userSeq);
+        }
+
+        public int GetUserSeq(string uuid) {
+            Cache.UserInfo? info = _db.GetCollection<Cache.UserInfo>("userinfo").FindOne(x => x.uuid == uuid);
+            if (info == null) {
+                return -1;
+            }
+            return (int)info.userseq;
         }
 
         public Cache.CharacterInfo? GetCharacter(int userSeq, int characterSeq) {

@@ -20,12 +20,11 @@ namespace ProjectZ.NProxy {
                 Console.WriteLine("[PROXY] PROXY::Initial::USER_NOT_EXIST");
             }
             _userTree.Add(user_seq, ref pUser);
-            LocationServer? pLocationServer = new LocationServer(user_seq);
-            if (pLocationServer == null) {
-                Console.WriteLine("[PROXY] PROXY::Initial::LOCATION_SERVER_NULL");
-                return false;
-            }
+            LocationServer pLocationServer = new LocationServer(user_seq);
+            CacheServer mCacheServer = new CacheServer();
+
             pUser.SetLocationServer(ref pLocationServer);
+            pUser.SetCacheServer(ref mCacheServer);
             return true;
         }
 
@@ -66,6 +65,41 @@ namespace ProjectZ.NProxy {
 
         public ref User? GetUser(int user_seq) {
             return ref _userTree.Get(user_seq);
+        }
+
+        public bool UserInfoSyn(ref User pUser) {
+            if (pUser == null) {
+                Console.WriteLine("[PROXY] PROXY::UserInfoSyn User == null");
+                return false;
+            }
+
+            UserInfoSyn msg = new UserInfoSyn();
+            msg.seq = (uint)pUser.GetUserSeq();
+            CacheServer mCacheServer = pUser.GetCacheServer();
+            if (mCacheServer == null) {
+                Console.WriteLine("[PROXY] PROXY::UserInfoSyn mCacheServer == null");
+                return false;
+            }
+            mCacheServer.SendMsg(msg);
+            return true;
+        }
+
+        public bool CharacterInfoSyn(ref User pUser, uint character_seq) {
+            if (pUser == null) {
+                Console.WriteLine("[PROXY] PROXY::CharacterInfoSyn User == null");
+                return false;
+            }
+
+            CharacterInfoSyn msg = new CharacterInfoSyn();
+            msg.seq = (uint)pUser.GetUserSeq();
+            msg.char_seq = character_seq;
+            CacheServer mCacheServer = pUser.GetCacheServer();
+            if (mCacheServer == null) {
+                Console.WriteLine("[PROXY] PROXY::CharacterInfoSyn mCacheServer == null");
+                return false;
+            }
+            mCacheServer.SendMsg(msg);
+            return true;
         }
 
         private ref LocationServer? GetLocationServer(ref User pUser) {

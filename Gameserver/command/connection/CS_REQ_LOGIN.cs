@@ -45,7 +45,7 @@ namespace ProjectZ.NCommand.NConnection {
 
             _user.SetSocialID(user_id);
             _user.SetUserNickName(user_nickname);
-            _user.SetUUID(uuid);
+            _user.SetUUID("291241201AJSASNJDBSAHUZBDIWQE"); // #TODO
 
             _user.SetEncryptKey(Encryption.instance.GetKey());
 
@@ -83,36 +83,16 @@ namespace ProjectZ.NCommand.NConnection {
         }
 
         private static bool loginQuery(ref User pUser, string username, string user_profile_image, string uuid, ref bool is_block) {
-            if (File.Exists(username + ".mbn")) {
-                Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_EXIST");
-                
-                String user_seq = File.ReadAllText(username + ".mbn");
-                int userseq = int.Parse(user_seq);
-                Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ : " + userseq);
-
-                if (userseq < 0) {
-                    Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ_ZERO");
-                    return false;
-                }
-                try {
-                    if (NProxy.Proxy.instance.GetUser(userseq) == null || NProxy.Proxy.instance.GetUser(userseq).GetUserSeq() == 0 || NProxy.Proxy.instance.GetUser(userseq).GetUserSeq() != userseq) {
-                        Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ_NOT_EXIST");
-                        is_block = false;
-                        return true;
-                    }
-                } catch (Exception e) {
-                    Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_SEQ_NOT_EXIST");
-                    is_block = false;
-                    return true;
-                }
-            } else {
-                int getNewUserSeq = NProxy.Proxy.instance.GetNewUserSeq();
-                if (getNewUserSeq < 0) {
-                    Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::GET_NEW_USER_SEQ_ZERO");
-                    throw new Exception("[CHANNEL] CS_REQ_LOGIN::loginQuery::GET_NEW_USER_SEQ_ZERO");
-                }
-                File.WriteAllText(username + ".mbn", getNewUserSeq.ToString());
+            int userseq = Database.NoSql.instance.GetUserSeq(uuid);
+            if (userseq == -1) {
+                Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_NOT_FOUND");
+                return false;
             }
+            else {
+                pUser.SetUserSeq((int)userseq);
+                Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::loginQuery::USER_FOUND");
+            }
+
             is_block = false;
             return true;
         }
