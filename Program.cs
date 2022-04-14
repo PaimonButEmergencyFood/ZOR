@@ -25,11 +25,11 @@
             NProxy.Proxy.instance.Initial(ref user, user.GetUserSeq());
             NProxy.Proxy.instance.Initial(ref user, user.GetUserSeq());
             
-            NProxy.Proxy.instance.RegistUser(ref user);
+            NProxy.Proxy.instance.RegistUser(user.GetUserSeq());
 
             NProxy.Proxy.instance.Final(ref user);
 
-            NProxy.Proxy.instance.RegistUser(ref user);
+            NProxy.Proxy.instance.RegistUser(user.GetUserSeq());
 
             Console.WriteLine("Hello World!");
 

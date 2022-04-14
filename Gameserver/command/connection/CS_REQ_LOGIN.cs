@@ -74,7 +74,7 @@ namespace ProjectZ.NCommand.NConnection {
             Console.WriteLine("[CHANNEL CS_REQ_LOGIN] ProjectZ::Initial seq : " + _user.GetUserSeq());
             _user.SetState(NState.Static.instance.READYMAINFRIENDLIST());
             try {
-                NProxy.Proxy.instance.RegistUser(ref _user);
+                NProxy.Proxy.instance.RegistUser(_user.GetUserSeq());
             } catch (KeyNotFoundException) {
                 Console.WriteLine("FATAL ERROR: PROXY::REGISTUSER FAILED!");
                 Console.WriteLine("[CHANNEL] CS_REQ_LOGIN::OnExecute::RegistUser failed");

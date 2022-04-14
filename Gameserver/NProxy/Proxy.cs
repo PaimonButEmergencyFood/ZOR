@@ -50,7 +50,12 @@ namespace ProjectZ.NProxy {
             return ref pUser.GetLocationServer();
         }
 
-        public bool RegistUser(ref User pUser) {
+        public bool RegistUser(int user_seq) {
+            User pUser = GetUser(user_seq);
+            if (pUser == null) {
+                Console.WriteLine("[PROXY] PROXY::RegistUser::USER_NOT_EXIST");
+                return false;
+            }
             LocationServer? pLocationServer = GetLocationServer(ref pUser);
 
             if (pLocationServer == null) {
