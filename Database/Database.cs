@@ -9,8 +9,8 @@ namespace Database {
 
         public NoSql() {
             // Create all collections
-            _db.GetCollection<Cache.CharacterInfo>("characterinfo");
-            _db.GetCollection<Cache.UserInfo>("userinfo");
+            _db.GetCollection<CharacterInfo>("characterinfo");
+            _db.GetCollection<UserInfo>("userinfo");
         }
 
         public bool CreateUser(Cache.UserInfo userInfo) {
@@ -23,7 +23,7 @@ namespace Database {
 
         public bool CreateCharacter(Cache.CharacterInfo characterInfo) {
             if (GetCharacter((int)characterInfo.userSeq, (int)characterInfo.characterseq) == null) {
-                _db.GetCollection<Cache.CharacterInfo>("characterinfo").Insert(characterInfo);
+                _db.GetCollection<CharacterInfo>("characterinfo").Insert(CharacterInfo.FromCharacterInfo(characterInfo));
                 return true;
             }
             return false;
