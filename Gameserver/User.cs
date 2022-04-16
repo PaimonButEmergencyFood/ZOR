@@ -100,7 +100,7 @@ namespace ProjectZ {
 
         private LocationServer? _locationServer;
         private CacheServer? _cacheServer;
-        //private iFriendsServer _iFriendsServer;
+        private FriendServer? _iFriendsServer;
 
         private NLogic.Bag[] _clsBagVector;
 
@@ -168,12 +168,20 @@ namespace ProjectZ {
             _cacheServer = pCacheServer;
         }
 
+        public void SetFriendServer(ref FriendServer pFriendServer) {
+            _iFriendsServer = pFriendServer;
+        }
+
         public ref LocationServer? GetLocationServer() {
             return ref _locationServer;
         }
 
         public ref CacheServer? GetCacheServer() {
             return ref _cacheServer;
+        }
+
+        public ref FriendServer GetFriendServer() {
+            return ref _iFriendsServer;
         }
 
         public void SetSocialID(string pSocialID) {

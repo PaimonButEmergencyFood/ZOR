@@ -22,9 +22,11 @@ namespace ProjectZ.NProxy {
             _userTree.Add(user_seq, ref pUser);
             LocationServer pLocationServer = new LocationServer(user_seq);
             CacheServer mCacheServer = new CacheServer();
+            FriendServer mFriendServer = new FriendServer();
 
             pUser.SetLocationServer(ref pLocationServer);
             pUser.SetCacheServer(ref mCacheServer);
+            pUser.SetFriendServer(ref mFriendServer);
             return true;
         }
 
@@ -36,9 +38,11 @@ namespace ProjectZ.NProxy {
 
             LocationServer mLocationServer = new LocationServer(mUser.GetUserSeq());
             CacheServer mCacheServer = new CacheServer();
+            FriendServer mFriendServer = new FriendServer();
 
             mUser.SetLocationServer(ref mLocationServer);
             mUser.SetCacheServer(ref mCacheServer);
+            mUser.SetFriendServer(ref mFriendServer);
 
             Final(ref mUser);
         }
@@ -123,6 +127,21 @@ namespace ProjectZ.NProxy {
             msg.seq = (uint)pUser.GetUserSeq();
 
             pLocationServer.SendMsg(msg);
+            return true;
+        }
+
+        public bool SendFriendsServer<T>(int userseq, T msg) {
+            User pUser = GetUser(userseq);
+            if (pUser == null) {
+                Console.WriteLine("[PROXY] PROXY::SendFriendsServer::USER_NOT_EXIST");
+                return false;
+            }
+            FriendServer mFriendServer = pUser.GetFriendServer();
+            if (mFriendServer == null) {
+                Console.WriteLine("[PROXY] PROXY::SendFriendsServer::FRIEND_SERVER_NULL");
+                return false;
+            }
+            mFriendServer.SendMsg(msg);
             return true;
         }
 
