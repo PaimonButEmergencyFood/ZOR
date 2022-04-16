@@ -45,7 +45,7 @@ namespace ProjectZ.NCommand.NConnection {
 
             _user.SetSocialID(user_id);
             _user.SetUserNickName(user_nickname);
-            _user.SetUUID("291241201AJSASNJDBSAHUZBDIWQE"); // #TODO
+            _user.SetUUID(uuid);
 
             _user.SetEncryptKey(Encryption.instance.GetKey());
 

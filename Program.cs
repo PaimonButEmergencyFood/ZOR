@@ -2,7 +2,7 @@
     class Program {
         private static void CreateCharacter() {
             int userseq = Database.NoSql.instance.GetNewUserSeq();
-            if (userseq == 0 || userseq == -1) {
+            if (userseq == -1) {
                 Console.WriteLine("[MAIN] GetNewUserSeq failed");
                 return;
             }
@@ -17,6 +17,12 @@
                 Console.WriteLine("[MAIN] GetUserInfo failed");
                 return;
             }
+
+            uInfo.nickname = "TESTNICK";
+            uInfo.uuid = "56A99BAFD15B4474A7D21CD91BE9C341";
+            uInfo.profile_url = "https://dl.keksla.wtf/iOS_market_1024.png";
+            uInfo.company = 5;
+            uInfo.sale_code = 37;
 
             Database.NoSql.instance.CreateUser(uInfo);
 
@@ -34,7 +40,7 @@
                 Database.NoSql.instance.CreateCharacter(cInfo);
             }
 
-            Console.WriteLine("[MAIN] CreateCharacter {0} success" + userseq);
+            Console.WriteLine("[MAIN] CreateCharacter {0} success", userseq);
         }
         private static void Testdb() {
             Console.WriteLine("[TEST] db");
@@ -74,7 +80,7 @@
                         break;
                 }
             }
-            Testdb();
+            CreateCharacter();
             /**
             User user = new User();
             User.State.Command pCommand = user.GetState().GetCommand((ushort)NetCMDTypes.ZNO_CS_CONNECT);

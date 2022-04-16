@@ -127,7 +127,7 @@ namespace ProjectZ.NProxy {
         }
 
         public int GetNewUserSeq() {
-            return _userTree.Count;
+            return Database.NoSql.instance.GetNewUserSeq();
         }
     }
 }

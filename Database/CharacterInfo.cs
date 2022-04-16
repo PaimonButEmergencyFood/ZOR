@@ -2,9 +2,7 @@ using LiteDB;
 
 namespace Database {
     public class CharacterInfo {
-        [BsonId]
         public uint	characterseq { get; set; }
-        [BsonId]
         public uint	userSeq { get; set; }
         public uint	classtype { get; set; }
         public uint	slotindex { get; set; }
