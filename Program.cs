@@ -6,6 +6,10 @@
                 Console.WriteLine("[MAIN] GetNewUserSeq failed");
                 return;
             }
+
+            if (userseq == 0) {
+                userseq = 1;
+            }
             Console.WriteLine("[MAIN] GetNewUserSeq {0}", userseq);
 
             Cache.User userInfo = new Cache.User();
