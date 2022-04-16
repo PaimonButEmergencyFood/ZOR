@@ -70,8 +70,8 @@ namespace Database {
         public ulong slot8_reg_date {get; set; }
 
         public int	main_slot_index { get; set; }
-        public string? nickname { get; set; }  
-        public string? profile_url { get; set; }  
+        public string nickname { get; set; }  
+        public string profile_url { get; set; }  
         public uint	score { get; set; }  
         public uint	heart_blocked { get; set; }  
         public uint	invite_blocked { get; set; }  
@@ -87,9 +87,9 @@ namespace Database {
         public uint	array_tutorial_3 { get; set; }  
         public uint	array_tutorial_4 { get; set; }  
         [BsonId]
-        public string? uuid { get; set; }  
+        public string uuid { get; set; }  
         public uint	battle_aftereffect_time { get; set; }  
-        public string? reward { get; set; }  
+        public string reward { get; set; }  
         public uint	shard_Item_db_type { get; set; }  
         public ulong wp_last_reg_date { get; set; }  
         public ulong reserve1 { get; set; }  
@@ -98,7 +98,7 @@ namespace Database {
         public ulong reserve4 { get; set; }  
         public ulong reserve5 { get; set; }  
         public ulong worldboss_hit { get; set; }  
-        public ulong worldboss_point { get; set; }  
+        public ulong worldboss_point { get; set; }
 
         public static UserInfo FromUserInfo(Cache.UserInfo mInfo) {
             Database.UserInfo userInfo = new UserInfo();
@@ -200,7 +200,7 @@ namespace Database {
             return userInfo;
         }
 
-        public static Cache.UserInfo ToUserInfo(this UserInfo mInfo)
+        public static Cache.UserInfo ToUserInfo(UserInfo mInfo)
         {
             Cache.UserInfo userInfo = new Cache.UserInfo();
 
