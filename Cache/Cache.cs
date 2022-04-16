@@ -101,7 +101,7 @@ public class UserInfo {
 	[BsonId]
 	public string uuid { get; set; }
 	public uint	battle_aftereffect_time = 0;
-	public string	reward = "";
+	public string reward = "";
 	public uint	shard_Item_db_type = 0;
 	public ulong	wp_last_reg_date = 0;
 	public ulong	reserve1 = 0;
@@ -111,6 +111,15 @@ public class UserInfo {
 	public ulong	reserve5 = 0;
 	public ulong	worldboss_hit = 0;
 	public ulong	worldboss_point = 0;
+	public UserInfo() {
+		for(int i = 0; i < 8; i++) {
+			array_Slot[i] = new slot();
+		}
+		for(int i = 0; i < 4; i++) {
+			array_tutorial[i] = 0;
+		}
+		uuid = "";
+	}
 	public int Size() {
 		int nSize = 0;
 		try {
@@ -443,6 +452,12 @@ public class CharacterInfo {
 	public ulong	reserve3 = 0;
 	public ulong	reserve4 = 0;
 	public ulong	reserve5 = 0;
+
+	public CharacterInfo() {
+		for (int i = 0; i < 8; i++) {
+			array_QuickSlot[i] = new QuickSlot();
+		}
+	}
 	public int Size() {
 		int nSize = 0;
 		try {

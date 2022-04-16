@@ -1,11 +1,24 @@
 namespace Cache {
-    public class User {
-        public struct Character {
-            public bool _bOpen;
-            public bool _bLoad;
-            public UInt32 _char_seq;
-            public CharacterInfo _characterInfo;
+    public class Character {
+        private bool _bOpen;
+        private bool _bLoad;
+        private UInt32 _char_seq;
+        private CharacterInfo _characterInfo;
+
+        public Character() {
+            _bOpen = false;
+            _bLoad = false;
+            _char_seq = 0;
+            _characterInfo = new CharacterInfo();
         }
+
+        public void Initialize(uint userseq = 0, uint charseq = 0) {
+            for (int i = 0; i < 8; i++) {
+                _characterInfo.array_QuickSlot[i] = new QuickSlot();
+            }
+        }  
+    }
+    public class User {
 
         private UserInfo? _pUserInfo;
         private int _userSeq;
@@ -14,10 +27,10 @@ namespace Cache {
             _userSeq = 0;
         }
 
-        public void Initialize() {
-            _userSeq = 0;
+        public void Initialize(int user_seq = 0) {
+            _userSeq = user_seq;
             _pUserInfo = new UserInfo();
-            _pUserInfo.userseq = 0;
+            _pUserInfo.userseq = (uint)user_seq;
 
             for (int i = 0; i < 8; i++) {
                 _pUserInfo.array_Slot[i] = new slot();

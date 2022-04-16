@@ -23,7 +23,7 @@ namespace Database {
 
         public bool CreateCharacter(Cache.CharacterInfo characterInfo) {
             if (GetCharacter((int)characterInfo.userSeq, (int)characterInfo.characterseq) == null) {
-                _db.GetCollection<CharacterInfo>("characterinfo").Insert(CharacterInfo.FromCharacterInfo(characterInfo));
+                _db.GetCollection<CharacterInfo>("characterinfo").Insert(Database.CharacterInfo.FromCharacterInfo(characterInfo));
                 return true;
             }
             return false;
@@ -42,15 +42,20 @@ namespace Database {
         }
 
         public Cache.CharacterInfo? GetCharacter(int userSeq, int characterSeq) {
-            return _db.GetCollection<Cache.CharacterInfo>("characterinfo").FindOne(x => x.userSeq == userSeq && x.characterseq == characterSeq);
+            CharacterInfo? info = _db.GetCollection<CharacterInfo>("characterinfo").FindOne(x => x.userSeq == userSeq && x.characterseq == characterSeq);
+            if (info == null) {
+                return null;
+            }
+
+            return Database.CharacterInfo.ToCharacterInfo(info);
         }
 
         public bool UpdateUser(Cache.UserInfo userInfo) {
             return _db.GetCollection<Cache.UserInfo>("userinfo").Update(userInfo);
         }
 
-        public bool UpdateCharacter(Cache.CharacterInfo characterInfo) {
-            return _db.GetCollection<Cache.CharacterInfo>("characterinfo").Update(characterInfo);
+        public bool UpdateCharacter(CharacterInfo characterInfo) {
+            return _db.GetCollection<CharacterInfo>("characterinfo").Update(characterInfo);
         }
     }
 }
