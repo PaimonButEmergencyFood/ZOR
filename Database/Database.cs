@@ -13,6 +13,11 @@ namespace Database {
             _db.GetCollection<UserInfo>("userinfo");
         }
 
+        public int GetNewUserSeq() {
+            var seq = _db.GetCollection<UserInfo>("userinfo").FindAll().Count();
+            return seq;
+        }
+
         public bool CreateUser(Cache.UserInfo userInfo) {
             if (GetUser((int)userInfo.userseq) != null) {
                 return false;

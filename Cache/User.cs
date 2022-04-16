@@ -10,13 +10,20 @@ namespace Cache {
             _bLoad = false;
             _char_seq = 0;
             _characterInfo = new CharacterInfo();
+            Initialize();
         }
 
         public void Initialize(uint userseq = 0, uint charseq = 0) {
+            _characterInfo.userSeq = userseq;
+            _characterInfo.characterseq = charseq;
             for (int i = 0; i < 8; i++) {
                 _characterInfo.array_QuickSlot[i] = new QuickSlot();
             }
-        }  
+        }
+
+        public ref CharacterInfo GetCharacterInfo() {
+            return ref _characterInfo;
+        }
     }
     public class User {
 
@@ -25,6 +32,7 @@ namespace Cache {
         public User() {
             _pUserInfo = new UserInfo();
             _userSeq = 0;
+            Initialize();
         }
 
         public void Initialize(int user_seq = 0) {

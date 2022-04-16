@@ -1,5 +1,41 @@
 ﻿namespace ProjectZ {
     class Program {
+        private static void CreateCharacter() {
+            int userseq = Database.NoSql.instance.GetNewUserSeq();
+            if (userseq == 0 || userseq == -1) {
+                Console.WriteLine("[MAIN] GetNewUserSeq failed");
+                return;
+            }
+            Console.WriteLine("[MAIN] GetNewUserSeq {0}", userseq);
+
+            Cache.User userInfo = new Cache.User();
+            userInfo.Initialize(userseq);
+
+            Cache.UserInfo uInfo = userInfo.GetUserInfo();
+
+            if (uInfo == null) {
+                Console.WriteLine("[MAIN] GetUserInfo failed");
+                return;
+            }
+
+            Database.NoSql.instance.CreateUser(uInfo);
+
+            for (int i = 0; i < 8; i++) {
+                Cache.Character character = new Cache.Character();
+                character.Initialize((uint)userseq, (uint)i);
+
+                Cache.CharacterInfo cInfo = character.GetCharacterInfo();
+
+                if (cInfo == null) {
+                    Console.WriteLine("[MAIN] GetCharacterInfo failed");
+                    return;
+                }
+
+                Database.NoSql.instance.CreateCharacter(cInfo);
+            }
+
+            Console.WriteLine("[MAIN] CreateCharacter {0} success" + userseq);
+        }
         private static void Testdb() {
             Console.WriteLine("[TEST] db");
 
