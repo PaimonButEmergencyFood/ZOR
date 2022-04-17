@@ -10,13 +10,13 @@ namespace ProjectZ {
         private NetworkStream stream;
         private User? _user;
         private Queue<NetworkPacket> _packetQueue;
-        private Mutex _queueMutex;
-        private Mutex _sendMutex;
+        private Semaphore _queueMutex;
+        private Semaphore _sendMutex;
 
         public Session(TcpClient pClient) {
             _packetQueue = new Queue<NetworkPacket>();
-            _queueMutex = new Mutex();
-            _sendMutex = new Mutex();
+            _queueMutex = new Semaphore(1, 1);
+            _sendMutex = new Semaphore(1, 1);
 
             client = pClient;
             client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
@@ -31,7 +31,7 @@ namespace ProjectZ {
             while (_packetQueue.Count > 0) {
                 _queueMutex.WaitOne();
                 packet = _packetQueue.Dequeue();
-                _queueMutex.ReleaseMutex();
+                _queueMutex.Release();
 
                 Console.WriteLine("[SESSION: Received packet: " + packet.Cmd);
 
@@ -102,7 +102,7 @@ namespace ProjectZ {
             }
             stream.Write(pPacket.GetHeader(), 0, pPacket.GetHeader().Length);
             stream.Write(pPacket.data, 0, pPacket.data.Length);
-            _sendMutex.ReleaseMutex();
+            _sendMutex.Release();
 
             return (int)pPacket.Length + pPacket.GetHeader().Length;
         }
@@ -115,7 +115,7 @@ namespace ProjectZ {
                 }
                 stream.Write(pPacket.GetHeader(), 0, pPacket.GetHeader().Length);
                 stream.Write(pPacket.data, 0, pPacket.data.Length);
-                _sendMutex.ReleaseMutex();
+                _sendMutex.Release();
 
                 return (int)pPacket.Length + pPacket.GetHeader().Length;
             });
@@ -165,7 +165,7 @@ namespace ProjectZ {
 
                 _queueMutex.WaitOne();
                 _packetQueue.Enqueue(packet);
-                _queueMutex.ReleaseMutex();
+                _queueMutex.Release();
 
                 Thread t = new Thread(OnPacket);
                 t.Start();
@@ -193,7 +193,7 @@ namespace ProjectZ {
 
                     _queueMutex.WaitOne();
                     _packetQueue.Enqueue(packet);
-                    _queueMutex.ReleaseMutex();
+                    _queueMutex.Release();
 
                     Thread t = new Thread(OnPacket);
                     t.Start();
