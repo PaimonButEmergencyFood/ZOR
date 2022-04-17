@@ -28,7 +28,17 @@ namespace iFriends {
             }
 
             public void Initialize() {
-                this = new UserInfo();
+                nickname = "";
+                profile_url = "";
+                gender = 0;
+                birthday = "";
+                isHeartBlock = 0;
+                isProfileBlock = 0;
+                isInviteBlock = 0;
+                isGenderOpen = 0;
+                isBirthdayOpen = 0;
+                lastLoginTime = 0;
+                shard_db_type = 0;
             }
         }
 

@@ -152,6 +152,7 @@ namespace iFriends {
             userInfo.isProfileBlock = syn.is_profile_open;
 
             UpdateProfileAck ack = new UpdateProfileAck();
+            ack.seq = syn.seq;
             ack.result = (short)EAck.ACK_OK;
             ack.birthday = syn.birthday;
             ack.gender = syn.gender;
@@ -163,7 +164,29 @@ namespace iFriends {
         }
 
         private void OnUpdateProfileAck(UpdateProfileAck ack) {
-            
+            ProjectZ.NetworkPacket rsp = new ProjectZ.NetworkPacket(ProjectZ.NetCMDTypes.ZNO_SC_UPDATE_MY_PROFILE);
+            rsp.U2(ack.result);
+
+            ProjectZ.User? user = ProjectZ.NProxy.Proxy.instance.GetUser((int)ack.seq);
+            if (user == null) {
+                Console.WriteLine("[FRIEND SERVER] User is null");
+                return;
+            }
+
+            ProjectZ.Session? session = user.GetSession();
+            if (session == null) {
+                Console.WriteLine("[FRIEND SERVER] Session is null");
+                return;
+            }
+
+            session.SendPacketAsync(rsp);
+            Console.WriteLine("[FRIEND SERVER] Send packet SEQ : {0}", ack.seq);
+
+            user.GetSocialInfo().GetData()._birthday = ack.birthday;
+            user.GetSocialInfo().GetData()._isBirthdayOpen = ack.is_birthday_open;
+            user.GetSocialInfo().GetData()._gender = ack.gender;
+            user.GetSocialInfo().GetData()._isGenderOpen = ack.is_gender_open;
+            user.GetSocialInfo().GetData()._profile_opened = ack.is_profile_open;
         }
     }
 }
