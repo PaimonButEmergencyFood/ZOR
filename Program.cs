@@ -28,6 +28,11 @@
             uInfo.company = 5;
             uInfo.sale_code = 37;
 
+            uInfo.array_Slot[0].open = true;
+            uInfo.array_Slot[0].makeCharacter = false;
+            uInfo.array_Slot[0].character_seq = 0;
+            uInfo.array_Slot[0].remainStatResetCount = 3;
+
             Database.NoSql.instance.CreateUser(uInfo);
 
             for (int i = 0; i < 8; i++) {
@@ -43,6 +48,7 @@
 
                 Database.NoSql.instance.CreateCharacter(cInfo);
             }
+            
 
             Console.WriteLine("[MAIN] CreateCharacter {0} success", userseq);
         }
