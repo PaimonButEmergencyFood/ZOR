@@ -1,7 +1,8 @@
-namespace ProjectZ {
-    public class API_ZNO_CS_SOCIAL_NEWS_COUNT
+namespace ProjectZ.NCommand.NFriends {
+    public class CS_SOCIAL_NEWS_COUNT
     {
-        public NetworkPacket ZNO_CS_SOCIAL_NEWS_COUNT(NetworkPacket req, Session session) {
+        public static void OnExecute(ref User _user, ref NetworkPacket req) {
+            Encryption.instance.Decrypt(ref req);
             Console.WriteLine("+-------------------------------------------------------------------");
             Console.WriteLine("| API_ZNO_CS_SOCIAL_NEWS_COUNT");
             Console.WriteLine("+-------------------------------------------------------------------");
@@ -10,7 +11,8 @@ namespace ProjectZ {
             NetworkPacket rsp = new NetworkPacket(NetCMDTypes.ZNO_SC_SOCIAL_NEWS_COUNT);
             rsp.U2((short)NetACKTypes.ACK_OK);
             rsp.U2(count);
-            return rsp;
+            
+            _user.GetSession().SendPacketAsync(rsp);
         }
     }
 }
