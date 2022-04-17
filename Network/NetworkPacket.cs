@@ -41,6 +41,7 @@ namespace ProjectZ {
                 data = new byte[len];
             } else {
                 // empty packet -> do nothing
+                data = new byte[0];
             }
             pos = 0;
         }

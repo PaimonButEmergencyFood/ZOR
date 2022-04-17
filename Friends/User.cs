@@ -1,5 +1,5 @@
 namespace iFriends {
-    public class User {
+    public class  User {
         public struct UserInfo {
             public string nickname;
             public string profile_url;
@@ -27,7 +27,7 @@ namespace iFriends {
                 shard_db_type = 0;
             }
 
-            void Initialize() {
+            public void Initialize() {
                 this = new UserInfo();
             }
         }
@@ -133,6 +133,37 @@ namespace iFriends {
             return _inviteCount;
         }
 
+        public ref UserInfo GetUserInfo() {
+            return ref _userInfo;
+        }
+
+        public void SetUserInfo(ref UserInfo userInfo) {
+            _userInfo = userInfo;
+        }
+
+        public void Initialize() {
+            _socialId = 0;
+            _userSeq = 0;
+            _heartCount = 0;
+            _newsCount = 0;
+            _isRankView = 0;
+            isRankReward = 0;
+            _rankConfirmTime = 0;
+            _inviteCount = 0;
+            _bufftime = 0;
+            _bKilled = false;
+
+            _userInfo.birthday = "";
+            _userInfo.gender = 0;
+            _userInfo.isBirthdayOpen = 0;
+            _userInfo.isGenderOpen = 0;
+            _userInfo.isHeartBlock = 0;
+            _userInfo.isInviteBlock = 0;
+            _userInfo.isProfileBlock = 0;
+            _userInfo.lastLoginTime = 0;
+            _userInfo.nickname = "";
+            _userInfo.profile_url = "";
+        }
 
         public User() {
             
