@@ -28,10 +28,9 @@ namespace ProjectZ {
 
         public void OnPacket() {
             NetworkPacket packet;
+            _queueMutex.WaitOne();
             while (_packetQueue.Count > 0) {
-                _queueMutex.WaitOne();
                 packet = _packetQueue.Dequeue();
-                _queueMutex.Release();
 
                 Console.WriteLine("[SESSION: Received packet: " + packet.Cmd);
 
@@ -89,6 +88,8 @@ namespace ProjectZ {
 
                 Console.WriteLine("[SESSION: Executed command {0} GID: {1} in {2} ticks", command.ToString(), _user.GetUserInfo().userseq, DateTime.Now.Ticks - starttick);
             }
+            Console.WriteLine("[SESSION: No packets in queue");
+            _queueMutex.Release();
         }
 
         public void ResetUser() {

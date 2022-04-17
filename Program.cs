@@ -1,6 +1,6 @@
 ﻿namespace ProjectZ {
     class Program {
-        private static void CreateCharacter() {
+        private static void CreateUser() {
             int userseq = Database.NoSql.instance.GetNewUserSeq();
             if (userseq == -1) {
                 Console.WriteLine("[MAIN] GetNewUserSeq failed");
@@ -33,7 +33,9 @@
             uInfo.array_Slot[0].character_seq = 0;
             uInfo.array_Slot[0].remainStatResetCount = 3;
 
-            Database.NoSql.instance.CreateUser(uInfo);
+            bool isUserCreated = Database.NoSql.instance.CreateUser(uInfo);
+
+            Console.WriteLine("[MAIN] CreateUser {0}", isUserCreated);
 
             for (int i = 0; i < 8; i++) {
                 Cache.Character character = new Cache.Character();
@@ -46,51 +48,17 @@
                     return;
                 }
 
-                Database.NoSql.instance.CreateCharacter(cInfo);
+                bool isCharacterCreated = Database.NoSql.instance.CreateCharacter(cInfo);
+
+                Console.WriteLine("[MAIN] CreateCharacter {0}", isCharacterCreated);
             }
             
 
             Console.WriteLine("[MAIN] CreateCharacter {0} success", userseq);
         }
-        private static void Testdb() {
-            Console.WriteLine("[TEST] db");
 
-            Cache.CharacterInfo charInfo = new Cache.CharacterInfo();
-            charInfo.avartar = 102;
-            charInfo.characterseq = 1;
-            charInfo.userSeq = 40;
-
-            for (int i = 0; i < 8; i++) {
-                charInfo.array_QuickSlot[i] = new Cache.QuickSlot();
-            }
-
-            charInfo.array_QuickSlot[0].index = 1;
-            charInfo.array_QuickSlot[0].type = 1;
-
-            Database.NoSql.instance.CreateCharacter(charInfo);
-
-            Cache.CharacterInfo? info = Database.NoSql.instance.GetCharacter(40, 1);
-            if (info == null) {
-                Console.WriteLine("[TEST] GetCharacter failed");
-                return;
-            }
-            Console.WriteLine("[TEST] GetCharacter success");
-
-            throw new NotFiniteNumberException();
-
-        }
         static void Main(string[] args) {
-            if (args.Length != 0) {
-                switch (args[0]) {
-                    case "--testdb":
-                        Testdb();
-                        break;
-                    default:
-                        Console.WriteLine("Unknown command {0}", args[0]);
-                        break;
-                }
-            }
-            CreateCharacter();
+            CreateUser();
             /**
             User user = new User();
             User.State.Command pCommand = user.GetState().GetCommand((ushort)NetCMDTypes.ZNO_CS_CONNECT);
