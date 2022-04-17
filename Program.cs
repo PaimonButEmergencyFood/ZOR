@@ -37,6 +37,7 @@
 
             Console.WriteLine("[MAIN] CreateUser {0}", isUserCreated);
 
+            // maybe not?
             for (int i = 0; i < 8; i++) {
                 Cache.Character character = new Cache.Character();
                 character.Initialize((uint)userseq, (uint)i + 1); // FIX character_seq != 0 in OnUserInfoAck
