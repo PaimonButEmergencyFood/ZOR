@@ -148,5 +148,25 @@ namespace ProjectZ.NProxy {
         public int GetNewUserSeq() {
             return Database.NoSql.instance.GetNewUserSeq();
         }
+
+        public bool FlushUserSlotInfoSyn(ref User pUser, int slotIndex) {
+            if (pUser == null) {
+                Console.WriteLine("[PROXY] PROXY::FlushUserSlotInfoSyn User == null");
+                return false;
+            }
+
+            FlushUserSlotInfoSyn msg = new FlushUserSlotInfoSyn();
+            msg.seq = (uint)pUser.GetUserSeq();
+            msg.slotIndex = (uint)slotIndex;
+            msg.stSlot = pUser.GetUserInfo().array_Slot[slotIndex];
+            
+            CacheServer mCacheServer = pUser.GetCacheServer();
+            if (mCacheServer == null) {
+                Console.WriteLine("[PROXY] PROXY::FlushUserSlotInfoSyn mCacheServer == null");
+                return false;
+            }
+            mCacheServer.SendMsg(msg);
+            return true;
+        }
     }
 }

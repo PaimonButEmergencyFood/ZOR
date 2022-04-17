@@ -53,6 +53,16 @@ namespace Cache {
                     OnCharacterInfoAck(ack);
                     return;
                 }
+                if (msg is FlushUserSlotInfoSyn) {
+                    FlushUserSlotInfoSyn? syn = msg as FlushUserSlotInfoSyn;
+                    if (syn == null) {
+                        Console.WriteLine("[CACHE SERVER] FlushUserSlotInfoSyn is null");
+                        return;
+                    }
+                    Console.WriteLine("[CACHE SERVER] FlushUserSlotInfoSyn {0}", syn.seq);
+                    OnFlushUserSlotInfoSyn(syn);
+                    return;
+                }
                 Console.WriteLine("[CACHE SERVER] Unknown msg type "  + msg.GetType());
             });
         }
@@ -234,6 +244,24 @@ namespace Cache {
             session.SendPacketAsync(rsp);
 
             //ProjectZ.NProxy.Proxy.instance.SetMainCharacterInfo(ref pUser);
+            return;
+        }
+
+        private void OnFlushUserSlotInfoSyn(FlushUserSlotInfoSyn syn) {
+            _pUser.Initialize();
+
+            Console.WriteLine("[CACHE SERVER] FlushUserSlotInfo {0}", syn.seq);
+
+            FlushUserSlotInfoAck ack = new FlushUserSlotInfoAck();
+            ack.seq = syn.seq;
+            ack.result = CacheResult.CACHE_SUCCESS;
+            if (_pUser.GetUserInfo() == null) {
+                ack.result = CacheResult.CACHE_DATABASE_ERROR;
+                ack.strError = "UserInfo is null";
+            } else {
+                ack.stUserInfo = _pUser.GetUserInfo();
+            }
+            SendMsg(ack);
             return;
         }
     }

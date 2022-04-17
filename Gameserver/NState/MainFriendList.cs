@@ -16,6 +16,7 @@ namespace ProjectZ.NState {
             AddCommand((ushort)NetCMDTypes.ZNO_CS_REQ_SLOT_LIST, ProjectZ.command.world.CS_REQ_SLOT_LIST.OnExecute);
             AddCommand((ushort)NetCMDTypes.ZNO_CS_REQ_GAME_INFO, ProjectZ.NCommand.NWorld.CS_REQ_GAME_INFO.OnExecute);
             AddCommand((ushort)NetCMDTypes.ZNO_CS_UPDATE_MY_PROFILE, ProjectZ.NCommand.NFriends.CS_UPDATE_MY_PROFILE.OnExecute);
+            AddCommand((ushort)NetCMDTypes.ZNO_CS_REQ_REMOTE_CONTROL, ProjectZ.NCommand.NConnect.CS_REQ_REMOTE_CONTROL.OnExecute);
         }
     }
 }
