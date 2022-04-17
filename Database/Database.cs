@@ -67,5 +67,9 @@ namespace Database {
         public bool UpdateCharacter(Cache.CharacterInfo characterInfo) {
             return _db.GetCollection<CharacterInfo>("characterinfo").Update(CharacterInfo.FromCharacterInfo(characterInfo));
         }
+
+        public static int GenerateSeq() {
+            return Guid.NewGuid().GetHashCode();
+        }
     }
 }
