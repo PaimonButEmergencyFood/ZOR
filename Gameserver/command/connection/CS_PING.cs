@@ -1,11 +1,8 @@
-namespace ProjectZ {
-    public class API_ZNO_CS_PING
+namespace ProjectZ.command.connection {
+    public class CS_PING
     {
-        public NetworkPacket ZNO_CS_PING(NetworkPacket req, Session session) {
-            Console.WriteLine("+-------------------------------------------------------------------");
-            Console.WriteLine("| API_ZNO_CS_PING");
-            Console.WriteLine("+-------------------------------------------------------------------");
-            return null;
+        public static void OnExecute(ref User _user, ref NetworkPacket req) {
+            Encryption.instance.Decrypt(ref req);
         }
     }
 }
