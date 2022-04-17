@@ -2,6 +2,7 @@ namespace ProjectZ {
     public class Constants {
         public const int INVALID_VALUE = -1;
         public const int MAX_SOCIALID_LEN = 20;
+        public const int MAX_CLASS_TYPE = 5;
         public const int MAX_SKILL = 20;
         public const int FAIRY_TID_START = 15;
         public const int UPSTONE_TID = 13;
