@@ -410,8 +410,8 @@ namespace ProjectZ {
             return _card;
         }
 
-        public NLogic.SocialInfo GetSocialInfo() {
-            return _socialInfo;
+        public ref NLogic.SocialInfo GetSocialInfo() {
+            return ref _socialInfo;
         }
 
         public NLogic.BattleAfterEffect GetBattleAfterEffect() {

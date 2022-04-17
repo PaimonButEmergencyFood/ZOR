@@ -1,7 +1,8 @@
-namespace ProjectZ {
-    public class API_ZNO_CS_REQ_REMOTE_CONTROL
+namespace ProjectZ.NCommand.NConnect {
+    public class CS_REQ_REMOTE_CONTROL
     {
-        public NetworkPacket ZNO_CS_REQ_REMOTE_CONTROL(NetworkPacket req, Session session) {
+        public static void OnExecute(ref User _user, ref NetworkPacket req) {
+            Encryption.instance.Decrypt(ref req);
             Console.WriteLine("+-------------------------------------------------------------------");
 	        Console.WriteLine("| TODO!: API_ZNO_CS_REQ_REMOTE_CONTROL");
             Console.WriteLine("+-------------------------------------------------------------------");
@@ -21,7 +22,7 @@ namespace ProjectZ {
             Console.WriteLine("| cpi_button: " + _cpi_button);
             Console.WriteLine("+-------------------------------------------------------------------");
 
-            return rsp;
+            _user.GetSession().SendPacketAsync(rsp);
         }
     }
 }

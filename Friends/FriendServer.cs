@@ -48,11 +48,31 @@ namespace iFriends {
                     OnSocialMyInfoAck(ack);
                     return;
                 }
+                if (msg is UpdateProfileSyn) {
+                    UpdateProfileSyn? syn = msg as UpdateProfileSyn;
+                    if (syn == null) {
+                        Console.WriteLine("[FRIEND SERVER] UpdateProfileSyn is null");
+                        return;
+                    }
+                    Console.WriteLine("[FRIEND SERVER] UpdateProfileSyn {0}", syn.seq);
+                    OnUpdateProfileSyn(syn);
+                    return;
+                }
+                if (msg is UpdateProfileAck) {
+                    UpdateProfileAck? ack = msg as UpdateProfileAck;
+                    if (ack == null) {
+                        Console.WriteLine("[FRIEND SERVER] UpdateProfileAck is null");
+                        return;
+                    }
+                    Console.WriteLine("[FRIEND SERVER] UpdateProfileAck {0}", ack.seq);
+                    OnUpdateProfileAck(ack);
+                    return;
+                }
                 Console.WriteLine("[FRIEND SERVER] Unknown msg type "  + msg.GetType());
             });
         }
 
-        public void OnSocialMyInfoSyn(SocialMyInfoSyn syn) {
+        private void OnSocialMyInfoSyn(SocialMyInfoSyn syn) {
             Console.WriteLine("SEQ : {0}", syn.seq);
 
             _user.Initialize();
@@ -85,7 +105,7 @@ namespace iFriends {
             //_user.SetNoAppFriends();
         }
 
-        public void OnSocialMyInfoAck(SocialMyInfoAck ack) {
+        private void OnSocialMyInfoAck(SocialMyInfoAck ack) {
             Console.WriteLine("[FRIEND SERVER] OnSocialMyInfoAck SEQ : {0}", ack.seq);
             ProjectZ.User? user = ProjectZ.NProxy.Proxy.instance.GetUser((int)ack.seq);
             if (user == null) {
@@ -114,6 +134,36 @@ namespace iFriends {
 
             session.SendPacketAsync(packet);
             Console.WriteLine("[FRIEND SERVER] Send packet");
+        }
+
+        private void OnUpdateProfileSyn(UpdateProfileSyn syn) {
+            Console.WriteLine("[FRIEND SERVER] OnUpdateProfileSyn SEQ : {0}", syn.seq);
+            ProjectZ.User? user = ProjectZ.NProxy.Proxy.instance.GetUser((int)syn.seq);
+            if (user == null) {
+                Console.WriteLine("[FRIEND SERVER] User is null");
+                return;
+            }
+
+            User.UserInfo userInfo = _user.GetUserInfo();
+            userInfo.gender = syn.gender;
+            userInfo.isGenderOpen = syn.is_gender_open;
+            userInfo.birthday = syn.birthday;
+            userInfo.isBirthdayOpen = syn.is_birthday_open;
+            userInfo.isProfileBlock = syn.is_profile_open;
+
+            UpdateProfileAck ack = new UpdateProfileAck();
+            ack.result = (short)EAck.ACK_OK;
+            ack.birthday = syn.birthday;
+            ack.gender = syn.gender;
+            ack.is_birthday_open = syn.is_birthday_open;
+            ack.is_gender_open = syn.is_gender_open;
+            ack.is_profile_open = syn.is_profile_open;
+
+            OnMsg(ack);
+        }
+
+        private void OnUpdateProfileAck(UpdateProfileAck ack) {
+            
         }
     }
 }

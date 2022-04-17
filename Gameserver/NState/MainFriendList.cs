@@ -14,6 +14,7 @@ namespace ProjectZ.NState {
             AddCommand((ushort)NetCMDTypes.ZNO_CS_GET_NEW_MAIL_COUNT, ProjectZ.NCommand.NMail.CS_GET_NEW_MAIL_COUNT.OnExecute);
             AddCommand((ushort)NetCMDTypes.ZNO_CS_SOCIAL_NEWS_COUNT, ProjectZ.NCommand.NFriends.CS_SOCIAL_NEWS_COUNT.OnExecute);
             AddCommand((ushort)NetCMDTypes.ZNO_CS_REQ_SLOT_LIST, ProjectZ.command.world.CS_REQ_SLOT_LIST.OnExecute);
+            AddCommand((ushort)NetCMDTypes.ZNO_CS_REQ_GAME_INFO, ProjectZ.NCommand.NWorld.CS_REQ_GAME_INFO.OnExecute);
         }
     }
 }
