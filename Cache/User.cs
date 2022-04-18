@@ -1,9 +1,9 @@
 namespace Cache {
     public class Character {
-        private bool _bOpen;
-        private bool _bLoad;
-        private UInt32 _char_seq;
-        private CharacterInfo _characterInfo;
+        public bool _bOpen;
+        public bool _bLoad;
+        public UInt32 _char_seq;
+        public CharacterInfo _characterInfo;
 
         public Character() {
             _bOpen = false;
@@ -29,9 +29,11 @@ namespace Cache {
 
         private UserInfo? _pUserInfo;
         private int _userSeq;
+        public Character[] _pCharacterInfo;
         public User() {
             _pUserInfo = new UserInfo();
             _userSeq = 0;
+            _pCharacterInfo = new Character[8];
             Initialize();
         }
 
@@ -69,6 +71,10 @@ namespace Cache {
 
         public ref UserInfo? GetUserInfo() {
             return ref _pUserInfo;
+        }
+
+        public ref Character? GetCharacter(int index) {
+            return ref _pCharacterInfo[index];
         }
 
         public void SetUserInfo(ref UserInfo userInfo) {

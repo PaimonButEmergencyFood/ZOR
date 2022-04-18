@@ -63,6 +63,36 @@ namespace Cache {
                     OnFlushUserSlotInfoSyn(syn);
                     return;
                 }
+                if (msg is FlushUserSlotInfoAck) {
+                    FlushUserSlotInfoAck? ack = msg as FlushUserSlotInfoAck;
+                    if (ack == null) {
+                        Console.WriteLine("[CACHE SERVER] FlushUserSlotInfoAck is null");
+                        return;
+                    }
+                    Console.WriteLine("[CACHE SERVER] FlushUserSlotInfoAck {0}", ack.seq);
+                    OnFlushUserSlotInfoAck(ack);
+                    return;
+                }
+                if (msg is NewCharacterInfoSyn) {
+                    NewCharacterInfoSyn? syn = msg as NewCharacterInfoSyn;
+                    if (syn == null) {
+                        Console.WriteLine("[CACHE SERVER] NewCharacterInfoSyn is null");
+                        return;
+                    }
+                    Console.WriteLine("[CACHE SERVER] NewCharacterInfoSyn {0}", syn.seq);
+                    OnNewCharacterInfoSyn(syn);
+                    return;
+                }
+                if (msg is NewCharacterInfoAck) {
+                    NewCharacterInfoAck? ack = msg as NewCharacterInfoAck;
+                    if (ack == null) {
+                        Console.WriteLine("[CACHE SERVER] NewCharacterInfoAck is null");
+                        return;
+                    }
+                    Console.WriteLine("[CACHE SERVER] NewCharacterInfoAck {0}", ack.seq);
+                    OnNewCharacterInfoAck(ack);
+                    return;
+                }
                 Console.WriteLine("[CACHE SERVER] Unknown msg type "  + msg.GetType());
             });
         }
@@ -99,9 +129,10 @@ namespace Cache {
             SendMsg(ack);
         }
 
-        public void SendFlushUserSlotInfo(UInt32 seq, CacheResult result, string msg) {
+        public void SendFlushUserSlotInfo(UInt32 seq, UInt32 slotIndex, CacheResult result, string msg) {
             FlushUserSlotInfoAck ack = new FlushUserSlotInfoAck();
             ack.seq = seq;
+            ack.slotIndex = slotIndex;
             ack.result = result;
             ack.strError = msg;
             SendMsg(ack);
@@ -248,21 +279,97 @@ namespace Cache {
         }
 
         private void OnFlushUserSlotInfoSyn(FlushUserSlotInfoSyn syn) {
-            _pUser.Initialize();
 
             Console.WriteLine("[CACHE SERVER] FlushUserSlotInfo {0}", syn.seq);
 
-            FlushUserSlotInfoAck ack = new FlushUserSlotInfoAck();
-            ack.seq = syn.seq;
-            ack.result = CacheResult.CACHE_SUCCESS;
-            if (_pUser.GetUserInfo() == null) {
-                ack.result = CacheResult.CACHE_DATABASE_ERROR;
-                ack.strError = "UserInfo is null";
-            } else {
-                ack.stUserInfo = _pUser.GetUserInfo();
+            _pUser.GetUserInfo().array_Slot[syn.slotIndex] = syn.stSlot;
+
+            Cache.Character? character = _pUser.GetCharacter((int)syn.stSlot.character_seq);
+            if (character == null) {
+                Console.WriteLine("[CACHE SERVER] FlushUserSlotInfo failed - character doesnt exist");
+                return;
             }
-            SendMsg(ack);
+
+            character._bOpen = true;
+            character._bLoad = false;
+            character._char_seq = syn.stSlot.character_seq;
+
+
+            SendFlushUserSlotInfo(syn.seq, syn.slotIndex, CacheResult.CACHE_SUCCESS, "SUCCESS");
             return;
         }
+
+        private void OnFlushUserSlotInfoAck(FlushUserSlotInfoAck ack) {
+            ProjectZ.User? pUser = ProjectZ.NProxy.Proxy.instance.GetUser((int)ack.seq);
+            if (pUser == null) {
+                Console.WriteLine("[CACHE SERVER] FlushUserSlotInfoAck failed - user doesnt exist");
+                return;
+            }
+
+            ProjectZ.NProxy.Proxy.instance.NewCharacterInfoSyn(ref pUser, (int)pUser.GetCharacterInfoFromIndex((int)ack.slotIndex).characterseq);
+
+            //ProjectZ.NProxy.Proxy.instance.SetMainCharacterInfo(ref pUser);
+            return;
+        }
+
+        private void OnNewCharacterInfoSyn(NewCharacterInfoSyn syn) {
+            ProjectZ.User? pUser = ProjectZ.NProxy.Proxy.instance.GetUser((int)syn.seq);
+            if (pUser == null) {
+                Console.WriteLine("[CACHE SERVER] NewCharacterInfoSyn failed - user doesnt exist");
+                return;
+            }
+            CharacterInfo characterInfo = new CharacterInfo();
+            _pUser.GetCharacter((int)syn.char_seq)._bOpen = true;
+            _pUser.GetCharacter((int)syn.char_seq)._char_seq = syn.char_seq;
+            _pUser.GetCharacter((int)syn.char_seq)._characterInfo = characterInfo;
+
+            NewCharacterInfoAck ack = new NewCharacterInfoAck();
+            ack.seq = syn.seq;
+            ack.result = CacheResult.CACHE_SUCCESS;
+            ack.stCharacterInfo = _pUser.GetCharacter((int)syn.char_seq)._characterInfo;
+
+            SendMsg(ack);
+        }
+
+        private void OnNewCharacterInfoAck(NewCharacterInfoAck ack) {
+            ProjectZ.User? pUser = ProjectZ.NProxy.Proxy.instance.GetUser((int)ack.seq);
+            if (pUser == null) {
+                Console.WriteLine("[CACHE SERVER] NewCharacterInfoAck failed - user doesnt exist");
+                return;
+            }
+
+            ProjectZ.Session? session = pUser.GetSession();
+            if (session == null) {
+                Console.WriteLine("[CACHE SERVER] NewCharacterInfoAck failed - session doesnt exist");
+                return;
+            }
+
+            if (ack.result != CacheResult.CACHE_SUCCESS) {
+                Console.WriteLine("[CACHE SERVER] NewCharacterInfoAck failed {0}", ack.strError);
+                ProjectZ.NetworkPacket mrsp = new ProjectZ.NetworkPacket(ProjectZ.NetCMDTypes.ZNO_SC_REQ_ENTER_MY_INFO);
+                mrsp.U2((short)ProjectZ.NetACKTypes.ACK_DB_ERROR);
+                mrsp.U4((int)ack.seq);
+
+                session.SendPacketAsync(mrsp);
+                return;
+            }
+
+            Console.WriteLine("[CACHE SERVER] NewCharacterInfoAck GID {0}", ack.seq);
+
+            pUser.SetCharacterInfo(ack.stCharacterInfo, (int)ack.stCharacterInfo.slotindex);
+            pUser.AddLoadCharacterCount();
+
+            pUser.GiveBaseItem((int)ack.stCharacterInfo.slotindex);
+
+            pUser.SetState(ProjectZ.NState.Static.instance.MAINFRIENDLIST());
+
+            ProjectZ.NetworkPacket rsp = new ProjectZ.NetworkPacket(ProjectZ.NetCMDTypes.ZNO_SC_SLOT_PLAYER_CREATE);
+            rsp.U2((short)ProjectZ.NetACKTypes.ACK_OK);
+
+            session.SendPacketAsync(rsp);
+
+            // TODO OnFlushCharacterInfoSyn
+        }
+
     }
 }

@@ -159,10 +159,31 @@ namespace ProjectZ.NProxy {
             msg.seq = (uint)pUser.GetUserSeq();
             msg.slotIndex = (uint)slotIndex;
             msg.stSlot = pUser.GetUserInfo().array_Slot[slotIndex];
-            
+
             CacheServer mCacheServer = pUser.GetCacheServer();
             if (mCacheServer == null) {
                 Console.WriteLine("[PROXY] PROXY::FlushUserSlotInfoSyn mCacheServer == null");
+                return false;
+            }
+            mCacheServer.SendMsg(msg);
+            return true;
+        }
+
+        public bool NewCharacterInfoSyn(ref User pUser, int char_seq) {
+            if (pUser == null) {
+                Console.WriteLine("[PROXY] PROXY::NewCharacterInfoSyn User == null");
+                return false;
+            }
+
+            Console.WriteLine("[PROXY] PROXY::NewCharacterInfoSyn::{0}, SEQ {1}", pUser.GetUserSeq(), char_seq);
+
+            NewCharacterInfoSyn msg = new NewCharacterInfoSyn();
+            msg.seq = (uint)pUser.GetUserSeq();
+            msg.char_seq = (uint)char_seq;
+
+            CacheServer? mCacheServer = pUser.GetCacheServer();
+            if (mCacheServer == null) {
+                Console.WriteLine("[PROXY] PROXY::NewCharacterInfoSyn mCacheServer == null");
                 return false;
             }
             mCacheServer.SendMsg(msg);
