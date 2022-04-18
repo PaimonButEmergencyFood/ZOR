@@ -49,10 +49,12 @@ namespace ProjectZ.command.world {
             _user.GetCharacterInfoFromIndex(slot_number).dex = (uint)dex;
             _user.GetCharacterInfoFromIndex(slot_number).spi = (uint)spi;
 
+            /**
             bool is_updated = Database.NoSql.instance.UpdateCharacter(_user.GetCharacterInfo());
             if (is_updated == false) {
                 throw new Exception("[CHANNEL] CS_SLOT_PLAYER_CREATE::ONEXECUTE::ERROR::UPDATE_CHARACTER_FAILED");
             }
+            **/
 
             if (_user.GetUserInfo().main_slot_index == -1) {
                 _user.GetUserInfo().main_slot_index = slot_number;
